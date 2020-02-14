@@ -1,0 +1,10 @@
+.interface {
+	margin: 1rem;
+}
+
+.choice {
+	width: 100%;
+	white-space: nowrap;
+	margin: 1rem;
+	box-sizing: border-box;
+}
