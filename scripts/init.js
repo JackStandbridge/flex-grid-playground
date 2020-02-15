@@ -42,7 +42,7 @@ const makeInput = (data, parentset, isFirst) => {
 			input.max = max;
 			input.value = value;
 			fragment.append(input);
-
+			input.classList.add(className);
 			break;
 
 		case 'radio':

@@ -107,7 +107,8 @@ export default {
 							type: 'range',
 							min: 1,
 							max: 20,
-							value: 3
+							value: 3,
+							className: 'range'
 						}
 					]
 				},
