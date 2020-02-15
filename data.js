@@ -1,3 +1,10 @@
+export const initial = {
+	margin: 5,
+	padding: 10,
+	width: 150,
+	height: 100,
+}
+
 export default {
 	fieldsets: [
 		{
@@ -120,28 +127,28 @@ export default {
 							name: 'margin',
 							type: 'number',
 							min: 0,
-							value: 5,
+							value: initial.margin,
 							className: 'number'
 						},
 						{
 							name: 'padding',
 							type: 'number',
 							min: 0,
-							value: 5,
+							value: initial.padding,
 							className: 'number'
 						},
 						{
 							name: 'width',
 							type: 'number',
 							min: 0,
-							value: 50,
+							value: initial.width,
 							className: 'number'
 						},
 						{
 							name: 'height',
 							type: 'number',
 							min: 0,
-							value: 50,
+							value: initial.height,
 							className: 'number'
 						}
 					]

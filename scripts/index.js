@@ -1,4 +1,5 @@
 import init from './init.js';
+import { initial } from '../data.js';
 
 init();
 
@@ -10,13 +11,18 @@ const childProperties = new Proxy({}, {
 	set(target, prop, val) {
 		target[prop] = val;
 
+		// Proxy ensures DOM stays up to date
+		// with current childProperties state
 		[...container.children].forEach(child => {
-			child.style[prop] = `${ val }px`
+			child.style[prop] = val === '' ? '' : `${ val }px`;
 		});
 
 		return true;
 	}
 });
+
+// update DOM with initial values.
+Object.assign(childProperties, initial);
 
 const setContainerStyles = ({ dataset }) => {
 	const { property, value } = dataset;

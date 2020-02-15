@@ -7,6 +7,6 @@
     "sass": "sass --watch ./styles/index.scss:index.css",
     "start": "node server.js & npm run sass & wait"
   },
-  "author": "",
+  "author": "Jack Standbridge",
   "license": "ISC"
 }
