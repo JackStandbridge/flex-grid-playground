@@ -1,20 +1,50 @@
-const http = require("http");
+const http = require('http');
 const hostname = '127.0.0.1';
 const port = 3000;
 const fs = require('fs');
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
 
-	const path = req.url === '/' ? './index.html' : '.' + req.url
-	const type = req.url === '/' ? 'html' : req.url.split('.').reverse()[0].replace(/^js$/, 'javascript');
+	const filePath =
+		req.url === '/'
+			? './index.html'
+			: '.' + req.url
 
-	res.statusCode = 200;
-	res.setHeader('Content-Type', `text/${type}`);
-	fs.readFile(path, (error, data) => {
-		if (!error) {
-			res.end(data);
-		}
-	});
+	const type =
+		req.url === '/'
+			? 'html'
+			: req.url.split('.')
+				.reverse()[0] // get file extension
+				.replace(/^js$/, 'javascript');
+
+	try {
+
+		await new Promise((res, rej) => {
+			fs.exists(filePath, exists => {
+				if (exists || filePath === './index.html') {
+					res(true);
+				} else {
+					rej(false);
+				}
+			});
+		});
+
+		res.statusCode = 200;
+		res.setHeader('Content-Type', `text/${ type }`);
+
+		fs.readFile(filePath, (error, data) => {
+			if (!error) {
+				res.end(data);
+			}
+		});
+
+	} catch (e) {
+		res.writeHead(404, { 'Content-Type': 'text/plain' });
+		res.write('404 Not Found\n');
+		res.end();
+		return;
+	}
+
 });
 
 server.listen(port, hostname, () => {
