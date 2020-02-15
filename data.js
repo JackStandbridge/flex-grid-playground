@@ -1,8 +1,8 @@
 export const initial = {
 	margin: 5,
-	padding: 10,
-	width: 150,
-	height: 100,
+	padding: 15,
+	width: 120,
+	height: 50,
 }
 
 export default {
@@ -168,12 +168,12 @@ export default {
 						className: 'choice',
 						inputs: [
 							{
-								name: 'nowrap',
-								type: 'radio'
-							},
-							{
-								name: 'wrap',
-								type: 'radio'
+								type: 'multi',
+								options: [
+									'fr',
+									'px',
+									'%',
+								],
 							}
 						]
 					},

@@ -42,13 +42,10 @@ body {
 }
 
 .child {
-	box-sizing: border-box;
 	border-radius: 7px;
 	position: relative;
 
 	&::after {
-		content: '';
-		display: block;
 		height: 100%;
 		width: 100%;
 		background: white;
