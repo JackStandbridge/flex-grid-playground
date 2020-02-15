@@ -4,6 +4,8 @@ html {
 
 body {
 	display: flex;
+	padding: 0;
+	margin: 0;
 }
 
 .page {
@@ -27,28 +29,23 @@ body {
 	border: 3px solid #bbb;
 	border-radius: 7px;
 	margin: .1rem;
-}
-
-.child {
-	width: 4rem;
-	height: 4rem;
-	border: 3px solid #bbb;
-	border-radius: 7px;
-	margin: .1rem;
-}
-
-.flex {
+	box-sizing: border-box;
 	display: flex;
 }
 
-.justify-content-between {
-	justify-content: space-between;
-}
+.child {
+	margin: 5px;
+	padding: 5px;
+	width: 50px;
+	height: 50px;
 
-.justify-content-around {
-	justify-content: space-around;
-}
+	box-sizing: border-box;
+	border-radius: 7px;
 
-.justify-content-evenly {
-	justify-content: space-evenly;
+	@for $i from 1 through 20 {
+		&:nth-child(#{$i}) {
+			border: 3px solid hsl($i * 18, 40%, 60%);
+			background: hsl($i * 18, 60%, 90%);
+		}
+	}
 }

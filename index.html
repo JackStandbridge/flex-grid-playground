@@ -6,7 +6,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<meta http-equiv='X-UA-Compatible' content='ie=edge'>
 	<title>Document</title>
-	<link rel='stylesheet' href='./styles/index.css'>
+	<link rel='stylesheet' href='./index.css'>
 	<script defer type='module' src='./scripts/index.js'></script>
 </head>
 
@@ -39,7 +39,7 @@
 					<i class='refresh'></i>
 					<i class='home'></i>
 				</div>
-				<div class='url'>flexboxplayground.com</div>
+				<div class='url' contenteditable>flexboxplayground.com</div>
 				<div class='options'>&bull;&bull;&bull;</div>
 			</nav>
 		</div>
@@ -54,154 +54,10 @@
 	</div>
 
 	<div id='interface' class='interface'>
-		<form>
-			<div class='col'>
-				<fieldset class='choice'>
-					<legend>flex-direction</legend>
-					<input
-						data-property='flex-direction'
-						data-value='column'
-						type='radio'
-						name='display'
-						id='block'
-					/>
-					<label for='block'>column</label>
-					<hr>
-					<input
-						data-property='flex-direction'
-						data-value='row'
-						type='radio'
-						name='display'
-						id='inline'
-					/>
-					<label for='inline'>row</label>
-				</fieldset>
-
-				<fieldset class='choice'>
-					<legend>justify-content</legend>
-					<input
-						data-property='justify-content'
-						data-value='space-between'
-						type='radio'
-						name='justify-content'
-						id='justify-between'
-					/>
-					<label for='justify-between'>space-between</label>
-					<hr>
-					<input
-						data-property='justify-content'
-						data-value='space-around'
-						type='radio'
-						name='justify-content'
-						id='justify-around'
-					/>
-					<label for='justify-around'>space-around</label>
-					<hr>
-					<input
-						data-property='justify-content'
-						data-value='space-evenly'
-						type='radio'
-						name='justify-content'
-						id='justify-evenly'
-					/>
-					<label for='justify-evenly'>space-evenly</label>
-					<hr>
-					<input
-						data-property='justify-content'
-						data-value='center'
-						type='radio'
-						name='justify-content'
-						id='justify-center'
-					/>
-					<label for='justify-center'>center</label>
-					<hr>
-					<input
-						data-property='justify-content'
-						data-value='flex-start'
-						type='radio'
-						name='justify-content'
-						id='flex-start'
-					/>
-					<label for='flex-start'>flex-start</label>
-					<hr>
-					<input
-						data-property='justify-content'
-						data-value='flex-end'
-						type='radio'
-						name='justify-content'
-						id='flex-end'
-					/>
-					<label for='flex-end'>flex-end</label>
-				</fieldset>
-
-				<fieldset class='choice'>
-					<legend>align-items</legend>
-					<input
-						data-property='align-items'
-						data-value='center'
-						type='radio'
-						name='align-content'
-						id='center'
-					/>
-					<label for='center'>center</label>
-					<hr>
-					<input
-						data-property='align-items'
-						data-value='flex-start'
-						type='radio'
-						name='align-content'
-						id='align-start'
-					/>
-					<label for='align-start'>flex-start</label>
-					<hr>
-					<input
-						data-property='align-items'
-						data-value='flex-end'
-						type='radio'
-						name='align-content'
-						id='align-end'
-					/>
-					<label for='align-end'>flex-end</label>
-					<hr>
-					<input
-						data-property='align-items'
-						data-value='stretch'
-						type='radio'
-						name='align-content'
-						id='align-stretch'
-					/>
-					<label for='align-stretch'>stretch</label>
-				</fieldset>
-
-				<fieldset class='choice'>
-					<legend>flex-wrap</legend>
-					<input
-						data-property='flex-wrap'
-						data-value='wrap'
-						type='radio'
-						name='flex-wrap'
-						id='wrap'
-					/>
-					<label for='wrap'>wrap</label>
-					<hr>
-					<input
-						data-property='flex-wrap'
-						data-value='row'
-						type='radio'
-						name='flex-wrap'
-						id='nowrap'
-					/>
-					<label for='nowrap'>nowrap</label>
-				</fieldset>
-			</div>
-
-			<div class='col'>
-				<fieldset class='choice'>
-					<legend>Number of children</legend>
-					<input type='range' id='range' min='1' max='12' value='3' />
-				</fieldset>
-			</div>
-
+		<form class='form'>
+			<!-- This form is populated by JS -->
+			<!-- Data source: ./data.js -->
+			<!-- Responsible script: ./scripts/init.js -->
 		</form>
 	</div>
 </body>
