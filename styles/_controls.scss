@@ -37,14 +37,43 @@
 	}
 }
 
-.number {
+.number,
+.select {
 	font-size: 1rem;
 	width: 5ch;
 	margin-left: auto;
 	text-align: right;
+	background: white;
+	border-radius: 0;
+	border: 1px solid #ddd;
+
+	&--multi {
+		margin-left: 0;
+	}
 }
 
 .range {
 	width: 100%;
-	box-sizing: border-box;
+}
+
+.multi-container {
+	display: flex;
+	flex-wrap: wrap;
+
+	&__inputs {
+		flex-wrap: wrap;
+		display: flex;
+		max-width: 100%;
+	}
+
+}
+
+.add,
+.remove {
+	border: 1px solid #ddd;
+	display: inline-block;
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: 50%;
+	margin-left: 0.3rem;
 }

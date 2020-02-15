@@ -18,11 +18,14 @@ const makeFieldset = data => {
 
 	if (data.inputs) {
 		data.inputs.forEach((input, i) => {
-			if (i) {
+			const isFirst = i === 0;
+
+			if (!isFirst) {
 				const hr = document.createElement('hr');
 				fieldset.append(hr);
 			}
-			fieldset.append(makeInput(input, data.name, !i));
+
+			fieldset.append(makeInput(input, data.name, isFirst));
 		});
 	}
 

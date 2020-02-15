@@ -1,7 +1,7 @@
 import init from './init.js';
 import { initial } from '../data.js';
 
-const page = location.hash.slice(1,) || 'flex';
+const page = location.hash.slice(1) || 'flex';
 init(page);
 
 const controls = document.getElementById('interface');
@@ -52,7 +52,7 @@ const addChildren = ({ value }) => {
 const setChildStyles = target => {
 	if (target.matches('input[type="number"]')) {
 
-		const property = target.dataset.property;
+		const { property } = target.dataset;
 		const value = target.value;
 		childProperties[property] = value;
 
@@ -73,6 +73,8 @@ controls.addEventListener('input', e => {
 	}
 
 });
+
+controls.addEventListener('submit', e => e.preventDefault());
 
 tabs.forEach(tab => tab.addEventListener('click', () => {
 	if (tab.classList.contains('tab--inactive')) {

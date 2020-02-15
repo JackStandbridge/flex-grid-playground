@@ -116,7 +116,6 @@ export default {
 								min: 1,
 								max: 20,
 								value: 3,
-								className: 'range'
 							}
 						]
 					},
@@ -128,28 +127,24 @@ export default {
 								name: 'margin',
 								type: 'number',
 								value: initial.margin,
-								className: 'number'
 							},
 							{
 								name: 'padding',
 								type: 'number',
 								min: 0,
 								value: initial.padding,
-								className: 'number'
 							},
 							{
 								name: 'width',
 								type: 'number',
 								min: 0,
 								value: initial.width,
-								className: 'number'
 							},
 							{
 								name: 'height',
 								type: 'number',
 								min: 0,
 								value: initial.height,
-								className: 'number'
 							}
 						]
 					}
