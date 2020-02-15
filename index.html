@@ -11,6 +11,9 @@
 </head>
 
 <body>
+	<noscript>
+		This page uses JavaScript to simulate an interactive testing ground for CSS flexbox and grid properties. Please enable JavaScript in order to use this page!
+	</noscript>
 	<div class='page'>
 		<div class='chrome'>
 			<nav class='tabs'>
@@ -19,16 +22,12 @@
 					<div class='minimize control'></div>
 					<div class='maximize control'></div>
 				</div>
-				<div class='tab tab--inactive'>
-					<span class='tab__title'>
-						CSS Tricks | A Complete Guide To Flexbox
-					</span>
+				<div class='tab tab--inactive' data-playground='flex'>
+					<span class='tab__title tab__title--flex'>Flexbox Playground</span>
 					<span class='tab__close'></span>
 				</div>
-				<div class='tab tab--active'>
-					<span class='tab__title'>
-						Flexbox Playground
-					</span>
+				<div class='tab tab--inactive' data-playground='grid'>
+					<span class='tab__title tab__title--grid'>Grid Playground</span>
 					<span class='tab__close'></span>
 				</div>
 				<div class='tab--inactive__spacer'></div>
@@ -54,8 +53,8 @@
 		</div>
 	</div>
 
-	<div id='interface' class='interface'>
-		<form class='form'>
+	<div class='interface'>
+		<form class='form' id='interface'>
 			<!-- This form is populated by JS -->
 			<!-- Data source: ./data.js -->
 			<!-- Responsible script: ./scripts/init.js -->

@@ -38,7 +38,6 @@ body {
 	border-radius: 10px;
 	margin: 0.1rem;
 	box-sizing: border-box;
-	display: flex;
 	max-height: 100%;
 }
 
@@ -53,12 +52,21 @@ body {
 		height: 100%;
 		width: 100%;
 		background: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		font-size: 2rem;
+		color: #555;
 	}
 
 	@for $i from 1 through 20 {
 		&:nth-child(#{$i}) {
 			border: 3px solid hsl($i * 18, 40%, 60%);
 			background: hsl($i * 18, 60%, 90%);
+			&::after {
+				content: '#{$i}';
+			}
 		}
 	}
 }

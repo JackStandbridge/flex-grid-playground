@@ -1,11 +1,13 @@
 import init from './init.js';
 import { initial } from '../data.js';
 
-init();
+const page = location.hash.slice(1,) || 'flex';
+init(page);
 
 const controls = document.getElementById('interface');
 const container = document.getElementById('container');
-const containerInterface = document.getElementById('container-interface');
+let containerInterface = document.getElementById('container-interface');
+const tabs = document.querySelectorAll('.tab');
 
 const childProperties = new Proxy({}, {
 	set(target, prop, val) {
@@ -38,7 +40,7 @@ const addChildren = ({ value }) => {
 		div.classList.add('child');
 
 		Object.entries(childProperties)
-			.forEach(([prop, val]) => div.style[prop] = `${val}px`)
+			.forEach(([prop, val]) => div.style[prop] = `${ val }px`)
 
 		fragment.append(div);
 	}
@@ -57,7 +59,10 @@ const setChildStyles = target => {
 	}
 }
 
-controls.addEventListener('input', ({ target, path }) => {
+controls.addEventListener('input', e => {
+
+	const { target } = e;
+	const path = e.path || (e.composedPath && e.composedPath());
 
 	if (path.includes(containerInterface)) {
 		setContainerStyles(target);
@@ -68,3 +73,10 @@ controls.addEventListener('input', ({ target, path }) => {
 	}
 
 });
+
+tabs.forEach(tab => tab.addEventListener('click', () => {
+	if (tab.classList.contains('tab--inactive')) {
+		init(tab.dataset.playground);
+		containerInterface = document.getElementById('container-interface');
+	}
+}));

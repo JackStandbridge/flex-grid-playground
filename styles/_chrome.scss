@@ -119,9 +119,30 @@
 	}
 
 	&__title {
-		width: calc(100% - 1.2rem);
+		width: calc(100% - 2.4rem);
 		overflow: hidden;
 		display: block;
+		padding-left: 1.2rem;
+		display: flex;
+		align-items: center;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: .8rem;
+			width: .8rem;
+			height: .8rem;
+			background-size: cover;
+		}
+
+		&--flex::before {
+			background-image: url('../assets/flex.ico');
+		}
+
+		&--grid::before {
+			background-image: url('../assets/grid.ico');
+		}
 
 		&::after {
 			content: '';
