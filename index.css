@@ -109,7 +109,8 @@ body {
   padding: 0.6rem 0.8rem;
   display: flex;
   min-width: 55px;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-self: flex-start; }
 
 .control {
   height: 0.8rem;
@@ -131,7 +132,8 @@ body {
   background: linear-gradient(#f0f0f0, #eee);
   padding-top: 0.4rem;
   padding-right: 0.4rem;
-  overflow: hidden; }
+  overflow: hidden;
+  align-items: center; }
 
 .tab {
   padding: 0.6rem 1rem 0.6rem 1rem;
@@ -164,6 +166,9 @@ body {
       right: calc(-1rem - 5px);
       border-bottom-color: white;
       transform: rotate(45deg); }
+  .tab--inactive + .tab--inactive__spacer {
+    border-left: 1px solid #999;
+    height: 1.3rem; }
   .tab__close {
     cursor: pointer;
     position: absolute;
@@ -194,6 +199,16 @@ body {
     width: calc(100% - 1.2rem);
     overflow: hidden;
     display: block; }
+    .tab__title::after {
+      content: '';
+      position: absolute;
+      height: 1rem;
+      width: 2rem;
+      right: 2rem; }
+    .tab--inactive .tab__title::after {
+      background: linear-gradient(90deg, transparent, #eee); }
+    .tab--active .tab__title::after {
+      background: linear-gradient(90deg, transparent, #fff); }
 
 .bar {
   padding: 5px;

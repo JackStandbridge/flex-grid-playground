@@ -3,6 +3,7 @@
 	display: flex;
 	min-width: 55px;
 	justify-content: space-between;
+	align-self: flex-start;
 }
 
 .control {
@@ -30,6 +31,7 @@
 	padding-top: 0.4rem;
 	padding-right: 0.4rem;
 	overflow: hidden;
+	align-items: center;
 }
 
 .tab {
@@ -73,6 +75,13 @@
 		}
 	}
 
+	&--inactive {
+		& + &__spacer {
+			border-left: 1px solid #999;
+			height: 1.3rem;
+		}
+	}
+
 	&__close {
 		cursor: pointer;
 		position: absolute;
@@ -113,6 +122,21 @@
 		width: calc(100% - 1.2rem);
 		overflow: hidden;
 		display: block;
+
+		&::after {
+			content: '';
+			position: absolute;
+			height: 1rem;
+			width: 2rem;
+			right: 2rem;
+		}
+
+		.tab--inactive &::after {
+			background: linear-gradient(90deg, transparent, #eee);
+		}
+		.tab--active &::after {
+			background: linear-gradient(90deg, transparent, #fff);
+		}
 	}
 }
 
