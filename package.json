@@ -4,8 +4,8 @@
   "description": "",
   "main": "./scripts/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "styles": "sass --watch ./styles/index.scss:index.css"
+    "sass": "sass --watch ./styles/index.scss:index.css",
+    "start": "node server.js & npm run sass & wait"
   },
   "author": "",
   "license": "ISC"
