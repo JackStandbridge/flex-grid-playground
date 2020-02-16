@@ -24,26 +24,62 @@ const makeContents = (options, parentName) => {
 
 }
 
+let shiftListener;
+
 const makeMulti = ({ options, parentName }) => {
-	console.log(parentName);
 
 	const container = document.createElement('div');
-
-	const remove = document.createElement('button');
 	const add = document.createElement('button');
+	const tooltip = document.createElement('div');
+	const buttonWrapper = document.createElement('div');
 
-	add.classList.add('add');
-	remove.classList.add('remove');
-
-	add.addEventListener('click', () => {
-		add.before(makeContents(options, parentName));
+	add.addEventListener('click', ({ shiftKey }) => {
+		if (shiftKey) {
+			buttonWrapper.previousElementSibling.remove()
+			buttonWrapper.previousElementSibling.remove()
+		} else {
+			buttonWrapper.before(makeContents(options, parentName));
+		}
 	});
 
-	container.append(add);
-	container.append(remove);
-	container.classList.add('multi-container')
+	add.addEventListener('mouseenter', ({ shiftKey }) => {
+		if (shiftKey) {
+			add.classList.add('remove');
+		}
+	});
 
-	add.before(makeContents(options, parentName));
+	add.addEventListener('mouseleave', () => {
+		add.classList.remove('remove');
+	});
+
+	if (!shiftListener) {
+
+		shiftListener = document.addEventListener('keydown', ({ key }) => {
+			if (key === 'Shift' && add.matches(':hover')) {
+				add.classList.add('remove');
+			}
+		});
+
+		document.addEventListener('keyup', (e) => {
+			if (e.key === 'Shift') {
+				add.classList.remove('remove');
+			}
+		});
+
+	}
+
+	tooltip.textContent = 'Shift click to remove';
+
+	container.classList.add('multi-container');
+	add.classList.add('add');
+	tooltip.classList.add('tooltip', 'disappear');
+	buttonWrapper.classList.add('button-wrapper');
+
+	buttonWrapper.append(add);
+	buttonWrapper.append(tooltip);
+	container.append(buttonWrapper);
+
+	buttonWrapper.before(makeContents(options, parentName));
 
 	return container;
 }

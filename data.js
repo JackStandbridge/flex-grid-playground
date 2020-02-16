@@ -172,6 +172,20 @@ export default {
 							}
 						]
 					},
+					{
+						name: 'grid-template-rows',
+						className: 'choice',
+						inputs: [
+							{
+								type: 'multi',
+								options: [
+									'fr',
+									'px',
+									'%',
+								],
+							}
+						]
+					},
 				]
 			},
 		]

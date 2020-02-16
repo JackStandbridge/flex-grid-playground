@@ -76,9 +76,14 @@ controls.addEventListener('input', e => {
 
 controls.addEventListener('submit', e => e.preventDefault());
 
-tabs.forEach(tab => tab.addEventListener('click', () => {
+const selectTab = tab => {
 	if (tab.classList.contains('tab--inactive')) {
 		init(tab.dataset.playground);
 		containerInterface = document.getElementById('container-interface');
 	}
-}));
+};
+
+tabs.forEach(tab => {
+	tab.addEventListener('click', () => selectTab(tab));
+	tab.addEventListener('keydown', ({ key }) => ['Enter', ' '].includes(key) && selectTab(tab));
+});

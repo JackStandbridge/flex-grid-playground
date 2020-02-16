@@ -12,6 +12,10 @@ body {
 	}
 }
 
+input[type='number'], button, select {
+	@extend %focus;
+}
+
 .page {
 	border-radius: 7px;
 	box-shadow: 0 0 25px grey;
