@@ -51,10 +51,15 @@ const makeMulti = ({ options, parentName }) => {
 		}
 	});
 
-	add.addEventListener('mouseleave', () => {
-		if (!(add.matches(':hover')
-			|| add.matches(':focus')
-			|| add.matches(':active'))) {
+	add.addEventListener('mouseleave', ({ shiftKey }) => {
+		if (
+			shiftKey &&
+			!(
+				add.matches(':hover')
+				|| add.matches(':focus')
+				|| add.matches(':active')
+			)
+		) {
 			add.classList.remove('remove');
 		}
 	});
@@ -75,7 +80,7 @@ const makeMulti = ({ options, parentName }) => {
 		});
 
 		document.addEventListener('keyup', (e) => {
-			if (e.key === 'Shift') {
+			if (e.key === 'Shift' && add.classList.contains('remove')) {
 				add.classList.remove('remove');
 			}
 		});
