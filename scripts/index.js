@@ -16,7 +16,7 @@ controls.addEventListener('input', e => {
 
 	if (path.includes(containerInterface)) {
 		setContainerStyles(target);
-	} else if (target.matches('[type="range"]')) {
+	} else if (target.matches('#number-range')) {
 		addChildren(target);
 	} else {
 		setChildStyles(target);

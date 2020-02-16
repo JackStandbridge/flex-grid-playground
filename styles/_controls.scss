@@ -49,6 +49,7 @@
 
 	&--multi {
 		margin: 0;
+		width: 3ch;
 	}
 }
 
@@ -59,6 +60,7 @@
 	-webkit-appearance: none;
 	text-align: center;
 	padding: 0.25rem;
+
 	// fix text alignment in Chrome
 	@supports (text-align-last: center) {
 		text-align-last: center;
@@ -73,6 +75,9 @@
 .multi-container {
 	display: flex;
 	flex-wrap: wrap;
+	position: relative;
+	min-height: 1.5rem;
+	padding-right: 1.5rem;
 
 	&__inputs {
 		flex-wrap: wrap;
@@ -83,7 +88,9 @@
 
 .button-wrapper {
 	margin-left: 0.3rem;
-	position: relative;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .add {

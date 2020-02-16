@@ -1,7 +1,7 @@
 import data from '../data.js';
 import makeFieldset from './makeFieldset.js';
 import { initial } from '../data.js';
-import { childProperties } from './childState.js';
+import { childProperties, addChildren } from './childState.js';
 
 const titles = {
 	flex: 'CSS Flexbox Playground',
@@ -52,6 +52,7 @@ const init = page => {
 		pages[page] = [...fragment.children];
 	}
 
+	addChildren(fragment.getElementById('number-range'));
 	mainInterface.append(fragment);
 }
 
