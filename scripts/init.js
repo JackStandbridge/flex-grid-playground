@@ -8,10 +8,14 @@ const titles = {
 	grid: 'CSS Grid Playground',
 };
 
+const icon = document.getElementById('icon');
+
 const tabs = [...document.querySelectorAll('.tab')];
 const setTab = page => {
 	location.hash = '#' + page;
 	document.title = titles[page];
+	icon.href = `./assets/${page}.ico`;
+
 	const chosenTab = tabs.find(tab => tab.dataset.playground === page);
 	const oldTab = tabs.find(tab => tab.classList.contains('tab--active'));
 
