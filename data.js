@@ -1,11 +1,19 @@
 export const initial = {
-	margin: 5,
-	padding: 15,
-	width: 120,
-	height: 50,
+	flex: {
+		margin: 5,
+		padding: 15,
+		width: 120,
+		height: 50,
+	},
+	grid: {
+		margin: 0,
+		padding: 15,
+		width: '',
+		height: '',
+	}
 }
 
-export default {
+const data = {
 	flex: {
 		fieldsets: [
 			{
@@ -126,25 +134,25 @@ export default {
 							{
 								name: 'margin',
 								type: 'number',
-								value: initial.margin,
+								value: initial.flex.margin,
 							},
 							{
 								name: 'padding',
 								type: 'number',
 								min: 0,
-								value: initial.padding,
+								value: initial.flex.padding,
 							},
 							{
 								name: 'width',
 								type: 'number',
 								min: 0,
-								value: initial.width,
+								value: initial.flex.width,
 							},
 							{
 								name: 'height',
 								type: 'number',
 								min: 0,
-								value: initial.height,
+								value: initial.flex.height,
 							}
 						]
 					}
@@ -188,6 +196,56 @@ export default {
 					},
 				]
 			},
+			{
+				name: 'Children',
+				className: 'col',
+				fieldsets: [
+					{
+						name: 'Number',
+						className: 'choice',
+						inputs: [
+							{
+								name: 'range',
+								type: 'range',
+								min: 1,
+								max: 20,
+								value: 3,
+							}
+						]
+					},
+					{
+						name: 'Properties (in px)',
+						className: 'choice',
+						inputs: [
+							{
+								name: 'margin',
+								type: 'number',
+								value: initial.grid.margin,
+							},
+							{
+								name: 'padding',
+								type: 'number',
+								min: 0,
+								value: initial.grid.padding,
+							},
+							{
+								name: 'width',
+								type: 'number',
+								min: 0,
+								value: initial.grid.width,
+							},
+							{
+								name: 'height',
+								type: 'number',
+								min: 0,
+								value: initial.grid.height,
+							}
+						]
+					}
+				]
+			}
 		]
 	}
 }
+
+export default data;

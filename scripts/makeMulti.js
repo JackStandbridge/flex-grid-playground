@@ -1,3 +1,9 @@
+import { setContainerStyles, removeContainerStyle } from './containerState.js';
+
+// state to keep track of which
+// multi input is being created/destroyed
+let indexes = {};
+
 const makeContents = (options, parentName) => {
 	const fragment = document.createDocumentFragment();
 	const input = document.createElement('input');
@@ -14,12 +20,23 @@ const makeContents = (options, parentName) => {
 	input.type = 'number';
 	input.min = 0;
 	input.max = 999;
+	input.value = 1;
 	input.classList.add('number', 'number--multi');
+	input.setAttribute('data-index', indexes[parentName]);
+	input.setAttribute('data-property', parentName);
+	indexes[parentName]++;
+	setContainerStyles(input);
 
 	select.classList.add('select', 'select--multi');
+	select.setAttribute('data-index', indexes[parentName]);
+	select.setAttribute('data-property', parentName);
+	setContainerStyles(select);
+
 
 	fragment.append(input);
 	fragment.append(select);
+
+	indexes[parentName]++;
 
 	return fragment;
 
@@ -28,6 +45,7 @@ const makeContents = (options, parentName) => {
 let shiftListener;
 
 const makeMulti = ({ options, parentName }) => {
+	indexes[parentName] = 0;
 
 	const container = document.createElement('div');
 	const add = document.createElement('button');
@@ -36,8 +54,12 @@ const makeMulti = ({ options, parentName }) => {
 
 	add.addEventListener('click', ({ shiftKey }) => {
 		if (shiftKey) {
-			buttonWrapper.previousElementSibling.remove()
-			buttonWrapper.previousElementSibling.remove()
+			buttonWrapper.previousElementSibling.remove();
+			indexes[parentName]--;
+			removeContainerStyle(parentName);
+			buttonWrapper.previousElementSibling.remove();
+			indexes[parentName]--;
+			removeContainerStyle(parentName);
 		} else {
 			buttonWrapper.before(makeContents(options, parentName));
 		}
