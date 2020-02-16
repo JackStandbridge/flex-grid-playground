@@ -50,6 +50,11 @@ const init = page => {
 			fragment.append(makeFieldset(fieldset));
 		});
 		pages[page] = [...fragment.children];
+		/**
+		 * @TODO - store child state in `pages` variable
+		 * so that chilren have correct styling when
+		 * switching pages.
+		 */
 	}
 
 	addChildren(fragment.getElementById('number-range'));
