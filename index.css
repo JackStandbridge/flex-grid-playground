@@ -545,7 +545,7 @@ body {
 
 .select {
   margin-left: 0;
-  width: calc(2ch + .5rem);
+  width: calc(2ch + 0.5rem);
   appearance: none;
   -webkit-appearance: none;
   text-align: center;
@@ -583,7 +583,7 @@ body {
     content: '';
     display: block;
     height: 2px;
-    width: 1rem;
+    width: 0.8rem;
     background: #555;
     position: absolute;
     top: 50%;

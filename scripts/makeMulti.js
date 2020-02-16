@@ -13,6 +13,7 @@ const makeContents = (options, parentName) => {
 
 	input.type = 'number';
 	input.min = 0;
+	input.max = 999;
 	input.classList.add('number', 'number--multi');
 
 	select.classList.add('select', 'select--multi');
