@@ -48,8 +48,21 @@
 	border: 1px solid #ddd;
 
 	&--multi {
-		margin-left: 0;
-		width: 4ch;
+		margin: 0;
+	}
+}
+
+.select {
+	margin-left: 0;
+	width: calc(2ch + .5rem);
+	appearance: none;
+	-webkit-appearance: none;
+	text-align: center;
+	padding: 0.25rem;
+	// fix text alignment in Chrome
+	@supports (text-align-last: center) {
+		text-align-last: center;
+		padding: 0;
 	}
 }
 
@@ -77,9 +90,11 @@
 	display: inline-block;
 	height: 1.5rem;
 	width: 1.5rem;
+	padding: 0;
 	border: 1px solid #ddd;
 	border-radius: 50%;
 	position: relative;
+	background: white;
 	@extend %focus;
 
 	&::before,

@@ -40,6 +40,9 @@ const makeMulti = ({ options, parentName }) => {
 		} else {
 			buttonWrapper.before(makeContents(options, parentName));
 		}
+
+		// fix safari focus inconsistency
+		add.focus();
 	});
 
 	add.addEventListener('mouseenter', ({ shiftKey }) => {
@@ -49,13 +52,24 @@ const makeMulti = ({ options, parentName }) => {
 	});
 
 	add.addEventListener('mouseleave', () => {
-		add.classList.remove('remove');
+		if (!(add.matches(':hover')
+			|| add.matches(':focus')
+			|| add.matches(':active'))) {
+			add.classList.remove('remove');
+		}
 	});
 
 	if (!shiftListener) {
 
 		shiftListener = document.addEventListener('keydown', ({ key }) => {
-			if (key === 'Shift' && add.matches(':hover')) {
+			if (
+				key === 'Shift'
+				&& (
+					add.matches(':hover')
+					|| add.matches(':focus')
+					|| add.matches(':active')
+				)
+			) {
 				add.classList.add('remove');
 			}
 		});

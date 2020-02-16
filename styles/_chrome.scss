@@ -165,10 +165,10 @@
 		}
 
 		.tab--inactive &::after {
-			background: linear-gradient(90deg, transparent, #eee);
+			background: linear-gradient(90deg, rgba(255, 255, 255, 0), #eee);
 		}
 		.tab--active &::after {
-			background: linear-gradient(90deg, transparent, #fff);
+			background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
 		}
 	}
 }

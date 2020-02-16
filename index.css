@@ -1,6 +1,8 @@
 input[type='number']:focus, button:focus, select:focus, .add:focus, input[type='number']:active, button:active, select:active, .add:active {
   outline: none;
   box-shadow: inset 0 0 1px 2px #acf; }
+input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-focus-inner, .add::-moz-focus-inner {
+  border: 0; }
 
 html {
   font-family: sans-serif; }
@@ -426,9 +428,9 @@ body {
       width: 2rem;
       right: 2rem; }
     .tab--inactive .tab__title::after {
-      background: linear-gradient(90deg, transparent, #eee); }
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), #eee); }
     .tab--active .tab__title::after {
-      background: linear-gradient(90deg, transparent, #fff); }
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff); }
 
 .bar {
   padding: 5px;
@@ -536,8 +538,19 @@ body {
   border: 1px solid #ddd; }
   .number--multi,
   .select--multi {
-    margin-left: 0;
-    width: 4ch; }
+    margin: 0; }
+
+.select {
+  margin-left: 0;
+  width: calc(2ch + .5rem);
+  appearance: none;
+  -webkit-appearance: none;
+  text-align: center;
+  padding: 0.25rem; }
+  @supports (text-align-last: center) {
+    .select {
+      text-align-last: center;
+      padding: 0; } }
 
 .range {
   width: 100%; }
@@ -558,9 +571,11 @@ body {
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
+  padding: 0;
   border: 1px solid #ddd;
   border-radius: 50%;
-  position: relative; }
+  position: relative;
+  background: white; }
   .add::before, .add::after {
     content: '';
     display: block;
