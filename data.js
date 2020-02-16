@@ -208,7 +208,7 @@ const data = {
 								name: 'range',
 								type: 'range',
 								min: 1,
-								max: 20,
+								max: 30,
 								value: 3,
 							}
 						]

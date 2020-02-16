@@ -1,11 +1,8 @@
-import { initial } from '../data.js';
-
 const container = document.getElementById('container');
-const page = location.hash.slice(1) || 'flex';
 
 // Proxies ensures DOM stays up to date
 // with current childProperties state
-const childProperties = new Proxy({}, {
+export const childProperties = new Proxy({}, {
 	set(target, prop, val) {
 		target[prop] = val;
 		[...container.children].forEach(child => {
@@ -15,9 +12,6 @@ const childProperties = new Proxy({}, {
 		return true;
 	}
 });
-
-// update DOM with initial values.
-Object.assign(childProperties, initial[page]);
 
 export const addChildren = ({ value }) => {
 	const fragment = document.createDocumentFragment();

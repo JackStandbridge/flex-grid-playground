@@ -47,11 +47,7 @@ export const setContainerStyles = ({ dataset, type, value }) => {
 				multiStyles[property] = new Proxy([], new DomSync());
 			}
 			multiStyles[property][index] = { name: property, value };
-			console.log(multiStyles);
 			break;
-		default:
-			console.log('input type', type);
-			console.log('input value', value);
 	}
 }
 

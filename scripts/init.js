@@ -1,9 +1,17 @@
 import data from '../data.js';
 import makeFieldset from './makeFieldset.js';
+import { initial } from '../data.js';
+import { childProperties } from './childState.js';
+
+const titles = {
+	flex: 'CSS Flexbox Playground',
+	grid: 'CSS Grid Playground',
+};
 
 const tabs = [...document.querySelectorAll('.tab')];
 const setTab = page => {
 	location.hash = '#' + page;
+	document.title = titles[page];
 	const chosenTab = tabs.find(tab => tab.dataset.playground === page);
 	const oldTab = tabs.find(tab => tab.classList.contains('tab--active'));
 
@@ -24,6 +32,9 @@ const init = page => {
 	// add grid or flex to container
 	container.style.display = page;
 	setTab(page);
+
+	// update DOM with initial values.
+	Object.assign(childProperties, initial[page]);
 
 	mainInterface.textContent = '';
 	const fragment = document.createDocumentFragment();
