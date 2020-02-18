@@ -130,7 +130,7 @@ const makeMulti = ({ options, parentName }) => {
 			addButtons.forEach(button => {
 				button.addEventListener('contextmenu', e => {
 					e.preventDefault();
-					const inputs = [...addButton.parentNode.parentNode.querySelectorAll('input, select')];
+					const inputs = [...button.parentNode.parentNode.querySelectorAll('input, select')];
 					removeInputs(buttonWrapper, inputs);
 				});
 			});
