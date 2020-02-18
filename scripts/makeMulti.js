@@ -35,6 +35,16 @@ const makeContents = options => {
 }
 
 let shiftListener;
+let tooltips = [];
+let addButtons = [];
+let firstTouch = true;
+
+const removeInputs = (buttonWrapper, inputs) => {
+	buttonWrapper.previousElementSibling.remove();
+	inputs.pop()
+	buttonWrapper.previousElementSibling.remove();
+	inputs.pop()
+}
 
 const makeMulti = ({ options, parentName }) => {
 
@@ -42,16 +52,15 @@ const makeMulti = ({ options, parentName }) => {
 	const add = document.createElement('button');
 	const tooltip = document.createElement('div');
 	const buttonWrapper = document.createElement('div');
+	tooltips.push(tooltip);
+	addButtons.push(add);
 
 	add.addEventListener('click', ({ shiftKey }) => {
 		const inputs = [...container.querySelectorAll('input, select')];
 
 		if (shiftKey) {
 
-			buttonWrapper.previousElementSibling.remove();
-			inputs.pop()
-			buttonWrapper.previousElementSibling.remove();
-			inputs.pop()
+			removeInputs(buttonWrapper, inputs);
 
 		} else {
 
@@ -110,6 +119,31 @@ const makeMulti = ({ options, parentName }) => {
 	}
 
 	tooltip.textContent = 'Shift click to remove';
+
+	add.addEventListener('touchstart', () => {
+		if (firstTouch) {
+
+			tooltips.forEach(tooltip => {
+				tooltip.textContent = 'Long press to remove';
+			});
+
+			addButtons.forEach(button => {
+				button.addEventListener('contextmenu', e => {
+					e.preventDefault();
+					const inputs = [...addButton.parentNode.parentNode.querySelectorAll('input, select')];
+					removeInputs(buttonWrapper, inputs);
+				});
+			});
+
+		}
+
+		firstTouch = false;
+		add.classList.add('remove');
+	});
+
+	add.addEventListener('touchend', () => {
+		add.classList.remove('remove');
+	})
 
 	container.classList.add('multi-container');
 	add.classList.add('add');

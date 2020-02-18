@@ -33,6 +33,10 @@ class ParentHandler {
 	}
 }
 
+/**
+ * @TODO - save state in LocalStorage?
+ */
+
 const state = {
 	page: 'flex',
 	children: 3,

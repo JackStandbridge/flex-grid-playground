@@ -178,7 +178,8 @@
 		transform: translate(-50%, 50%) rotate(45deg);
 		background: white;
 		border: 1px solid #555;
-		border-left-color: transparent;
-		border-top-color: transparent;
+		border-left: 0px solid transparent;
+		border-top: 0px solid transparent;
+		background: linear-gradient(-45deg, white 55%, transparent 55%);
 	}
 }
