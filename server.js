@@ -20,11 +20,11 @@ const server = http.createServer(async (req, res) => {
 	try {
 
 		await new Promise((res, rej) => {
-			fs.exists(filePath, exists => {
-				if (exists || filePath === './index.html') {
+			fs.exists(filePath, fileExists => {
+				if (fileExists) {
 					res(true);
 				} else {
-					rej(false);
+					rej(404);
 				}
 			});
 		});
@@ -39,10 +39,14 @@ const server = http.createServer(async (req, res) => {
 		});
 
 	} catch (e) {
-		res.writeHead(404, { 'Content-Type': 'text/plain' });
-		res.write('404 Not Found\n');
+		if (e === 404) {
+			res.writeHead(404, { 'Content-Type': 'text/plain' });
+			res.write('404 Not Found\n');
+		} else {
+			res.writeHead(500, { 'Content-Type': 'text/plain' });
+			res.write('500 Internal Server Error');
+		}
 		res.end();
-		return;
 	}
 
 });

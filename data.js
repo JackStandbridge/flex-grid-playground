@@ -112,6 +112,7 @@ const data = {
 			},
 			{
 				name: 'Children',
+				page: 'flex',
 				className: 'col',
 				fieldsets: [
 					{
@@ -198,6 +199,7 @@ const data = {
 			},
 			{
 				name: 'Children',
+				page: 'grid',
 				className: 'col',
 				fieldsets: [
 					{

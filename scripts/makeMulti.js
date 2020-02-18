@@ -1,11 +1,11 @@
-import { setContainerStyles, removeContainerStyle } from './containerState.js';
+import state from './state.js';
 
-// state to keep track of which
-// multi input is being created/destroyed
-let indexes = {};
+const makeContents = options => {
+	const contents = {
+		inputs: [],
+		fragment: document.createDocumentFragment(),
+	};
 
-const makeContents = (options, parentName) => {
-	const fragment = document.createDocumentFragment();
 	const input = document.createElement('input');
 	const select = document.createElement('select');
 
@@ -22,30 +22,21 @@ const makeContents = (options, parentName) => {
 	input.max = 999;
 	input.value = 1;
 	input.classList.add('number', 'number--multi');
-	input.setAttribute('data-index', indexes[parentName]);
-	input.setAttribute('data-property', parentName);
-	indexes[parentName]++;
-	setContainerStyles(input);
 
 	select.classList.add('select', 'select--multi');
-	select.setAttribute('data-index', indexes[parentName]);
-	select.setAttribute('data-property', parentName);
-	setContainerStyles(select);
 
+	contents.inputs.push(input);
+	contents.fragment.append(input);
+	contents.inputs.push(select);
+	contents.fragment.append(select);
 
-	fragment.append(input);
-	fragment.append(select);
-
-	indexes[parentName]++;
-
-	return fragment;
+	return contents;
 
 }
 
 let shiftListener;
 
 const makeMulti = ({ options, parentName }) => {
-	indexes[parentName] = 0;
 
 	const container = document.createElement('div');
 	const add = document.createElement('button');
@@ -53,16 +44,24 @@ const makeMulti = ({ options, parentName }) => {
 	const buttonWrapper = document.createElement('div');
 
 	add.addEventListener('click', ({ shiftKey }) => {
+		const inputs = [...container.querySelectorAll('input, select')];
+
 		if (shiftKey) {
+
 			buttonWrapper.previousElementSibling.remove();
-			indexes[parentName]--;
-			removeContainerStyle(parentName);
+			inputs.pop()
 			buttonWrapper.previousElementSibling.remove();
-			indexes[parentName]--;
-			removeContainerStyle(parentName);
+			inputs.pop()
+
 		} else {
-			buttonWrapper.before(makeContents(options, parentName));
+
+			const contents = makeContents(options, parentName);
+			inputs.push(...contents.inputs);
+			buttonWrapper.before(contents.fragment);
+
 		}
+
+		state.setConstructedStyle(inputs, parentName);
 
 		// fix safari focus inconsistency
 		add.focus();
@@ -120,8 +119,13 @@ const makeMulti = ({ options, parentName }) => {
 	buttonWrapper.append(add);
 	buttonWrapper.append(tooltip);
 	container.append(buttonWrapper);
+	container.setAttribute('data-property', parentName);
 
-	buttonWrapper.before(makeContents(options, parentName));
+	const contents = makeContents(options, parentName);
+
+	state.setConstructedStyle(contents.inputs, parentName);
+
+	buttonWrapper.before(contents.fragment);
 
 	return container;
 }

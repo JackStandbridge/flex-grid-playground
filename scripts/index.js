@@ -1,6 +1,5 @@
 import init from './init.js';
-import { setContainerStyles } from './containerState.js';
-import { addChildren, setChildStyles } from './childState.js';
+import state from './state.js';
 
 const page = location.hash.slice(1) || 'flex';
 init(page);
@@ -14,12 +13,16 @@ controls.addEventListener('input', e => {
 	const { target } = e;
 	const path = e.path || (e.composedPath && e.composedPath());
 
-	if (path.includes(containerInterface)) {
-		setContainerStyles(target);
+	if (target.parentNode.classList.contains('multi-container')) {
+		const inputs = [...target.parentNode.querySelectorAll('input, select')];
+		const parentName = target.parentNode.dataset.property;
+		state.setConstructedStyle(inputs, parentName);
+	} else if (path.includes(containerInterface)) {
+		state.setParentStyles(target);
 	} else if (target.matches('#number-range')) {
-		addChildren(target);
+		state.setChildren(target);
 	} else {
-		setChildStyles(target);
+		state.setChildStyles(target);
 	}
 
 });
@@ -35,5 +38,11 @@ const selectTab = tab => {
 
 tabs.forEach(tab => {
 	tab.addEventListener('click', () => selectTab(tab));
-	tab.addEventListener('keydown', ({ key }) => ['Enter', ' '].includes(key) && selectTab(tab));
+
+	tab.addEventListener('keydown', ({ key }) => {
+		if (['Enter', ' '].includes(key)) {
+			selectTab(tab)
+		}
+	});
+
 });
