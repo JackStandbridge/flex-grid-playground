@@ -587,7 +587,9 @@ legend {
   border: 1px solid #ddd;
   border-radius: 50%;
   position: relative;
-  background: white; }
+  background: white;
+  -webkit-touch-callout: none;
+  user-select: none; }
   .add::before, .add::after {
     content: '';
     display: block;

@@ -106,6 +106,8 @@ legend {
 	border-radius: 50%;
 	position: relative;
 	background: white;
+	-webkit-touch-callout: none;
+	user-select: none;
 	@extend %focus;
 
 	&::before,
