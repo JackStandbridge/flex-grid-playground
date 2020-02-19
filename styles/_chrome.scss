@@ -159,11 +159,11 @@
 		}
 
 		&--flex::before {
-			background-image: url('../assets/flex.ico');
+			background-image: url('./assets/flex.ico');
 		}
 
 		&--grid::before {
-			background-image: url('../assets/grid.ico');
+			background-image: url('./assets/grid.ico');
 		}
 
 		&::after {

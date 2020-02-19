@@ -419,9 +419,9 @@ body {
       height: 0.8rem;
       background-size: cover; }
     .tab__title--flex::before {
-      background-image: url("../assets/flex.ico"); }
+      background-image: url("./assets/flex.ico"); }
     .tab__title--grid::before {
-      background-image: url("../assets/grid.ico"); }
+      background-image: url("./assets/grid.ico"); }
     .tab__title::after {
       content: '';
       position: absolute;
