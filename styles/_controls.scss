@@ -37,9 +37,11 @@
 	}
 }
 
-legend {
+fieldset {
+	// fix iOS selection of text
+	// when removing multi inputs
 	user-select: none;
-	-webkit-touch-callout: none;
+	-webkit-user-select: none;
 }
 
 .number,

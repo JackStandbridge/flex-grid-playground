@@ -138,7 +138,7 @@ const makeMulti = ({ options, parentName }) => {
 			removeInputs(buttonWrapper);
 			const inputs = [...container.querySelectorAll('input, select')];
 			state.setConstructedStyle(inputs, parentName);
-		}, 1000);
+		}, 900);
 
 	});
 
