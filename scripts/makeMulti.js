@@ -39,11 +39,9 @@ let tooltips = [];
 let addButtons = [];
 let firstTouch = true;
 
-const removeInputs = (buttonWrapper, inputs) => {
+const removeInputs = buttonWrapper => {
 	buttonWrapper.previousElementSibling.remove();
-	inputs.pop()
 	buttonWrapper.previousElementSibling.remove();
-	inputs.pop()
 }
 
 const makeMulti = ({ options, parentName }) => {
@@ -60,7 +58,7 @@ const makeMulti = ({ options, parentName }) => {
 
 		if (shiftKey) {
 
-			removeInputs(buttonWrapper, inputs);
+			removeInputs(buttonWrapper);
 
 		} else {
 
@@ -130,8 +128,7 @@ const makeMulti = ({ options, parentName }) => {
 			addButtons.forEach(button => {
 				button.addEventListener('contextmenu', e => {
 					e.preventDefault();
-					const inputs = [...button.parentNode.parentNode.querySelectorAll('input, select')];
-					removeInputs(buttonWrapper, inputs);
+					removeInputs(button.parentNode);
 				});
 			});
 
