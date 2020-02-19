@@ -54,13 +54,14 @@ const makeMulti = ({ options, parentName }) => {
 	addButtons.push(add);
 
 	add.addEventListener('click', ({ shiftKey }) => {
-		const inputs = [...container.querySelectorAll('input, select')];
 
 		if (shiftKey) {
-
 			removeInputs(buttonWrapper);
+		}
 
-		} else {
+		const inputs = [...container.querySelectorAll('input, select')];
+
+		if (!shiftKey) {
 
 			const contents = makeContents(options, parentName);
 			inputs.push(...contents.inputs);
@@ -118,29 +119,35 @@ const makeMulti = ({ options, parentName }) => {
 
 	tooltip.textContent = 'Shift click to remove';
 
-	add.addEventListener('touchstart', () => {
-		if (firstTouch) {
+	let touchTimeout;
 
+	add.addEventListener('touchstart', () => {
+
+		if (firstTouch) {
 			tooltips.forEach(tooltip => {
 				tooltip.textContent = 'Long press to remove';
 			});
-
-			addButtons.forEach(button => {
-				button.addEventListener('contextmenu', e => {
-					e.preventDefault();
-					removeInputs(button.parentNode);
-				});
-			});
-
 		}
 
 		firstTouch = false;
 		add.classList.add('remove');
+
+		clearTimeout(touchTimeout);
+
+		touchTimeout = setTimeout(() => {
+			removeInputs(buttonWrapper);
+			const inputs = [...container.querySelectorAll('input, select')];
+			state.setConstructedStyle(inputs, parentName);
+		}, 1000);
+
 	});
 
 	add.addEventListener('touchend', () => {
+		clearTimeout(touchTimeout);
 		add.classList.remove('remove');
-	})
+	});
+
+	add.addEventListener('contextmenu', e => e.preventDefault());
 
 	container.classList.add('multi-container');
 	add.classList.add('add');
