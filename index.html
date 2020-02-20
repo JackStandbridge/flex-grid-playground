@@ -13,9 +13,10 @@
 
 <body>
 	<noscript>
-		This page uses JavaScript to simulate an interactive testing ground for CSS flexbox and grid properties. Please enable JavaScript in order to use this page!
+		This page uses JavaScript to simulate an interactive testing ground for CSS flexbox and grid properties. Please
+		enable JavaScript in order to use this page!
 	</noscript>
-	<div class='page'>
+	<section class='page'>
 		<div class='chrome'>
 			<nav class='tabs'>
 				<div class='controls'>
@@ -51,9 +52,9 @@
 				<div class="child" style="margin: 5px; padding: 15px; width: 120px; height: 50px;"></div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<div class='interface'>
+	<section class='interface'>
 		<div class='form' id='interface'>
 			<!--
 				Controls populated by JS
@@ -61,7 +62,23 @@
 				Responsible script: ./scripts/init.js
 			-->
 		</div>
-	</div>
+	</section>
+
+	<section id='output' class='output'>
+		<code>
+			<pre>
+<span class='selector'>.container</span> {
+<div id='parent-styles'>  <span class='property'>display</span>: <span class='value'>flex</span>;
+</div>}
+
+<span class='selector'>.child</span> {
+<div id='child-styles'>  <span class='property'>margin</span>: <span class='value'>5px</span>;
+  <span class='property'>padding</span>: <span class='value'>15px</span>;
+  <span class='property'>width</span>: <span class='value'>120px</span>;
+  <span class='property'>height</span>: <span class='value'>50px</span>;
+</div>}</pre></code>
+		<button class='copy'>Copy</button>
+	</section>
 </body>
 
 </html>

@@ -10,6 +10,9 @@ const titles = {
 const icon = document.getElementById('icon');
 const container = document.getElementById('container');
 const tabs = [...document.querySelectorAll('.tab')];
+const parentStylesOutput = document.getElementById('parent-styles');
+const childStylesOutput = document.getElementById('child-styles');
+
 
 class ChildHandler {
 	set(target, prop, val) {
@@ -33,10 +36,6 @@ class ParentHandler {
 	}
 }
 
-/**
- * @TODO - save state in LocalStorage?
- */
-
 const state = {
 	page: 'flex',
 	children: 3,
@@ -47,6 +46,49 @@ const state = {
 		this.setTab();
 		this.updateChildren();
 		Object.assign(container.style, this[page].parentStyles);
+		this.outputCSS();
+	},
+
+	outputCSS() {
+		const styleSets = [
+			{
+				styles: this[this.page].parentStyles,
+				target: parentStylesOutput
+			},
+			{
+				styles: this[this.page].childStyles,
+				target: childStylesOutput
+			}
+		];
+
+		styleSets.forEach(({ styles, target }) => {
+			target.textContent = '';
+
+			Object.entries(styles).forEach(([prop, val]) => {
+
+				if (val !== '') {
+					const spaces = document.createTextNode('  ');
+					target.append(spaces);
+
+					const propSpan = document.createElement('span');
+					propSpan.classList.add('property');
+					propSpan.textContent = prop;
+					target.append(propSpan);
+
+					const colon = document.createTextNode(': ');
+					target.append(colon);
+
+					const valSpan = document.createElement('span');
+					valSpan.classList.add('value');
+					valSpan.textContent = val;
+					target.append(valSpan);
+
+					const semicolon = document.createTextNode(';\n');
+					target.append(semicolon);
+
+				}
+			})
+		})
 	},
 
 	setTab() {
@@ -69,11 +111,13 @@ const state = {
 	setChildStyles({ dataset, value }) {
 		const { property } = dataset;
 		this[this.page].childStyles[property] = value;
+		this.outputCSS();
 	},
 
 	setParentStyles({ dataset }) {
 		const { property, value } = dataset;
 		this[this.page].parentStyles[property] = value;
+		this.outputCSS();
 	},
 
 	setConstructedStyle(inputs, parentName) {
