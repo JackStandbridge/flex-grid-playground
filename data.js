@@ -1,15 +1,33 @@
 export const initial = {
-	flex: {
-		margin: 5,
-		padding: 15,
-		width: 120,
-		height: 50,
-	},
-	grid: {
-		margin: 0,
-		padding: 15,
-		width: '',
-		height: '',
+	currentPage: 'flex',
+
+	pages: {
+		flex: {
+			numberOfChildren: 3,
+			parentStyles: {
+				display: 'flex',
+			},
+			childStyles: {
+				margin: '5px',
+				padding: '15px',
+				width: '120px',
+				height: '50px',
+			}
+		},
+
+		grid: {
+			numberOfChildren: 5,
+			parentStyles: {
+				display: 'grid',
+				'grid-gap': '10px',
+			},
+			childStyles: {
+				margin: '0px',
+				padding: '15px',
+				width: '',
+				height: '',
+			}
+		}
 	}
 }
 
@@ -17,7 +35,7 @@ const data = {
 	flex: {
 		fieldsets: [
 			{
-				name: 'Container',
+				name: 'Parent',
 				className: 'col',
 				fieldsets: [
 					{
@@ -122,9 +140,10 @@ const data = {
 							{
 								name: 'range',
 								type: 'range',
+								id: 'number-of-children',
 								min: 1,
 								max: 20,
-								value: 3,
+								value: initial.pages.flex.numberOfChildren,
 							}
 						]
 					},
@@ -135,25 +154,25 @@ const data = {
 							{
 								name: 'margin',
 								type: 'number',
-								value: initial.flex.margin,
+								value: initial.pages.flex.childStyles.margin,
 							},
 							{
 								name: 'padding',
 								type: 'number',
 								min: 0,
-								value: initial.flex.padding,
+								value: initial.pages.flex.childStyles.padding,
 							},
 							{
 								name: 'width',
 								type: 'number',
 								min: 0,
-								value: initial.flex.width,
+								value: initial.pages.flex.childStyles.width,
 							},
 							{
 								name: 'height',
 								type: 'number',
 								min: 0,
-								value: initial.flex.height,
+								value: initial.pages.flex.childStyles.height,
 							}
 						]
 					}
@@ -164,7 +183,7 @@ const data = {
 	grid: {
 		fieldsets: [
 			{
-				name: 'Container',
+				name: 'Parent',
 				className: 'col',
 				fieldsets: [
 					{
@@ -195,6 +214,18 @@ const data = {
 							}
 						]
 					},
+					{
+						name: 'Other Properties',
+						className: 'choice',
+						inputs: [
+							{
+								name: 'grid-gap',
+								type: 'number',
+								min: 0,
+								value: initial.pages.grid.parentStyles['grid-gap'],
+							}
+						]
+					}
 				]
 			},
 			{
@@ -209,9 +240,10 @@ const data = {
 							{
 								name: 'range',
 								type: 'range',
+								id: 'number-of-children',
 								min: 1,
 								max: 30,
-								value: 3,
+								value: initial.pages.grid.numberOfChildren,
 							}
 						]
 					},
@@ -222,25 +254,25 @@ const data = {
 							{
 								name: 'margin',
 								type: 'number',
-								value: initial.grid.margin,
+								value: initial.pages.grid.childStyles.margin,
 							},
 							{
 								name: 'padding',
 								type: 'number',
 								min: 0,
-								value: initial.grid.padding,
+								value: initial.pages.grid.childStyles.padding,
 							},
 							{
 								name: 'width',
 								type: 'number',
 								min: 0,
-								value: initial.grid.width,
+								value: initial.pages.grid.childStyles.width,
 							},
 							{
 								name: 'height',
 								type: 'number',
 								min: 0,
-								value: initial.grid.height,
+								value: initial.pages.grid.childStyles.height,
 							}
 						]
 					}

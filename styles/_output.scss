@@ -45,6 +45,7 @@
 	padding: 0.5rem;
 	border-radius: 4px;
 	min-width: 6rem;
+	user-select: none;
 
 	&:hover, &:active, &:focus {
 		box-shadow: none;
@@ -53,7 +54,7 @@
 	}
 
 	&--success {
-		animation: success .2s 1;
+		animation: success .2s 2;
 	}
 
 	&--error {

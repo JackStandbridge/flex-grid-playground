@@ -1,4 +1,4 @@
-import state from './state.js';
+import store from './store.js';
 
 import handleMultiButtons from './events/handleMultiButtons.js';
 
@@ -73,7 +73,10 @@ const makeMulti = ({ options, parentName }) => {
 
 	const contents = makeContents(options, parentName);
 
-	state.setConstructedStyle(contents.inputs, parentName);
+	const property = parentName;
+	const value = '1fr';
+	const section = 'parentStyles';
+	store.setStyle(property, value, section);
 
 	buttonWrapper.before(contents.fragment);
 

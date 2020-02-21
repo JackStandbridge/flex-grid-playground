@@ -11,7 +11,7 @@ const makeInput = (data, parentset, isFirst) => {
 		parentName,
 		isFirst,
 		parentset,
-	}
+	};
 
 	switch (type) {
 		case 'number': return makeNumber(props);

@@ -4,7 +4,8 @@ const handleClipboard = async () => {
 
 	copyButtons.forEach(button => {
 
-		button.addEventListener('click', ({ target }) => {
+		button.addEventListener('click', async ({ target }) => {
+
 			const data = target.previousElementSibling.textContent;
 
 			const success = () => {

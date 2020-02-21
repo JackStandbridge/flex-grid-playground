@@ -1,4 +1,5 @@
-import state from '../state.js';
+import store from '../store.js';
+import { getConstructedStyle } from '../utilities/utilities.js';
 
 const removeInputs = buttonWrapper => {
 	for (let i = 0; i < 2; i++) {
@@ -25,7 +26,10 @@ const handleClick = ({ add, makeContents, options, parentName, buttonWrapper, co
 
 		}
 
-		state.setConstructedStyle(inputs, parentName);
+		const property = parentName;
+		const value = getConstructedStyle(inputs);
+		const section = 'parentStyles';
+		store.setStyle(property, value, section);
 
 		// fix safari focus inconsistency
 		add.focus();
@@ -95,7 +99,12 @@ const handleTouch = ({ add, tooltips, buttonWrapper, parentName, container }) =>
 		touchTimeout = setTimeout(() => {
 			removeInputs(buttonWrapper);
 			const inputs = [...container.querySelectorAll('input, select')];
-			state.setConstructedStyle(inputs, parentName);
+			const property = parentName;
+			const value = getConstructedStyle(inputs);
+			const section = 'parentStyles';
+
+			store.setStyle(property, value, section);
+
 		}, 900);
 
 	});

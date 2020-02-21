@@ -16,7 +16,8 @@ const childStylesOutput = document.getElementById('child-styles');
 
 class ChildHandler {
 	set(target, prop, val) {
-		target[prop] = numToPx(val);
+
+		target[prop] = Number.isNaN(+val) ? val : numToPx(val);
 
 		[...container.children].forEach(child => {
 			child.style[prop] = target[prop];
@@ -29,34 +30,34 @@ class ChildHandler {
 class ParentHandler {
 	set(target, prop, val) {
 
-		target[prop] = val;
-		container.style[prop] = val;
+		target[prop] = Number.isNaN(+val) ? val : numToPx(val);
+		container.style[prop] = target[prop];
 
 		return true
 	}
 }
 
-const state = {
+const store = {
 	page: 'flex',
-	children: 3,
 
 	setPage(page) {
-		this.page = page;
+		this.state.currentPage = page;
 
 		this.setTab();
 		this.updateChildren();
-		Object.assign(container.style, this[page].parentStyles);
+		Object.assign(container.style, this.state.pages[page].parentStyles);
 		this.outputCSS();
 	},
 
 	outputCSS() {
+		const currentPage = this.state.pages[this.state.currentPage];
 		const styleSets = [
 			{
-				styles: this[this.page].parentStyles,
+				styles: currentPage.parentStyles,
 				target: parentStylesOutput
 			},
 			{
-				styles: this[this.page].childStyles,
+				styles: currentPage.childStyles,
 				target: childStylesOutput
 			}
 		];
@@ -99,11 +100,12 @@ const state = {
 	},
 
 	setTab() {
-		location.hash = '#' + this.page;
-		document.title = titles[this.page];
-		icon.href = `./assets/${ this.page }.ico`;
 
-		const chosenTab = tabs.find(tab => tab.dataset.playground === this.page);
+		location.hash = '#' + this.state.currentPage;
+		document.title = titles[this.state.currentPage];
+		icon.href = `./assets/${ this.state.currentPage }.ico`;
+
+		const chosenTab = tabs.find(tab => tab.dataset.playground === this.state.currentPage);
 		const oldTab = tabs.find(tab => tab.classList.contains('tab--active'));
 
 		chosenTab.classList.remove('tab--inactive');
@@ -115,49 +117,29 @@ const state = {
 		}
 	},
 
-	setChildStyles({ dataset, value }) {
-		const { property } = dataset;
-		this[this.page].childStyles[property] = value;
+	setStyle(property, value, section) {
+		const currentPage = this.state.pages[this.state.currentPage];
+		currentPage[section][property] = value;
 		this.outputCSS();
-	},
-
-	setParentStyles({ dataset }) {
-		const { property, value } = dataset;
-		this[this.page].parentStyles[property] = value;
-		this.outputCSS();
-	},
-
-	setConstructedStyle(inputs, parentName) {
-		let value = '';
-		for (let i = 0; i < inputs.length; i++) {
-			if (i && i % 2 === 0) {
-				value += ' '
-			}
-			value += inputs[i].value;
-		}
-		this.setParentStyles({
-			dataset: {
-				property: parentName,
-				value
-			}
-		});
 	},
 
 	setChildren({ value }) {
-		this[this.page].children = +value;
+		const currentPage = this.state.pages[this.state.currentPage];
+		currentPage.numberOfChildren = +value;
 		this.updateChildren();
 	},
 
 	updateChildren() {
 
 		const fragment = document.createDocumentFragment();
+		const currentPage = this.state.pages[this.state.currentPage];
 
-		for (let i = 0; i < this[this.page].children; i++) {
+		for (let i = 0; i < currentPage.numberOfChildren; i++) {
 
 			const div = document.createElement('div');
 			div.classList.add('child');
 
-			Object.assign(div.style, this[this.page].childStyles);
+			Object.assign(div.style, currentPage.childStyles);
 
 			fragment.append(div);
 		}
@@ -167,23 +149,13 @@ const state = {
 	}
 }
 
+for (let pageName in initial.pages) {
+	const parentStyles = initial.pages[pageName].parentStyles;
+	const childStyles = initial.pages[pageName].childStyles;
+	initial.pages[pageName].parentStyles = new Proxy(parentStyles, new ParentHandler());
+	initial.pages[pageName].childStyles = new Proxy(childStyles, new ChildHandler());
+}
 
-Object
-	.entries(initial)
-	.forEach(([property, values]) => {
+store.state = initial;
 
-		const childStyles = Object.assign(
-			{},
-			Object.fromEntries(Object.entries(values)
-				.map(([key, val]) => [key, numToPx(val)]))
-		);
-
-		const parentStyles = { display: property };
-		state[property] = {
-			children: 3,
-			childStyles: new Proxy(childStyles, new ChildHandler()),
-			parentStyles: new Proxy(parentStyles, new ParentHandler()),
-		}
-	});
-
-export default state;
+export default store;

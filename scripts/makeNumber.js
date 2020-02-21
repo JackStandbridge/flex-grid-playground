@@ -6,7 +6,7 @@ const makeNumber = ({ parentName, min, value, name }) => {
 
 	input.id = `${ parentName }-${ name }`;
 	input.name = parentName;
-	input.value = value;
+	input.value = parseInt(value);
 	input.type = 'number';
 	input.classList.add('number');
 	input.setAttribute('data-property', name);

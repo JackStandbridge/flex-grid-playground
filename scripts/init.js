@@ -1,12 +1,13 @@
 import data from '../data.js';
 import makeFieldset from './makeFieldset.js';
-import state from './state.js';
+import store from './store.js';
 
 const mainInterface = document.getElementById('interface');
 const pages = {};
 
 const init = page => {
-	state.setPage(page);
+
+	store.setPage(page);
 
 	mainInterface.textContent = '';
 	const fragment = document.createDocumentFragment();

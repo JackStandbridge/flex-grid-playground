@@ -684,13 +684,14 @@ fieldset {
   display: block;
   padding: 0.5rem;
   border-radius: 4px;
-  min-width: 6rem; }
+  min-width: 6rem;
+  user-select: none; }
   .copy:hover, .copy:active, .copy:focus {
     box-shadow: none;
     background-color: white;
     color: #282828; }
   .copy--success {
-    animation: success .2s 1; }
+    animation: success .2s 2; }
   .copy--error {
     animation: error .1s 2; }
 

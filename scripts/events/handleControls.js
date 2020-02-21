@@ -1,26 +1,42 @@
-import state from '../state.js';
+import store from '../store.js';
+import {
+	getConstructedStyle,
+	targetHasAncestor
+} from '../utilities/utilities.js';
 
 const handleControls = () => {
 
 	const controls = document.getElementById('interface');
-	const containerInterface = document.getElementById('container-interface');
 
 	controls.addEventListener('input', e => {
 
-		const { target } = e;
-		const path = e.path || (e.composedPath && e.composedPath());
+		let property, value, section;
 
-		if (target.parentNode.classList.contains('multi-container')) {
-			const inputs = [...target.parentNode.querySelectorAll('input, select')];
-			const parentName = target.parentNode.dataset.property;
-			state.setConstructedStyle(inputs, parentName);
-		} else if (path.includes(containerInterface)) {
-			state.setParentStyles(target);
-		} else if (target.matches('#number-range')) {
-			state.setChildren(target);
+		if (e.target.id === 'number-of-children') {
+			store.setChildren(e.target);
+			return;
+		} else if (targetHasAncestor('.multi-container', e)) {
+			property = e.target.parentNode.dataset.property;
 		} else {
-			state.setChildStyles(target);
+			property = e.target.dataset.property;
 		}
+
+		if (targetHasAncestor('.multi-container', e)) {
+			const inputs = [...e.target.parentNode.querySelectorAll('input, select')]
+			value = getConstructedStyle(inputs);
+		} else if (e.target.matches('[type="radio"]')) {
+			value = e.target.dataset.value;
+		} else {
+			value = e.target.value;
+		}
+
+		if (targetHasAncestor('#parent-interface', e)) {
+			section = 'parentStyles';
+		} else {
+			section = 'childStyles';
+		}
+
+		store.setStyle(property, value, section);
 
 	});
 

@@ -1,8 +1,7 @@
-const makeRange = ({ parentName, min, max, value, name }) => {
+const makeRange = ({ parentName, min, max, value, name, id }) => {
 
 	const input = document.createElement('input');
-	input.id = `${ parentName }-${ name }`;
-	input.name = parentName;
+	input.id = id || `${ parentName }-${ name }`;
 	input.type = 'range';
 	input.min = min;
 	input.max = max;
