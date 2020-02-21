@@ -65,19 +65,16 @@
 	</section>
 
 	<section id='output' class='output'>
-		<code>
-			<pre>
-<span class='selector'>.container</span> {
-<div id='parent-styles'>  <span class='property'>display</span>: <span class='value'>flex</span>;
-</div>}
 
-<span class='selector'>.child</span> {
-<div id='child-styles'>  <span class='property'>margin</span>: <span class='value'>5px</span>;
-  <span class='property'>padding</span>: <span class='value'>15px</span>;
-  <span class='property'>width</span>: <span class='value'>120px</span>;
-  <span class='property'>height</span>: <span class='value'>50px</span>;
-</div>}</pre></code>
-		<button class='copy'>Copy</button>
+		<div class='code-container'>
+			<code class='code'><span class='selector'>.container</span> {<span id='parent-styles'></span>&#13;&#10;}</code>
+			<button id='copy-parent' class='copy'>Copy</button>
+		</div>
+
+		<div class='code-container'>
+			<code class='code'><span class='selector'>.child</span> {<span id='child-styles'></span>&#13;&#10;}</code>
+			<button id='copy-child' class='copy'>Copy</button>
+		</div>
 	</section>
 </body>
 

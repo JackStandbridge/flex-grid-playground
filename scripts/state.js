@@ -67,28 +67,35 @@ const state = {
 			Object.entries(styles).forEach(([prop, val]) => {
 
 				if (val !== '') {
-					const spaces = document.createTextNode('  ');
-					target.append(spaces);
+
+					const fragment = document.createDocumentFragment();
+
+					const spaces = document.createTextNode('\n\t');
+					fragment.append(spaces);
 
 					const propSpan = document.createElement('span');
 					propSpan.classList.add('property');
 					propSpan.textContent = prop;
-					target.append(propSpan);
+					fragment.append(propSpan);
 
 					const colon = document.createTextNode(': ');
-					target.append(colon);
+					fragment.append(colon);
 
 					const valSpan = document.createElement('span');
 					valSpan.classList.add('value');
 					valSpan.textContent = val;
-					target.append(valSpan);
+					fragment.append(valSpan);
 
-					const semicolon = document.createTextNode(';\n');
-					target.append(semicolon);
+					const semicolon = document.createTextNode(';');
+					fragment.append(semicolon);
 
+					target.append(fragment);
 				}
-			})
-		})
+
+			});
+
+		});
+
 	},
 
 	setTab() {

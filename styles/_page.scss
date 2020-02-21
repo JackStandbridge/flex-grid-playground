@@ -24,16 +24,17 @@ input[type='number'], button, select {
 	display: flex;
 	flex-direction: column;
 	flex: 2;
+	height: calc(100vh - 4rem);
 	@media screen and (max-width: 1024px) {
 		max-width: 100%;
 		min-height: 50vh;
 	}
-	height: calc(100vh - 4rem);
 }
 
 .body {
 	overflow: scroll;
 	padding: 5px;
+	box-sizing: border-box;
 }
 
 .container {

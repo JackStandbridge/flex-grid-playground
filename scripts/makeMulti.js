@@ -1,6 +1,8 @@
 import state from './state.js';
 
-const makeContents = options => {
+import handleMultiButtons from './events/handleMultiButtons.js';
+
+const makeContents = (options) => {
 	const contents = {
 		inputs: [],
 		fragment: document.createDocumentFragment(),
@@ -34,15 +36,9 @@ const makeContents = options => {
 
 }
 
-let shiftListener;
+
 let tooltips = [];
 let addButtons = [];
-let firstTouch = true;
-
-const removeInputs = buttonWrapper => {
-	buttonWrapper.previousElementSibling.remove();
-	buttonWrapper.previousElementSibling.remove();
-}
 
 const makeMulti = ({ options, parentName }) => {
 
@@ -53,106 +49,22 @@ const makeMulti = ({ options, parentName }) => {
 	tooltips.push(tooltip);
 	addButtons.push(add);
 
-	add.addEventListener('click', ({ shiftKey }) => {
-
-		if (shiftKey) {
-			removeInputs(buttonWrapper);
-		}
-
-		const inputs = [...container.querySelectorAll('input, select')];
-
-		if (!shiftKey) {
-
-			const contents = makeContents(options, parentName);
-			inputs.push(...contents.inputs);
-			buttonWrapper.before(contents.fragment);
-
-		}
-
-		state.setConstructedStyle(inputs, parentName);
-
-		// fix safari focus inconsistency
-		add.focus();
+	handleMultiButtons({
+		add,
+		buttonWrapper,
+		tooltips,
+		container,
+		makeContents,
+		options,
+		parentName,
 	});
-
-	add.addEventListener('mouseenter', ({ shiftKey }) => {
-		if (shiftKey) {
-			add.classList.add('remove');
-		}
-	});
-
-	add.addEventListener('mouseleave', ({ shiftKey }) => {
-		if (
-			shiftKey &&
-			!(
-				add.matches(':hover')
-				|| add.matches(':focus')
-				|| add.matches(':active')
-			)
-		) {
-			add.classList.remove('remove');
-		}
-	});
-
-	if (!shiftListener) {
-
-		shiftListener = document.addEventListener('keydown', ({ key }) => {
-			if (
-				key === 'Shift'
-				&& (
-					add.matches(':hover')
-					|| add.matches(':focus')
-					|| add.matches(':active')
-				)
-			) {
-				add.classList.add('remove');
-			}
-		});
-
-		document.addEventListener('keyup', (e) => {
-			if (e.key === 'Shift' && add.classList.contains('remove')) {
-				add.classList.remove('remove');
-			}
-		});
-
-	}
-
-	tooltip.textContent = 'Shift click to remove';
-
-	let touchTimeout;
-
-	add.addEventListener('touchstart', () => {
-
-		if (firstTouch) {
-			tooltips.forEach(tooltip => {
-				tooltip.textContent = 'Long press to remove';
-			});
-		}
-
-		firstTouch = false;
-		add.classList.add('remove');
-
-		clearTimeout(touchTimeout);
-
-		touchTimeout = setTimeout(() => {
-			removeInputs(buttonWrapper);
-			const inputs = [...container.querySelectorAll('input, select')];
-			state.setConstructedStyle(inputs, parentName);
-		}, 900);
-
-	});
-
-	add.addEventListener('touchend', () => {
-		clearTimeout(touchTimeout);
-		add.classList.remove('remove');
-	});
-
-	add.addEventListener('contextmenu', e => e.preventDefault());
 
 	container.classList.add('multi-container');
 	add.classList.add('add');
 	tooltip.classList.add('tooltip', 'disappear');
 	buttonWrapper.classList.add('button-wrapper');
+
+	tooltip.textContent = 'Shift click to remove';
 
 	buttonWrapper.append(add);
 	buttonWrapper.append(tooltip);
