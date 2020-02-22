@@ -137,7 +137,7 @@ const store = {
 		for (let i = 0; i < currentPage.numberOfChildren; i++) {
 
 			const div = document.createElement('div');
-			div.classList.add('child');
+			div.classList.add('child', `child--${ i + 1 }`);
 
 			Object.assign(div.style, currentPage.childStyles);
 

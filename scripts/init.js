@@ -1,5 +1,5 @@
 import data from '../data.js';
-import makeFieldset from './makeFieldset.js';
+import Fieldset from './components/Fieldset.js';
 import store from './store.js';
 
 const mainInterface = document.getElementById('interface');
@@ -19,7 +19,7 @@ const init = page => {
 	} else {
 		// page doesn't exist yet
 		data[page].fieldsets.forEach(fieldset => {
-			fragment.append(makeFieldset(fieldset));
+			fragment.append(Fieldset(fieldset));
 		});
 		pages[page] = {};
 		pages[page].children = [...fragment.children];

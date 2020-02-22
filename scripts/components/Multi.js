@@ -1,8 +1,8 @@
-import store from './store.js';
+import store from '../store.js';
 
-import handleMultiButtons from './events/handleMultiButtons.js';
+import handleMultiButtons from '../events/handleMultiButtons.js';
 
-const makeContents = (options) => {
+const Contents = (options) => {
 	const contents = {
 		inputs: [],
 		fragment: document.createDocumentFragment(),
@@ -36,11 +36,10 @@ const makeContents = (options) => {
 
 }
 
-
 let tooltips = [];
 let addButtons = [];
 
-const makeMulti = ({ options, parentName }) => {
+const Multi = ({ options, parentName }) => {
 
 	const container = document.createElement('div');
 	const add = document.createElement('button');
@@ -54,7 +53,7 @@ const makeMulti = ({ options, parentName }) => {
 		buttonWrapper,
 		tooltips,
 		container,
-		makeContents,
+		Contents,
 		options,
 		parentName,
 	});
@@ -71,7 +70,7 @@ const makeMulti = ({ options, parentName }) => {
 	container.append(buttonWrapper);
 	container.setAttribute('data-property', parentName);
 
-	const contents = makeContents(options, parentName);
+	const contents = Contents(options, parentName);
 
 	const property = parentName;
 	const value = '1fr';
@@ -83,4 +82,4 @@ const makeMulti = ({ options, parentName }) => {
 	return container;
 }
 
-export default makeMulti;
+export default Multi;

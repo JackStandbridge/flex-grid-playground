@@ -1,4 +1,4 @@
-const makeNumber = ({ parentName, min, value, name }) => {
+const Numeric = ({ parentName, min, value, name }) => {
 
 	const fragment = document.createDocumentFragment();
 	const input = document.createElement('input');
@@ -13,11 +13,11 @@ const makeNumber = ({ parentName, min, value, name }) => {
 	input.setAttribute('min', min);
 
 	label.textContent = name;
-	label.style.display = 'flex';
+	label.classList.add('number__container');
 	label.append(input);
 	fragment.append(label);
 
 	return fragment;
 }
 
-export default makeNumber;
+export default Numeric;

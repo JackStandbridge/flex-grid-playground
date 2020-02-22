@@ -1,4 +1,4 @@
-const makeRange = ({ parentName, min, max, value, name, id }) => {
+const Range = ({ parentName, min, max, value, name, id }) => {
 
 	const input = document.createElement('input');
 	input.id = id || `${ parentName }-${ name }`;
@@ -11,4 +11,4 @@ const makeRange = ({ parentName, min, max, value, name, id }) => {
 	return input;
 }
 
-export default makeRange;
+export default Range;

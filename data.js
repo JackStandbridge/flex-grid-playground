@@ -37,6 +37,7 @@ const data = {
 			{
 				name: 'Parent',
 				className: 'col',
+				collapsed: false,
 				fieldsets: [
 					{
 						name: 'flex-direction',
@@ -131,6 +132,7 @@ const data = {
 			{
 				name: 'Children',
 				page: 'flex',
+				collapsed: false,
 				className: 'col',
 				fieldsets: [
 					{
@@ -185,6 +187,7 @@ const data = {
 			{
 				name: 'Parent',
 				className: 'col',
+				collapsed: false,
 				fieldsets: [
 					{
 						name: 'grid-template-columns',
@@ -215,7 +218,7 @@ const data = {
 						]
 					},
 					{
-						name: 'Other Properties',
+						name: 'grid-gap',
 						className: 'choice',
 						inputs: [
 							{
@@ -231,6 +234,7 @@ const data = {
 			{
 				name: 'Children',
 				page: 'grid',
+				collapsed: false,
 				className: 'col',
 				fieldsets: [
 					{

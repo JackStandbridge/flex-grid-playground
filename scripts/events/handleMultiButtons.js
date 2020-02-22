@@ -9,7 +9,7 @@ const removeInputs = buttonWrapper => {
 	}
 }
 
-const handleClick = ({ add, makeContents, options, parentName, buttonWrapper, container }) => {
+const handleClick = ({ add, Contents, options, parentName, buttonWrapper, container }) => {
 	add.addEventListener('click', ({ shiftKey }) => {
 
 		if (shiftKey) {
@@ -20,7 +20,7 @@ const handleClick = ({ add, makeContents, options, parentName, buttonWrapper, co
 
 		if (!shiftKey) {
 
-			const contents = makeContents(options, parentName);
+			const contents = Contents(options, parentName);
 			inputs.push(...contents.inputs);
 			buttonWrapper.before(contents.fragment);
 

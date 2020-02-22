@@ -1,4 +1,4 @@
-const makeRadio = ({ parentName, name, parentset, isFirst }) => {
+const Radio = ({ parentName, name, parentset, isFirst }) => {
 
 	const input = document.createElement('input');
 	const label = document.createElement('label');
@@ -16,4 +16,4 @@ const makeRadio = ({ parentName, name, parentset, isFirst }) => {
 	return label;
 }
 
-export default makeRadio;
+export default Radio;
