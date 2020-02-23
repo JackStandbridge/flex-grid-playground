@@ -1,16 +1,17 @@
 html {
-  font-family: sans-serif; }
+  font-family: sans-serif;
+  overflow: auto; }
 
 body {
   max-width: 100vw;
   overflow: hidden;
   display: flex;
-  padding: 0;
-  margin: 2rem; }
+  padding: 2rem;
+  margin: 0; }
   @media screen and (max-width: 1024px) {
     body {
       flex-direction: column;
-      margin: 1rem; } }
+      padding: 1rem; } }
 
 input[type='number']:focus, button:focus, select:focus, .add:focus, input[type='number']:active, button:active, select:active, .add:active {
   outline: none;
@@ -18,6 +19,199 @@ input[type='number']:focus, button:focus, select:focus, .add:focus, input[type='
 input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-focus-inner, .add::-moz-focus-inner {
   border: 0; }
 
+@keyframes escape {
+  2% {
+    transform: translate(0, 1vh); }
+  4% {
+    transform: translate(0, 2vh); }
+  6% {
+    transform: translate(0, 4vh); }
+  8% {
+    transform: translate(0, 8vh); }
+  10% {
+    transform: translate(0, 12vh); }
+  12% {
+    transform: translate(0, 24vh); }
+  20% {
+    transform: translate(0, calc(100vh - 6rem)); }
+  23% {
+    transform: translate(0, calc(100vh - 6.8rem)); }
+  25% {
+    transform: translate(0, calc(100vh - 7rem)); }
+  27% {
+    transform: translate(0, calc(100vh - 6.8rem)); }
+  30% {
+    transform: translate(0, calc(100vh - 6rem)); }
+  31% {
+    transform: translate(0, calc(100vh - 6rem)); }
+  32% {
+    transform: translate(0, calc(100vh - 6.15rem)); }
+  33% {
+    transform: translate(0, calc(100vh - 6.2rem)); }
+  34% {
+    transform: translate(0, calc(100vh - 6.15rem)); }
+  35% {
+    transform: translate(0, calc(100vh - 6rem)); }
+  65% {
+    transform: translate(0, calc(100vh - 6rem)); }
+  75% {
+    transform: translate(-6rem, calc(100vh - 6rem)); }
+  80% {
+    transform: translate(-6rem, -6rem); }
+  84% {
+    transform: translate(0, 0); }
+  87% {
+    transform: translate(0, -0.8rem); }
+  89% {
+    transform: translate(0, -1rem); }
+  91% {
+    transform: translate(0, -0.8rem); }
+  94% {
+    transform: translate(0, 0rem); }
+  95% {
+    transform: translate(0, 0rem); }
+  96% {
+    transform: translate(0, -0.15rem); }
+  97% {
+    transform: translate(0, -0.2rem); }
+  98% {
+    transform: translate(0, -0.15rem); }
+  99% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(0, 0); } }
+@keyframes roll {
+  0% {
+    transform: translate(0, 0); }
+  5% {
+    transform: translate(10px, 2px); }
+  10% {
+    transform: translate(18px, 6px); }
+  15% {
+    transform: translate(24px, 12px); }
+  20% {
+    transform: translate(28px, 20px); }
+  25% {
+    transform: translate(30px, 30px); }
+  30% {
+    transform: translate(28px, 40px); }
+  35% {
+    transform: translate(24px, 48px); }
+  40% {
+    transform: translate(18px, 54px); }
+  45% {
+    transform: translate(10px, 58px); }
+  50% {
+    transform: translate(0, 60px); }
+  55% {
+    transform: translate(-10px, 58px); }
+  60% {
+    transform: translate(-18px, 54px); }
+  65% {
+    transform: translate(-24px, 48px); }
+  70% {
+    transform: translate(-28px, 40px); }
+  75% {
+    transform: translate(-30px, 30px); }
+  80% {
+    transform: translate(-28px, 20px); }
+  85% {
+    transform: translate(-24px, 12px); }
+  90% {
+    transform: translate(-18px, 6px); }
+  95% {
+    transform: translate(-10px, 2px); }
+  100% {
+    transform: translate(0, 0); } }
+@keyframes shuffleRed {
+  0% {
+    transform: translate(0, 0); }
+  22% {
+    transform: translate(0, 0); }
+  29% {
+    transform: translate(6px, -15px); }
+  36% {
+    transform: translate(21px, -21px); }
+  43% {
+    transform: translate(36px, -15px); }
+  50% {
+    transform: translate(42px, 0); }
+  72% {
+    transform: translate(42px, 0); }
+  79% {
+    transform: translate(36px, 15px); }
+  86% {
+    transform: translate(21px, 21px); }
+  93% {
+    transform: translate(6px, 15px); }
+  100% {
+    transform: translate(0, 0); } }
+@keyframes shuffleYellow {
+  0% {
+    transform: translate(0, 0); }
+  7% {
+    transform: translate(3px, -8px); }
+  11% {
+    transform: translate(11.5px, -11.5px); }
+  17% {
+    transform: translate(18px, -8px); }
+  22% {
+    transform: translate(21px, 0); }
+  29% {
+    transform: translate(18px, 15px); }
+  36% {
+    transform: translate(0, 21px); }
+  43% {
+    transform: translate(-18px, 15px); }
+  50% {
+    transform: translate(-21px, 0); }
+  57% {
+    transform: translate(-18px, -8px); }
+  61% {
+    transform: translate(-11.5px, -11.5px); }
+  67% {
+    transform: translate(-3px, -8px); }
+  72% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(0, 0); } }
+@keyframes shuffleGreen {
+  0% {
+    transform: translate(0, 0); }
+  7% {
+    transform: translate(-3px, 8px); }
+  11% {
+    transform: translate(-11.5px, 11.5px); }
+  17% {
+    transform: translate(-18px, 8px); }
+  22% {
+    transform: translate(-21px, 0); }
+  50% {
+    transform: translate(-21px, 0); }
+  61% {
+    transform: translate(-32.5px, 11.5px); }
+  72% {
+    transform: translate(-42px, 0); }
+  79% {
+    transform: translate(-36px, -15px); }
+  86% {
+    transform: translate(-21px, -21px); }
+  93% {
+    transform: translate(-6px, -15px); }
+  100% {
+    transform: translate(0, 0); } }
+@keyframes success {
+  0% {
+    background-color: white; }
+  50% {
+    background-color: #c8c8c8; }
+  100% {
+    background-color: white; } }
+@keyframes error {
+  33% {
+    transform: translateX(-0.1rem); }
+  66% {
+    transform: translateX(0.1rem); } }
 .page {
   border-radius: 7px;
   box-shadow: 0 0 25px grey;
@@ -38,7 +232,8 @@ input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-f
       max-height: 70vh; } }
 
 .body {
-  overflow: scroll;
+  overflow: auto;
+  flex: 1;
   padding: 5px;
   box-sizing: border-box; }
 
@@ -369,7 +564,13 @@ input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-f
   display: flex;
   min-width: 55px;
   justify-content: space-between;
-  align-self: flex-start; }
+  align-self: flex-start;
+  z-index: 2;
+  position: absolute;
+  top: calc(2rem + 5px); }
+  @media (max-width: 1024px) {
+    .controls {
+      top: calc(1rem + 5px); } }
 
 .control {
   height: 0.8rem;
@@ -379,15 +580,34 @@ input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-f
 
 .close {
   background: #f64; }
+  .close.control--escape {
+    animation: escape 4s linear; }
+  .close.control--roll {
+    animation: roll 0.7s linear 1; }
+  .close.control--shuffle {
+    animation: shuffleRed 2s linear; }
 
 .minimize {
   background: #fc4; }
+  .minimize.control--escape {
+    animation: escape 4s linear; }
+  .minimize.control--roll {
+    animation: roll 1s linear; }
+  .minimize.control--shuffle {
+    animation: shuffleYellow 2s linear; }
 
 .maximize {
   background: #4c6; }
+  .maximize.control--escape {
+    animation: escape 4s linear; }
+  .maximize.control--roll {
+    animation: roll 0.5s linear 2; }
+  .maximize.control--shuffle {
+    animation: shuffleGreen 2s linear; }
 
 .tabs {
   display: flex;
+  padding-left: 5rem;
   background: linear-gradient(#f0f0f0, #eee);
   padding-top: 0.4rem;
   padding-right: 0.4rem;
@@ -821,7 +1041,7 @@ fieldset {
   color: white;
   background: inherit;
   border: 1px solid white;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-family: monospace;
   margin-left: auto;
   margin-top: -1rem;
@@ -840,18 +1060,6 @@ fieldset {
   .copy--error {
     animation: error .1s 2; }
 
-@keyframes success {
-  0% {
-    background-color: white; }
-  50% {
-    background-color: #c8c8c8; }
-  100% {
-    background-color: white; } }
-@keyframes error {
-  33% {
-    transform: translateX(-0.1rem); }
-  66% {
-    transform: translateX(0.1rem); } }
 .safari legend {
   width: fit-content; }
   .safari legend button:active {
@@ -873,5 +1081,8 @@ fieldset {
 
 .firefox .fieldset--collapsed {
   transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding-top 0s linear 0.4s, padding-bottom 0s linear 0.4s, border-color 0.2s linear; }
+.firefox .output:not(:empty) code, .firefox .copy {
+  font-size: 1.1rem;
+  line-height: 1.2; }
 
 /*# sourceMappingURL=index.css.map */
