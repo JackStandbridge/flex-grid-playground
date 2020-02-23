@@ -1,6 +1,6 @@
 import init from '../init.js';
 
-const handleTabs = () => {
+const handleChrome = () => {
 
 	const tabs = document.querySelectorAll('.tab');
 
@@ -21,6 +21,12 @@ const handleTabs = () => {
 
 	});
 
+	const options = document.getElementById('options');
+	const source = document.getElementById('source');
+	options.addEventListener('click', () => {
+		source.classList.toggle('tooltip--visible');
+	});
+
 }
 
-export default handleTabs;
+export default handleChrome;
