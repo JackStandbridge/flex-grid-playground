@@ -138,6 +138,7 @@ const data = {
 					{
 						name: 'Number',
 						className: 'choice',
+						collapsed: false,
 						inputs: [
 							{
 								name: 'range',
@@ -148,35 +149,43 @@ const data = {
 								value: initial.pages.flex.numberOfChildren,
 							}
 						]
+					}
+				],
+				inputs: [
+					{
+						name: 'margin',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						value: initial.pages.flex.childStyles.margin,
 					},
 					{
-						name: 'Properties (in px)',
-						className: 'choice',
-						inputs: [
-							{
-								name: 'margin',
-								type: 'number',
-								value: initial.pages.flex.childStyles.margin,
-							},
-							{
-								name: 'padding',
-								type: 'number',
-								min: 0,
-								value: initial.pages.flex.childStyles.padding,
-							},
-							{
-								name: 'width',
-								type: 'number',
-								min: 0,
-								value: initial.pages.flex.childStyles.width,
-							},
-							{
-								name: 'height',
-								type: 'number',
-								min: 0,
-								value: initial.pages.flex.childStyles.height,
-							}
-						]
+						name: 'padding',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.flex.childStyles.padding,
+					},
+					{
+						name: 'width',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.flex.childStyles.width,
+					},
+					{
+						name: 'height',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.flex.childStyles.height,
 					}
 				]
 			}
@@ -216,18 +225,17 @@ const data = {
 								],
 							}
 						]
-					},
+					}
+				],
+				inputs: [
 					{
 						name: 'grid-gap',
-						className: 'choice',
-						inputs: [
-							{
-								name: 'grid-gap',
-								type: 'number',
-								min: 0,
-								value: initial.pages.grid.parentStyles['grid-gap'],
-							}
-						]
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.grid.parentStyles['grid-gap'],
 					}
 				]
 			},
@@ -240,6 +248,7 @@ const data = {
 					{
 						name: 'Number',
 						className: 'choice',
+						collapsed: false,
 						inputs: [
 							{
 								name: 'range',
@@ -250,35 +259,43 @@ const data = {
 								value: initial.pages.grid.numberOfChildren,
 							}
 						]
+					}
+				],
+				inputs: [
+					{
+						name: 'margin',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						value: initial.pages.grid.childStyles.margin,
 					},
 					{
-						name: 'Properties (in px)',
-						className: 'choice',
-						inputs: [
-							{
-								name: 'margin',
-								type: 'number',
-								value: initial.pages.grid.childStyles.margin,
-							},
-							{
-								name: 'padding',
-								type: 'number',
-								min: 0,
-								value: initial.pages.grid.childStyles.padding,
-							},
-							{
-								name: 'width',
-								type: 'number',
-								min: 0,
-								value: initial.pages.grid.childStyles.width,
-							},
-							{
-								name: 'height',
-								type: 'number',
-								min: 0,
-								value: initial.pages.grid.childStyles.height,
-							}
-						]
+						name: 'padding',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.grid.childStyles.padding,
+					},
+					{
+						name: 'width',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.grid.childStyles.width,
+					},
+					{
+						name: 'height',
+						type: 'number',
+						options: [
+							'px', '%', 'rem',
+						],
+						min: 0,
+						value: initial.pages.grid.childStyles.height,
 					}
 				]
 			}

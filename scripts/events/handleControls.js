@@ -1,4 +1,5 @@
 import store from '../store.js';
+import handleRange from './handleRange.js';
 import {
 	getConstructedStyle,
 	targetHasAncestor
@@ -9,6 +10,10 @@ const handleControls = () => {
 	const controls = document.getElementById('interface');
 
 	controls.addEventListener('input', e => {
+
+		if (e.target.matches('[type="range"]')) {
+			handleRange(e);
+		}
 
 		let property, value, section;
 

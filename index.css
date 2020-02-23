@@ -526,22 +526,19 @@ body {
 .form {
   width: 100%; }
 
-.choice {
-  white-space: nowrap;
-  margin: 0.5rem;
-  box-sizing: border-box;
-  max-height: 1000px; }
+.choice, .col {
+  max-height: 100vh; }
 
 .fieldset {
   border: 2px solid #888;
-  transition: max-height 0.4s cubic-bezier(1, 0, 1, 0.6), border-color 0.4s linear;
+  transition: max-height 0.4s cubic-bezier(0.5, 0.2, 1, 0), border-color 0.4s linear;
   padding: 1rem; }
   .fieldset--collapsed {
     border-top-color: #ddd;
     border-left-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    transition: max-height 0.4s cubic-bezier(0.6, 1, 0, 1), padding-top 0s linear 0.4s, padding-bottom 0s linear 0.4s, border-color 0.4s linear;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding-top 0s linear 0.4s, padding-bottom 0s linear 0.4s, border-color 0.4s linear;
     padding: 0 1rem;
     max-height: 38px; }
     .fieldset--collapsed > *:not(legend) {
@@ -552,7 +549,12 @@ body {
     overflow: hidden; }
 
 .choice {
-  padding: 0.5rem 1rem 1rem 1rem; }
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem 1rem 1rem;
+  margin: 0; }
+  .choice ~ label {
+    margin-top: 1rem; }
 
 .expander {
   box-shadow: none;
@@ -562,7 +564,8 @@ body {
   padding: 8px;
   padding-right: 1.5rem;
   margin: 0;
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
   .expander:focus, .expander:active, .expander:hover {
     box-shadow: inset 0 0 0 2px #ddd; }
   .expander::after {
@@ -611,7 +614,8 @@ fieldset {
     width: 3.5ch; }
 
 .number__container {
-  display: flex; }
+  display: flex;
+  align-items: stretch; }
 
 .select {
   margin-left: 0;
@@ -624,9 +628,6 @@ fieldset {
     .select {
       text-align-last: center;
       padding: 0; } }
-
-.range {
-  width: 100%; }
 
 .multi-container {
   display: flex;
@@ -704,12 +705,23 @@ fieldset {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%, 50%) rotate(45deg);
+    transform: translate(-50%, calc(50% + 1px)) rotate(45deg);
     background: white;
     border: 1px solid #555;
     border-left: 0px solid transparent;
     border-top: 0px solid transparent;
     background: linear-gradient(-45deg, white 55%, transparent 55%); }
+  .tooltip--visible {
+    visibility: visible; }
+
+.range {
+  width: 100%; }
+  .range__container {
+    position: relative; }
+  .range__tooltip {
+    font-size: 1rem;
+    min-width: 2ch;
+    text-align: center; }
 
 .output:not(:empty) {
   flex: 1;
@@ -750,7 +762,8 @@ fieldset {
   padding: 0.5rem;
   border-radius: 4px;
   min-width: 6rem;
-  user-select: none; }
+  user-select: none;
+  cursor: pointer; }
   .copy:hover, .copy:active, .copy:focus {
     box-shadow: none;
     background-color: white;

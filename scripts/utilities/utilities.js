@@ -24,3 +24,12 @@ export const targetHasAncestor = (selector, e) => {
 
 	return false;
 }
+
+export const debounce = (fun, timing) => {
+	let timeout;
+
+	return (...args) => {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => fun(...args), timing);
+	}
+}

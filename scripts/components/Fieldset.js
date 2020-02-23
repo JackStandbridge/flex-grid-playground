@@ -1,6 +1,12 @@
 import Input from './Input.js';
 
-const Fieldset = ({ name, fieldsets, inputs, className, collapsed = true }) => {
+const Fieldset = ({
+	name,
+	fieldsets,
+	inputs,
+	className,
+	collapsed = true,
+}) => {
 	const fieldset = document.createElement('fieldset');
 	fieldset.classList.add('fieldset');
 
