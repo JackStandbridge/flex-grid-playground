@@ -1,14 +1,15 @@
 .tooltip {
 	visibility: hidden;
 	position: absolute;
-	border: 1px solid #555;
-	border-radius: 2px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 	background: white;
 	padding: 0.5rem;
 	font-size: 0.8rem;
 	bottom: calc(100% + 0.8rem);
 	left: 50%;
 	transform: translateX(-50%);
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 
 	&:after {
 		content: '';
@@ -20,7 +21,7 @@
 		left: 50%;
 		transform: translate(-50%, calc(50% + 1px)) rotate(45deg);
 		background: white;
-		border: 1px solid #555;
+		border: 1px solid #ccc;
 		border-left: 0px solid transparent;
 		border-top: 0px solid transparent;
 		background: linear-gradient(-45deg, white 55%, transparent 55%);
@@ -31,17 +32,27 @@
 	}
 
 	&--source {
-		top: 50%;
-		transform: translate(-2rem, -50%);
+		top: 100%;
+		transform: translate(-7px, -5px);
 		left: unset;
 		right: 0;
 		bottom: unset;
+		padding: 0.5rem 0;
+
+		a {
+			padding: 0.5rem 1rem;
+			text-decoration: none;
+			color: inherit;
+			display: block;
+			font-size: 0.8rem;
+			&:hover, &:active, &:focus {
+				background: #eee;
+			}
+		}
 
 		&::after {
-			right: 0;
-			top: 50%;
-			left: unset;
-			transform: translate(calc(50% + 1px), -50%) rotate(-45deg);
+			display: none;
+			content: unset;
 		}
 	}
 }

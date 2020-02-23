@@ -21,8 +21,8 @@
 	}
 }
 
-// padding applied after for max-height
-// animation and cascade reasons
+// max-height applied first for
+// expander animation and cascade reasons
 .choice,
 .col {
 	max-height: 100vh;

@@ -1,21 +1,3 @@
-html {
-	font-family: sans-serif;
-}
-
-body {
-	display: flex;
-	padding: 0;
-	margin: 2rem;
-	@media screen and (max-width: 1024px) {
-		flex-direction: column;
-		margin: 1rem;
-	}
-}
-
-input[type='number'], button, select {
-	@extend %focus;
-}
-
 .page {
 	border-radius: 7px;
 	box-shadow: 0 0 25px grey;

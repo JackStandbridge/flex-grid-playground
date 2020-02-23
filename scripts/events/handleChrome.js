@@ -23,8 +23,16 @@ const handleChrome = () => {
 
 	const options = document.getElementById('options');
 	const source = document.getElementById('source');
-	options.addEventListener('click', () => {
+
+	const clickOff = () => {
+		document.removeEventListener('click', clickOff);
+		source.classList.remove('tooltip--visible');
+	};
+
+	options.addEventListener('click', e => {
+		e.stopPropagation();
 		source.classList.toggle('tooltip--visible');
+		document.addEventListener('click', clickOff);
 	});
 
 }

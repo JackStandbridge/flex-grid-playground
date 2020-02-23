@@ -1,13 +1,9 @@
-input[type='number']:focus, button:focus, select:focus, .add:focus, input[type='number']:active, button:active, select:active, .add:active {
-  outline: none;
-  box-shadow: inset 0 0 1px 2px #acf; }
-input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-focus-inner, .add::-moz-focus-inner {
-  border: 0; }
-
 html {
   font-family: sans-serif; }
 
 body {
+  max-width: 100vw;
+  overflow: hidden;
   display: flex;
   padding: 0;
   margin: 2rem; }
@@ -15,6 +11,12 @@ body {
     body {
       flex-direction: column;
       margin: 1rem; } }
+
+input[type='number']:focus, button:focus, select:focus, .add:focus, input[type='number']:active, button:active, select:active, .add:active {
+  outline: none;
+  box-shadow: inset 0 0 1px 2px #acf; }
+input[type='number']::-moz-focus-inner, button::-moz-focus-inner, select::-moz-focus-inner, .add::-moz-focus-inner {
+  border: 0; }
 
 .page {
   border-radius: 7px;
@@ -314,14 +316,15 @@ body {
 .tooltip {
   visibility: hidden;
   position: absolute;
-  border: 1px solid #555;
-  border-radius: 2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   background: white;
   padding: 0.5rem;
   font-size: 0.8rem;
   bottom: calc(100% + 0.8rem);
   left: 50%;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2); }
   .tooltip:after {
     content: '';
     display: block;
@@ -332,23 +335,30 @@ body {
     left: 50%;
     transform: translate(-50%, calc(50% + 1px)) rotate(45deg);
     background: white;
-    border: 1px solid #555;
+    border: 1px solid #ccc;
     border-left: 0px solid transparent;
     border-top: 0px solid transparent;
     background: linear-gradient(-45deg, white 55%, transparent 55%); }
   .tooltip--visible {
     visibility: visible; }
   .tooltip--source {
-    top: 50%;
-    transform: translate(-2rem, -50%);
+    top: 100%;
+    transform: translate(-7px, -5px);
     left: unset;
     right: 0;
-    bottom: unset; }
+    bottom: unset;
+    padding: 0.5rem 0; }
+    .tooltip--source a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      font-size: 0.8rem; }
+      .tooltip--source a:hover, .tooltip--source a:active, .tooltip--source a:focus {
+        background: #eee; }
     .tooltip--source::after {
-      right: 0;
-      top: 50%;
-      left: unset;
-      transform: translate(calc(50% + 1px), -50%) rotate(-45deg); }
+      display: none;
+      content: unset; }
 
 @media (max-height: 320px) {
   .chrome {
@@ -488,7 +498,8 @@ body {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ddd;
-  position: relative; }
+  position: relative;
+  z-index: 1; }
   @media (max-height: 400px) {
     .bar {
       display: none; } }
@@ -543,12 +554,33 @@ body {
     background: white; }
 
 .options {
-  transform: rotate(90deg);
-  font-size: 1rem;
+  font-size: 1.5rem;
   letter-spacing: 1px;
   color: #777;
   cursor: pointer;
-  user-select: none; }
+  user-select: none;
+  border: none;
+  background: inherit;
+  height: 1.9rem;
+  width: 1.9rem;
+  margin: 0 0.2rem 0 0.5rem;
+  border-radius: 1rem;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+  .options:hover, .options:focus, .options:active {
+    background: #f4f4f4;
+    box-shadow: none; }
+
+.dot {
+  width: 2px;
+  height: 2px;
+  background: grey;
+  border: 1px solid grey;
+  border-radius: 2px;
+  margin: 1px; }
 
 .interface {
   display: flex;
