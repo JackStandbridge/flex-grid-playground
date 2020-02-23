@@ -1,6 +1,7 @@
 .output:not(:empty) {
 	flex: 1;
 	tab-size: 2;
+	-moz-tab-size: 2;
 	margin: 0 0 0 1rem;
 	@media (max-width: 1024px) {
 		margin: 1rem 0 0 0;
@@ -38,9 +39,11 @@
 .copy {
 	color: white;
 	background: inherit;
+	border: 1px solid white;
 	font-size: 1.4rem;
 	font-family: monospace;
 	margin-left: auto;
+	margin-top: -1rem;
 	display: block;
 	padding: 0.5rem;
 	border-radius: 4px;

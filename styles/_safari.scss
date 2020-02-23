@@ -1,0 +1,37 @@
+.safari {
+	legend {
+		width: fit-content;
+
+		button {
+			&:active {
+				color: inherit;
+			}
+		}
+	}
+
+	.expander {
+		position: static;
+		padding-right: 8px;
+
+		&::after {
+			position: static;
+			transform: none;
+			border: none;
+			content: '\2192';
+		}
+
+		&--expanded::after {
+			content: '\2193';
+		}
+
+	}
+
+	.fieldset {
+
+		&--collapsed {
+			transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}

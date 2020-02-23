@@ -20,7 +20,28 @@ const handleClipboard = async () => {
 				}, 500);
 			};
 
-			navigator.clipboard.writeText(data).then(success, error);
+			try {
+
+				if (navigator.clipboard) {
+					navigator.clipboard.writeText(data).then(success, error);
+
+				} else {
+
+					const selection = window.getSelection();
+					const range = document.createRange();
+
+					range.selectNodeContents(target.previousElementSibling);
+					selection.removeAllRanges();
+					selection.addRange(range);
+
+					document.execCommand("copy");
+					selection.removeAllRanges();
+
+				}
+
+			} catch (e) {
+				error();
+			}
 
 			setTimeout(() => {
 				button.classList.remove('copy--success', 'copy--error');

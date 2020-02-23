@@ -18,7 +18,7 @@ export const targetHasAncestor = (selector, e) => {
 
 	for (let i = 0; i < path.length; i++) {
 		if (path[i].matches && path[i].matches(selector)) {
-			return true;
+			return path[i];
 		}
 	}
 

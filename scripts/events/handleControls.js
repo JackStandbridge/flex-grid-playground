@@ -1,5 +1,6 @@
 import store from '../store.js';
 import handleRange from './handleRange.js';
+import handleFieldsets from './handleFieldsets.js';
 import {
 	getConstructedStyle,
 	targetHasAncestor
@@ -47,6 +48,11 @@ const handleControls = () => {
 
 	controls.addEventListener('submit', e => e.preventDefault());
 
+	controls.addEventListener('click', e => {
+		if (e.target.matches('.expander')) {
+			handleFieldsets(e);
+		}
+	});
 };
 
 export default handleControls;

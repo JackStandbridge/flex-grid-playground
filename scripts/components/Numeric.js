@@ -1,8 +1,8 @@
 const Numeric = ({ parentName, min, value, name, options }) => {
 
-	const fragment = document.createDocumentFragment();
-	const input = document.createElement('input');
 	const label = document.createElement('label');
+	const hr = document.createElement('hr');
+	const input = document.createElement('input');
 	const select = document.createElement('select');
 	options.forEach(unit => {
 		const option = document.createElement('option');
@@ -20,13 +20,15 @@ const Numeric = ({ parentName, min, value, name, options }) => {
 
 	select.classList.add('select');
 
+	hr.classList.add('hr');
+
 	label.textContent = name;
 	label.classList.add('number__container');
+	label.append(hr);
 	label.append(input);
 	label.append(select);
-	fragment.append(label);
 
-	return fragment;
+	return label;
 }
 
 export default Numeric;
