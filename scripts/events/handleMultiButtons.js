@@ -107,7 +107,7 @@ const handleTouch = ({ add, tooltips, buttonWrapper, parentName, container }) =>
 
 		}, 900);
 
-	});
+	}, { passive: true });
 
 	add.addEventListener('touchend', () => {
 		clearTimeout(touchTimeout);

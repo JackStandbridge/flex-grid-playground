@@ -19,6 +19,7 @@ const Numeric = ({ parentName, min, value, name, options }) => {
 	input.setAttribute('min', min);
 
 	select.classList.add('select');
+	select.setAttribute('data-property', name);
 
 	hr.classList.add('hr');
 

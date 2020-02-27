@@ -21,23 +21,37 @@ const handleControls = () => {
 		if (e.target.id === 'number-of-children') {
 			store.setChildren(e.target);
 			return;
-		} else if (targetHasAncestor('.multi-container', e)) {
+		}
+
+		// set property
+		if (targetHasAncestor('.multi-container', e)) {
 			property = e.target.parentNode.dataset.property;
 		} else {
 			property = e.target.dataset.property;
 		}
 
-		if (targetHasAncestor('.multi-container', e)) {
-			const inputs = [...e.target.parentNode.querySelectorAll('input, select')]
-			value = getConstructedStyle(inputs);
-		} else if (e.target.matches('[type="radio"]')) {
+		// set value
+		if (e.target.matches('[type="radio"]')) {
 			value = e.target.dataset.value;
+
 		} else {
-			value = e.target.value;
+			const parent = e.target.parentNode;
+			const inputs = [...parent.querySelectorAll('input, select')]
+			value = getConstructedStyle(inputs);
+
+			if (
+				parent.matches('.number__container')
+				&& Number.isNaN(parseFloat(value))
+			) {
+				value = '';
+			}
 		}
 
+		// set section
 		if (targetHasAncestor('#parent-interface', e)) {
 			section = 'parentStyles';
+		} else if (targetHasAncestor('#children-interface', e)) {
+			section = 'childrenStyles';
 		} else {
 			section = 'childStyles';
 		}

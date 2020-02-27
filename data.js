@@ -7,26 +7,32 @@ export const initial = {
 			parentStyles: {
 				display: 'flex',
 			},
-			childStyles: {
+			childrenStyles: {
 				margin: '5px',
 				padding: '15px',
 				width: '120px',
 				height: '50px',
-			}
+			},
+
+			children: [{}, {}, {}],
+			currentChild: null,
 		},
 
 		grid: {
-			numberOfChildren: 5,
+			numberOfChildren: 3,
 			parentStyles: {
 				display: 'grid',
 				'grid-gap': '10px',
 			},
-			childStyles: {
+			childrenStyles: {
 				margin: '0px',
 				padding: '15px',
 				width: '',
 				height: '',
-			}
+			},
+
+			children: [{}, {}, {}],
+			currentChild: null,
 		}
 	}
 }
@@ -36,12 +42,12 @@ const data = {
 		fieldsets: [
 			{
 				name: 'Parent',
-				className: 'col',
+				classNames: ['col'],
 				collapsed: false,
 				fieldsets: [
 					{
 						name: 'flex-direction',
-						className: 'choice',
+						classNames: ['choice'],
 						inputs: [
 							{
 								name: 'row',
@@ -63,7 +69,7 @@ const data = {
 					},
 					{
 						name: 'justify-content',
-						className: 'choice',
+						classNames: ['choice'],
 						inputs: [
 							{
 								name: 'flex-start',
@@ -93,7 +99,7 @@ const data = {
 					},
 					{
 						name: 'align-items',
-						className: 'choice',
+						classNames: ['choice'],
 						inputs: [
 							{
 								name: 'stretch',
@@ -115,7 +121,7 @@ const data = {
 					},
 					{
 						name: 'flex-wrap',
-						className: 'choice',
+						classNames: ['choice'],
 						inputs: [
 							{
 								name: 'nowrap',
@@ -133,20 +139,36 @@ const data = {
 				name: 'Children',
 				page: 'flex',
 				collapsed: false,
-				className: 'col',
+				classNames: ['col'],
 				fieldsets: [
 					{
 						name: 'Number',
-						className: 'choice',
+						classNames: ['choice'],
 						collapsed: false,
 						inputs: [
 							{
 								name: 'range',
 								type: 'range',
+								ariaLabel: 'Number of children',
 								id: 'number-of-children',
 								min: 1,
 								max: 20,
 								value: initial.pages.flex.numberOfChildren,
+							}
+						]
+					},
+					{
+						name: 'box-sizing',
+						classNames: ['choice'],
+						collapsed: false,
+						inputs: [
+							{
+								name: 'content-box',
+								type: 'radio',
+							},
+							{
+								name: 'border-box',
+								type: 'radio',
 							}
 						]
 					}
@@ -156,37 +178,37 @@ const data = {
 						name: 'margin',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
-						value: initial.pages.flex.childStyles.margin,
+						value: initial.pages.flex.childrenStyles.margin,
 					},
 					{
 						name: 'padding',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
-						value: initial.pages.flex.childStyles.padding,
+						value: initial.pages.flex.childrenStyles.padding,
 					},
 					{
 						name: 'width',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
-						value: initial.pages.flex.childStyles.width,
+						value: initial.pages.flex.childrenStyles.width,
 					},
 					{
 						name: 'height',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
-						value: initial.pages.flex.childStyles.height,
-					}
+						value: initial.pages.flex.childrenStyles.height,
+					},
 				]
 			}
 		]
@@ -195,12 +217,12 @@ const data = {
 		fieldsets: [
 			{
 				name: 'Parent',
-				className: 'col',
+				classNames: ['col'],
 				collapsed: false,
 				fieldsets: [
 					{
 						name: 'grid-template-columns',
-						className: 'choice',
+						classNames: ['choice'],
 						inputs: [
 							{
 								type: 'multi',
@@ -214,7 +236,7 @@ const data = {
 					},
 					{
 						name: 'grid-template-rows',
-						className: 'choice',
+						classNames: ['choice'],
 						inputs: [
 							{
 								type: 'multi',
@@ -225,6 +247,50 @@ const data = {
 								],
 							}
 						]
+					},
+					{
+						name: 'align-items',
+						classNames: ['choice'],
+						inputs: [
+							{
+								name: 'stretch',
+								type: 'radio',
+							},
+							{
+								name: 'center',
+								type: 'radio',
+							},
+							{
+								name: 'start',
+								type: 'radio',
+							},
+							{
+								name: 'end',
+								type: 'radio'
+							}
+						]
+					},
+					{
+						name: 'justify-items',
+						classNames: ['choice'],
+						inputs: [
+							{
+								name: 'stretch',
+								type: 'radio',
+							},
+							{
+								name: 'center',
+								type: 'radio',
+							},
+							{
+								name: 'start',
+								type: 'radio',
+							},
+							{
+								name: 'end',
+								type: 'radio'
+							}
+						]
 					}
 				],
 				inputs: [
@@ -232,7 +298,7 @@ const data = {
 						name: 'grid-gap',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
 						value: initial.pages.grid.parentStyles['grid-gap'],
@@ -241,18 +307,18 @@ const data = {
 			},
 			{
 				name: 'Children',
-				page: 'grid',
 				collapsed: false,
-				className: 'col',
+				classNames: ['col'],
 				fieldsets: [
 					{
 						name: 'Number',
-						className: 'choice',
+						classNames: ['choice'],
 						collapsed: false,
 						inputs: [
 							{
 								name: 'range',
 								type: 'range',
+								ariaLabel: 'Number of children',
 								id: 'number-of-children',
 								min: 1,
 								max: 30,
@@ -266,36 +332,124 @@ const data = {
 						name: 'margin',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
-						value: initial.pages.grid.childStyles.margin,
+						value: initial.pages.grid.childrenStyles.margin,
 					},
 					{
 						name: 'padding',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
-						value: initial.pages.grid.childStyles.padding,
+						value: initial.pages.grid.childrenStyles.padding,
 					},
 					{
 						name: 'width',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
-						value: initial.pages.grid.childStyles.width,
+						value: initial.pages.grid.childrenStyles.width,
 					},
 					{
 						name: 'height',
 						type: 'number',
 						options: [
-							'px', '%', 'rem',
+							'px', '%', 'rem'
 						],
 						min: 0,
-						value: initial.pages.grid.childStyles.height,
+						value: initial.pages.grid.childrenStyles.height,
+					}
+				]
+			},
+			{
+				name: 'Child',
+				classNames: ['col', 'hidden'],
+				collapsed: false,
+				fieldsets: [
+					{
+						name: 'align-self',
+						classNames: ['choice'],
+						inputs: [
+							{
+								name: 'stretch',
+								type: 'radio'
+							},
+							{
+								name: 'center',
+								type: 'radio'
+							},
+							{
+								name: 'start',
+								type: 'radio'
+							},
+							{
+								name: 'end',
+								type: 'radio'
+							},
+						]
+					},
+					{
+						name: 'justify-self',
+						classNames: ['choice'],
+						inputs: [
+							{
+								name: 'stretch',
+								type: 'radio'
+							},
+							{
+								name: 'center',
+								type: 'radio'
+							},
+							{
+								name: 'start',
+								type: 'radio'
+							},
+							{
+								name: 'end',
+								type: 'radio'
+							},
+						]
+					},
+				],
+				inputs: [
+					{
+						name: 'margin',
+						type: 'number',
+						options: [
+							'px', '%', 'rem'
+						],
+						value: initial.pages.grid.childrenStyles.margin,
+					},
+					{
+						name: 'padding',
+						type: 'number',
+						options: [
+							'px', '%', 'rem'
+						],
+						min: 0,
+						value: initial.pages.grid.childrenStyles.padding,
+					},
+					{
+						name: 'width',
+						type: 'number',
+						options: [
+							'px', '%', 'rem'
+						],
+						min: 0,
+						value: initial.pages.grid.childrenStyles.width,
+					},
+					{
+						name: 'height',
+						type: 'number',
+						options: [
+							'px', '%', 'rem'
+						],
+						min: 0,
+						value: initial.pages.grid.childrenStyles.height,
 					}
 				]
 			}

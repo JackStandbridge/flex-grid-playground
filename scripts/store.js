@@ -1,7 +1,5 @@
 import { initial } from '../data.js';
 
-const numToPx = val => val === '' ? '' : `${ val }px`
-
 const titles = {
 	flex: 'CSS Flexbox Playground',
 	grid: 'CSS Grid Playground',
@@ -11,13 +9,23 @@ const icon = document.getElementById('icon');
 const container = document.getElementById('container');
 const tabs = [...document.querySelectorAll('.tab')];
 const parentStylesOutput = document.getElementById('parent-styles');
-const childStylesOutput = document.getElementById('child-styles');
+const childrenStylesOutput = document.getElementById('child-styles');
 
 
-class ChildHandler {
+class ParentHandler {
 	set(target, prop, val) {
 
-		target[prop] = Number.isNaN(+val) ? val : numToPx(val);
+		target[prop] = val;
+		container.style[prop] = target[prop];
+
+		return true
+	}
+}
+
+class ChildrenHandler {
+	set(target, prop, val) {
+
+		target[prop] = val;
 
 		[...container.children].forEach(child => {
 			child.style[prop] = target[prop];
@@ -25,20 +33,23 @@ class ChildHandler {
 
 		return true;
 	}
-};
+}
 
-class ParentHandler {
+class ChildHandler {
 	set(target, prop, val) {
 
-		target[prop] = Number.isNaN(+val) ? val : numToPx(val);
-		container.style[prop] = target[prop];
+		target[prop] = val;
 
-		return true
+		const currentPage = store.state.pages[store.state.currentPage];
+		const currentChild = currentPage.currentChild;
+
+		[...container.children][currentChild].style[prop] = val;
+
+		return true;
 	}
 }
 
 const store = {
-	page: 'flex',
 
 	setPage(page) {
 		this.state.currentPage = page;
@@ -57,8 +68,8 @@ const store = {
 				target: parentStylesOutput
 			},
 			{
-				styles: currentPage.childStyles,
-				target: childStylesOutput
+				styles: currentPage.childrenStyles,
+				target: childrenStylesOutput
 			}
 		];
 
@@ -119,13 +130,29 @@ const store = {
 
 	setStyle(property, value, section) {
 		const currentPage = this.state.pages[this.state.currentPage];
-		currentPage[section][property] = value;
-		this.outputCSS();
+
+		if (section === 'childStyles') {
+			const currentChild = currentPage.currentChild;
+			currentPage.children[currentChild][property] = value;
+
+		} else {
+			currentPage[section][property] = value;
+			this.outputCSS();
+		}
 	},
 
 	setChildren({ value }) {
 		const currentPage = this.state.pages[this.state.currentPage];
 		currentPage.numberOfChildren = +value;
+
+		while (value > currentPage.children.length) {
+			currentPage.children.push(new Proxy({}, new ChildHandler()));
+		}
+
+		while (value < currentPage.children.length) {
+			currentPage.children.pop();
+		}
+
 		this.updateChildren();
 	},
 
@@ -138,8 +165,9 @@ const store = {
 
 			const div = document.createElement('div');
 			div.classList.add('child', `child--${ i + 1 }`);
+			div.setAttribute('tabindex', 0);
 
-			Object.assign(div.style, currentPage.childStyles);
+			Object.assign(div.style, currentPage.childrenStyles);
 
 			fragment.append(div);
 		}
@@ -151,9 +179,15 @@ const store = {
 
 for (let pageName in initial.pages) {
 	const parentStyles = initial.pages[pageName].parentStyles;
-	const childStyles = initial.pages[pageName].childStyles;
+	const childrenStyles = initial.pages[pageName].childrenStyles;
+
 	initial.pages[pageName].parentStyles = new Proxy(parentStyles, new ParentHandler());
-	initial.pages[pageName].childStyles = new Proxy(childStyles, new ChildHandler());
+
+	initial.pages[pageName].childrenStyles = new Proxy(childrenStyles, new ChildrenHandler());
+
+	initial.pages[pageName].children.forEach((child, i, arr) => {
+		arr[i] = new Proxy(child, new ChildHandler());
+	});
 }
 
 store.state = initial;

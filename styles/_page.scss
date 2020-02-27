@@ -37,6 +37,8 @@
 .child {
 	border-radius: 7px;
 	position: relative;
+	cursor: pointer;
+	outline: none;
 
 	&::after {
 		height: 100%;
@@ -48,6 +50,15 @@
 		overflow: hidden;
 		font-size: 2rem;
 		color: #555;
+	}
+
+	&:hover,
+	&:focus {
+		filter: saturate(2) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.3));
+	}
+
+	&:active {
+		filter: saturate(3) drop-shadow(0 0 0 rgba(0, 0, 0, 0.3))
 	}
 
 	@for $i from 1 through 50 {

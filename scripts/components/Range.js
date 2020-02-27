@@ -1,4 +1,4 @@
-const Range = ({ parentName, min, max, value, name, id }) => {
+const Range = ({ parentName, min, max, value, name, id, ariaLabel }) => {
 
 	const container = document.createElement('div');
 	container.classList.add('range__container');
@@ -10,6 +10,10 @@ const Range = ({ parentName, min, max, value, name, id }) => {
 	input.max = max;
 	input.value = value;
 	input.classList.add('range');
+
+	if (ariaLabel) {
+		input.setAttribute('aria-label', ariaLabel);
+	}
 
 	const tooltip = document.createElement('div');
 	tooltip.classList.add('range__tooltip');

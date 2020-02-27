@@ -2,6 +2,7 @@ import init from './init.js';
 import handleControls from './events/handleControls.js';
 import handleChrome from './events/handleChrome.js';
 import handleClipboard from './events/handleClipboard.js';
+import handleChildren from './events/handleChildren.js';
 
 const page = location.hash.slice(1) || 'flex';
 
@@ -20,3 +21,4 @@ init(page);
 handleControls();
 handleChrome();
 handleClipboard();
+handleChildren();

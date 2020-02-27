@@ -4,7 +4,7 @@ const Fieldset = ({
 	name,
 	fieldsets,
 	inputs,
-	className,
+	classNames,
 	collapsed = true,
 }) => {
 	const fieldset = document.createElement('fieldset');
@@ -43,8 +43,8 @@ const Fieldset = ({
 		});
 	}
 
-	if (className) {
-		fieldset.classList.add(className);
+	if (classNames) {
+		fieldset.classList.add(...classNames);
 	}
 
 	return fieldset;
