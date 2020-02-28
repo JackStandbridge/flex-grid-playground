@@ -1,43 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#000000" />
+	<meta name='description' content='Interactive playground to practice CSS Flexbox and CSS Grid' />
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+	<meta http-equiv='X-UA-Compatible' content='ie=edge'>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+	<title>CSS Flexbox Playground</title>
+
+</head>
+
+<body>
+	<noscript>
+		This page uses JavaScript to simulate an interactive testing ground for CSS flexbox and grid properties. Please
+		enable JavaScript in order to use this page!
+	</noscript>
+
+	<div id="root"></div>
+</body>
+
 </html>
+
+
+<!-- <body>
+	<section class='page'>
+		<div class='chrome'>
+			<div class='controls'>
+				<div class='close control'></div>
+				<div class='minimize control'></div>
+				<div class='maximize control'></div>
+			</div>
+			<nav class='tabs'>
+				<div class='tab tab--inactive' data-playground='flex' tabindex='0'>
+					<span class='tab__title tab__title--flex'>Flexbox Playground</span>
+					<span class='tab__close'></span>
+				</div>
+				<div class='tab tab--inactive' data-playground='grid' tabindex='0'>
+					<span class='tab__title tab__title--grid'>Grid Playground</span>
+					<span class='tab__close'></span>
+				</div>
+			</nav>
+			<nav class='bar'>
+				<div class='bar__buttons'>
+					<i class='back'></i>
+					<i class='forward'></i>
+					<i class='refresh'></i>
+					<i class='home'></i>
+				</div>
+				<div class='url' contenteditable>flex-grid-playground</div>
+				<button class='options' aria-label='toggle link to source code' id='options'>
+					<div class='dot'></div>
+					<div class='dot'></div>
+					<div class='dot'></div>
+				</button>
+				<div class='tooltip tooltip--source' id='source'>
+					<a href='https://github.com/JackStandbridge/flex-grid-playground'>
+						See source code
+					</a>
+				</div>
+			</nav>
+		</div>
+
+		<div class='body'>
+			<div id='container' class='container' style='display: flex;'>
+				<div class="child" style="margin: 5px; padding: 15px; width: 120px; height: 50px;"></div>
+				<div class="child" style="margin: 5px; padding: 15px; width: 120px; height: 50px;"></div>
+				<div class="child" style="margin: 5px; padding: 15px; width: 120px; height: 50px;"></div>
+			</div>
+		</div>
+	</section>
+
+	<main class='interface'>
+		<div class='form' id='interface'></div>
+	</main>
+
+<section id='output' class='output'>
+
+	<div class='code-container'>
+		<code class='code'><span class='selector'>.container</span> {<span id='parent-styles'></span>&#13;&#10;}</code>
+		<button id='copy-parent' class='copy'>Copy</button>
+	</div>
+
+	<div class='code-container'>
+		<code class='code'><span class='selector'>.child</span> {<span id='child-styles'></span>&#13;&#10;}</code>
+		<button id='copy-child' class='copy'>Copy</button>
+	</div>
+</section>
+</body>
+
+</html> -->

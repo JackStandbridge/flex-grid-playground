@@ -1,0 +1,73 @@
+.page {
+	border-radius: 7px;
+	box-shadow: 0 0 25px grey;
+	box-sizing: border-box;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	flex: 2;
+	height: calc(100vh - 4rem);
+	@media screen and (max-width: 1024px) {
+		max-width: 100%;
+		min-height: 50vh;
+		max-height: 50vh;
+	}
+
+	@media (max-height: 568px) {
+		min-height: 70vh;
+		max-height: 70vh;
+	}
+}
+
+.body {
+	overflow: auto;
+	flex: 1;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.container {
+	border: 3px solid #bbb;
+	border-radius: 10px;
+	margin: 0.1rem;
+	box-sizing: border-box;
+	max-height: 100%;
+}
+
+.child {
+	border-radius: 7px;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+
+	&::after {
+		height: 100%;
+		width: 100%;
+		background: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		font-size: 2rem;
+		color: #555;
+	}
+
+	&:hover,
+	&:focus {
+		filter: saturate(2) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.3));
+	}
+
+	&:active {
+		filter: saturate(3) drop-shadow(0 0 0 rgba(0, 0, 0, 0.3))
+	}
+
+	@for $i from 1 through 50 {
+		&:nth-child(#{$i}) {
+			border: 3px solid hsl($i * 18, 40%, 60%);
+			background: hsl($i * 18, 60%, 90%);
+			&::after {
+				content: '#{$i}';
+			}
+		}
+	}
+}

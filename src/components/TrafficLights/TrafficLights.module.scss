@@ -1,0 +1,60 @@
+.lights {
+	padding: 0.6rem 0.8rem;
+	display: flex;
+	min-width: 55px;
+	justify-content: space-between;
+	align-self: flex-start;
+	z-index: 2;
+	position: absolute;
+	top: calc(2rem + 5px);
+	@media (max-width: 1024px) {
+		top: calc(1rem + 5px);
+	}
+}
+
+.light {
+	height: 0.8rem;
+	width: 0.8rem;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+
+.close {
+	background: #f64;
+	&.control__escape {
+		animation: escape 4s linear;
+	}
+	&.control__roll {
+		animation: roll 0.7s linear 1;
+	}
+	&.control__shuffle {
+		animation: shuffleRed 2s linear;
+	}
+}
+
+.minimize {
+	background: #fc4;
+	&.control__escape {
+		animation: escape 4s linear;
+	}
+	&.control__roll {
+		animation: roll 1s linear;
+	}
+	&.control__shuffle {
+		animation: shuffleYellow 2s linear;
+	}
+}
+
+.maximize {
+	background: #4c6;
+	&.control__escape {
+		animation: escape 4s linear;
+	}
+	&.control__roll {
+		animation: roll 0.5s linear 2;
+	}
+	&.control__shuffle {
+		animation: shuffleGreen 2s linear;
+	}
+}

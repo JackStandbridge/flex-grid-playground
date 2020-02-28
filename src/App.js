@@ -1,8 +1,16 @@
 import React from 'react';
+import Browser from './components/Browser';
+import Controls from './components/Controls';
+import Output from './components/Output';
+import styles from './App.module.scss';
 
 const App = () => {
 	return (
-		<div>App</div>
+		<main className={ styles.app }>
+			<Browser/>
+			<Controls/>
+			<Output/>
+		</main>
 	);
 };
 

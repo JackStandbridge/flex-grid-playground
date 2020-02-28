@@ -5,7 +5,7 @@ const updateStyle = createAction('updateStyle');
 
 const reducer = createReducer(initial, {
 	[updateStyle]: (state, action) => {
-
+		return state;
 	}
 });
 
