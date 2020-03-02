@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './TrafficLights.module.scss';
+import stylesheet from './TrafficLights.module.scss';
 
 const TrafficLights = () => {
 	return (
-		<div className={ styles.lights }>
-			<div className={ `${ styles.close } ${ styles.light }` }></div>
-			<div className={ `${ styles.minimize } ${ styles.light }` }></div>
-			<div className={ `${ styles.maximize } ${ styles.light }` }></div>
+		<div className={ stylesheet.lights }>
+			<div className={ `${ stylesheet.light } ${ stylesheet.close }` }></div>
+			<div className={ `${ stylesheet.light } ${ stylesheet.minimize }` }></div>
+			<div className={ `${ stylesheet.light } ${ stylesheet.maximize }` }></div>
 		</div>
 	);
 };

@@ -1,0 +1,32 @@
+html {
+	font-family: sans-serif;
+	overflow: auto;
+}
+
+body {
+	max-width: 100vw;
+	overflow: hidden;
+	padding: 2rem;
+	margin: 0;
+	@media screen and (max-width: 1024px) {
+		padding: 1rem;
+	}
+}
+
+input[type='number'],
+button,
+select {
+	@extend %focus;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+	}
+}
+
+.no-overflow {
+	overflow: hidden;
+}

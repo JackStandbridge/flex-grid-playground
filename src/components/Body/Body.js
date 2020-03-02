@@ -1,18 +1,26 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
-import styles from './Body.module.scss';
+import stylesheet from './Body.module.scss';
 import Child from '../Child';
+import { getConstructedStyle } from '../../data/utilities';
 
 const Body = () => {
 
-	const childIds = useSelector(
-		({ page, pages }) => pages[page].childStyles.allIds,
-		shallowEqual
-	);
+	const childIds = useSelector(({ page, pages}) => {
+		return pages[page].childStyles;
+	}, shallowEqual);
+
+	const styles = useSelector(state => {
+		return getConstructedStyle(state, 'parentStyles');
+	});
 
 	return (
-		<div className={ styles.body }>
-			<div id='container' className={ styles.container }>
+		<div className={ stylesheet.body }>
+			<div
+				id='container'
+				className={ stylesheet.container }
+				style={ styles }
+			>
 				{
 					childIds.map(id => <Child key={ id } id={ id } />)
 				}

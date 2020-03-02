@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './Bar.module.scss';
+import stylesheet from './Bar.module.scss';
 
 const Bar = () => {
 	const [tooltip, setTooltip] = useState(false);
@@ -28,26 +28,27 @@ const Bar = () => {
 
 
 	return (
-		<div className={ styles.bar }>
-			<div className={ styles.bar__buttons }>
-				<i className={ styles.back }></i>
-				<i className={ styles.forward }></i>
-				<i className={ styles.refresh }></i>
-				<i className={ styles.home }></i>
+		<div className={ stylesheet.bar }>
+			<div className={ stylesheet.bar__buttons }>
+				<i className={ stylesheet.back }></i>
+				<i className={ stylesheet.forward }></i>
+				<i className={ stylesheet.refresh }></i>
+				<i className={ stylesheet.home }></i>
 			</div>
-			<input className={ styles.url } readOnly value='flex-grid-playground' />
+			<input className={ stylesheet.url } readOnly value='flex-grid-playground' />
 			<button
 				ref={ buttonRef }
-				className={ styles.options }
+				className={ stylesheet.options }
 				aria-label='toggle link to source code'
 				onClick={ handleClick }
 			>
-				<div className={ styles.dot }></div>
-				<div className={ styles.dot }></div>
-				<div className={ styles.dot }></div>
+				<div className={ stylesheet.dot }></div>
+				<div className={ stylesheet.dot }></div>
+				<div className={ stylesheet.dot }></div>
 			</button>
-			{ tooltip &&
-				<div className={ styles.tooltip } id='source'>
+			{
+				tooltip &&
+				<div className={ stylesheet.tooltip } id='source'>
 					<a href='https://github.com/JackStandbridge/flex-grid-playground'>
 						See source code
 					</a>

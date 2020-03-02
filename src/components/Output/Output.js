@@ -1,8 +1,11 @@
 import React from 'react';
+import stylesheet from './Output.module.scss';
 
 const Output = () => {
 	return (
-		<div>Output</div>
+		<section className={ stylesheet.output }>
+
+		</section>
 	);
 };
 

@@ -1,12 +1,23 @@
 import { createReducer, createAction } from '@reduxjs/toolkit';
 import initial from './initial';
 
-const updateStyle = createAction('updateStyle');
+import {
+	selectChildReducer,
+	setChildrenReducer,
+	changePageReducer,
+	setStyleReducer,
+} from './reducers';
+
+export const changePage = createAction('changePage');
+export const setStyle = createAction('setStyle');
+export const selectChild = createAction('selectChild');
+export const setChildren = createAction('setChildren');
 
 const reducer = createReducer(initial, {
-	[updateStyle]: (state, action) => {
-		return state;
-	}
+	[selectChild]: selectChildReducer,
+	[setChildren]: setChildrenReducer,
+	[changePage]: changePageReducer,
+	[setStyle]: setStyleReducer,
 });
 
 export default reducer;

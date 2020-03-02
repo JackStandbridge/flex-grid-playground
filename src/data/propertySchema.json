@@ -1,0 +1,182 @@
+{
+	"display": {
+		"type": "string"
+	},
+	"padding": {
+		"name": "padding",
+		"type": "number",
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"margin": {
+		"name": "margin",
+		"type": "number",
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"height": {
+		"name": "height",
+		"type": "number",
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"width": {
+		"name": "width",
+		"type": "number",
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"alignItems": {
+		"name": "align-items",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"center",
+			"baseline"
+		],
+		"flexValues": [
+			"flex-start",
+			"flex-end"
+		],
+		"gridValues": [
+			"start",
+			"end"
+		]
+	},
+	"justifyContent": {
+		"name": "justify-content",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"center",
+			"flex-start",
+			"flex-end",
+			"space-between",
+			"space-around",
+			"space-evenly"
+		]
+	},
+	"justifyItems": {
+		"name": "justify-items",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"center",
+			"start",
+			"end"
+		]
+	},
+	"alignSelf": {
+		"name": "align-self",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"center"
+		],
+		"flexValues": [
+			"flex-start",
+			"flex-end"
+		],
+		"gridValues": [
+			"start",
+			"end"
+		]
+	},
+	"justifySelf": {
+		"name": "justify-self",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"center"
+		],
+		"flexValues": [
+			"flex-start",
+			"flex-end"
+		],
+		"gridValues": [
+			"start",
+			"end"
+		]
+	},
+	"gridGap": {
+		"name": "grid-gap",
+		"type": "number",
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"gridTemplateRows": {
+		"name": "grid-template-rows",
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"units": [
+					"fr",
+					"%",
+					"rem",
+					"px"
+				]
+			}
+		]
+	},
+	"gridTemplateColumns": {
+		"name": "grid-template-columns",
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"units": [
+					"fr",
+					"%",
+					"rem",
+					"px"
+				]
+			}
+		]
+	},
+	"flexWrap": {
+		"name": "flex-wrap",
+		"type": "radio",
+		"values": [
+			"nowrap",
+			"wrap"
+		]
+	},
+	"flexDirection": {
+		"name": "flex-direction",
+		"type": "radio",
+		"values": [
+			"row",
+			"column",
+			"row-reverse",
+			"column-reverse"
+		]
+	},
+	"boxSizing": {
+		"name": "box-sizing",
+		"type": "radio",
+		"values": [
+			"content-box",
+			"border-box"
+		]
+	},
+	"flex": {
+		"name": "flex",
+		"type": "number"
+	}
+}

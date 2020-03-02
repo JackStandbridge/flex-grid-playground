@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import Tab from '../Tab';
-import styles from './Tabs.module.scss';
+import stylesheet from './Tabs.module.scss';
 
 const Tabs = () => {
 	const pages = useSelector(
@@ -10,7 +10,7 @@ const Tabs = () => {
 	);
 
 	return (
-		<nav className={ styles.tabs }>
+		<nav className={ stylesheet.tabs }>
 			{
 				pages.map(page => (
 					<Tab

@@ -2,11 +2,11 @@ import React from 'react';
 import TrafficLights from '../TrafficLights';
 import Tabs from '../Tabs';
 import Bar from '../Bar';
-import styles from './Chrome.module.scss';
+import stylesheet from './Chrome.module.scss';
 
 const Chrome = () => {
 	return (
-		<div className={ styles.chrome }>
+		<div className={ stylesheet.chrome }>
 			<TrafficLights />
 			<Tabs />
 			<Bar />

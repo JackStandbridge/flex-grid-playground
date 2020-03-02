@@ -1,38 +1,51 @@
 const initial = {
-	page: 'flex',
+	page: window.location.hash.slice(1,) || 'flex',
 	pages: {
 		flex: {
 			title: 'Flexbox Playground',
 			icon: 'flex.ico',
-			parentStyles: {},
-			childrenStyles: {
-				padding: '2rem',
-				margin: '5px'
-			},
-			childStyles: {
-				byId: {
-					0: { padding: '1rem' },
-					1: {},
-					2: {}
-				},
-				allIds: [0, 1, 2],
-			},
+			parentStyles: 0,
+			childrenStyles: 1,
+			childStyles: [4, 5, 6],
 			currentChild: null,
 		},
 		grid: {
 			title: 'Grid Playground',
 			icon: 'grid.ico',
-			parentStyles: {},
-			childrenStyles: {},
-			childStyles: {
-				byId: {
-					0: {},
-					1: { background: 'black' },
-					2: {}
-				},
-				allIds: [0, 1, 2],
-			},
+			parentStyles: 2,
+			childrenStyles: 3,
+			childStyles: [7, 8, 9],
 			currentChild: null,
+		}
+	},
+	styleObjects: {
+		0: [0],
+		1: [1],
+		2: [2],
+		3: [3],
+		4: [],
+		5: [],
+		6: [],
+		7: [],
+		8: [],
+		9: [],
+	},
+	styleEntries: {
+		0: {
+			schema: 'display',
+			values: ['flex'],
+		},
+		1: {
+			schema: 'padding',
+			values: ['1', 'rem'],
+		},
+		2: {
+			schema: 'display',
+			values: ['grid'],
+		},
+		3: {
+			schema: 'padding',
+			values: ['1', 'rem'],
 		},
 	},
 };

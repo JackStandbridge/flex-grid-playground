@@ -1,24 +1,34 @@
 import React from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
-import styles from './Child.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import stylesheet from './Child.module.scss';
+import { getConstructedStyle } from '../../data/utilities';
+import { selectChild } from '../../data/reducer';
 
 const Child = ({ id }) => {
-	const individualStyle = useSelector(
-		({ page, pages }) => pages[page].childStyles.byId[id],
-		shallowEqual
-	);
 
-	const allStyles = useSelector(
-		({ page, pages }) => pages[page].childrenStyles,
-		shallowEqual
-	);
+	const dispatch = useDispatch();
 
-	const combinedStyles = { ...allStyles, ...individualStyle };
+	const handleClick = e => {
+		e.stopPropagation();
+		dispatch(selectChild(id));
+	}
+
+	const styles = useSelector(state => {
+		return {
+			...getConstructedStyle(state, 'childrenStyles'),
+			...getConstructedStyle(state, 'childStyles', id),
+		};
+	});
+
+	const selected = useSelector(({ page, pages }) => pages[page].currentChild === id);
+
+	const className = `${ stylesheet.child } ${ selected ? stylesheet.selected : '' }`
 
 	return (
 		<div
-			className={ styles.child }
-			style={ combinedStyles }
+			onClick={ handleClick }
+			className={ className }
+			style={ styles }
 		></div>
 	);
 };
