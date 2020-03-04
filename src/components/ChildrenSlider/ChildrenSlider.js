@@ -11,7 +11,7 @@ const ChildrenSlider = ({ disabled }) => {
 	}
 
 	const value = useSelector(({ page, pages }) => {
-		return pages[page].childStyles.length;
+		return pages[page].child.length;
 	});
 
 	return (

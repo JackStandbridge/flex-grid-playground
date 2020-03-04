@@ -1,15 +1,40 @@
+.title {
+	font-weight: normal;
+	letter-spacing: 2px;
+	text-align: center;
+	padding: 1rem 0 0.5rem 0;
+	margin: 0;
+	font-size: 1rem;
+	box-shadow: 0 0 15px #eee;
+	z-index: 1;
+}
+
 .container {
-	display: flex;
 	margin-left: 1rem;
-	flex-direction: column;
 	flex: 1;
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 4rem);
+	box-shadow: 0 0 25px #aaa;
+	border-radius: 0.5rem;
+	overflow: hidden;
 
 	@media (max-width: 1024px) {
+		height: unset;
 		margin-left: 0;
 		margin-top: 1rem;
 	}
+}
 
-	@media (max-width: 1024px) and (min-width: 650px) {
+.controls {
+	background: white;
+	padding: 0.5rem 1rem 1rem 1rem;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	box-sizing: border-box;
+
+	@media (max-width: 1024px) and (min-width: 850px) {
 		display: flex;
 		flex-direction: row;
 	}

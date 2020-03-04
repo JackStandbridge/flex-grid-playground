@@ -7,13 +7,12 @@ import InputNumber from '../InputNumber';
 import InputMulti from '../InputMulti';
 import { useAccordion } from '../../hooks';
 
-
 const Fieldset = (
 	{
 		children,
 		section,
 		collapsed,
-		position = null
+		id = null
 	}
 ) => {
 
@@ -24,12 +23,11 @@ const Fieldset = (
 		handleCollapse
 	] = useAccordion({
 		fieldset: 'fieldset col',
-		expander: 'expander',
+		expander: 'expander caps',
 		collapsed,
 	});
 
-	const title = section.slice(0, 1).toUpperCase() + section.slice(1,);
-	const legend = `${ title } ${ position !== null ? position + 1 : '' }`;
+	const legend = `${ section } ${ id !== null ? id + 1 : '' }`;
 	const page = useSelector(({ page }) => page);
 	const structure = controls[page][section];
 	const inputs = structure ? structure : controls[page].children;

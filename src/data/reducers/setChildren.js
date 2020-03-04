@@ -1,15 +1,15 @@
 import { generateId } from '../utilities';
 
 const createChildren = ({ pages, page, styleObjects }) => {
-	const { childStyles } = pages[page];
+	const { child } = pages[page];
 	const id = generateId(styleObjects);
 	styleObjects[id] = [];
-	childStyles.push(id);
+	child.push(id);
 };
 
 const deleteChildren = ({ pages, page, styleObjects, styleEntries }) => {
-	const { childStyles } = pages[page];
-	const deleted = childStyles.pop();
+	const { child } = pages[page];
+	const deleted = child.pop();
 
 	const { currentChild } = pages[page];
 
@@ -26,11 +26,11 @@ const deleteChildren = ({ pages, page, styleObjects, styleEntries }) => {
 
 const setChildren = (state, { payload }) => {
 	const { page, pages } = state;
-	const { childStyles } = pages[page];
-	while (payload > childStyles.length) {
+	const { child } = pages[page];
+	while (payload > child.length) {
 		createChildren(state);
 	}
-	while (payload < childStyles.length) {
+	while (payload < child.length) {
 		deleteChildren(state);
 	}
 };

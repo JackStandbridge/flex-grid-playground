@@ -4,24 +4,24 @@ const initial = {
 		flex: {
 			title: 'Flexbox Playground',
 			icon: 'flex.ico',
-			parentStyles: 0,
-			childrenStyles: 1,
-			childStyles: [4, 5, 6],
+			parent: 0,
+			children: 1,
+			child: [4, 5, 6],
 			currentChild: null,
 		},
 		grid: {
 			title: 'Grid Playground',
 			icon: 'grid.ico',
-			parentStyles: 2,
-			childrenStyles: 3,
-			childStyles: [7, 8, 9],
+			parent: 2,
+			children: 3,
+			child: [7, 8, 9],
 			currentChild: null,
 		}
 	},
 	styleObjects: {
 		0: [0],
 		1: [1],
-		2: [2],
+		2: [2, 4, 5],
 		3: [3],
 		4: [],
 		5: [],
@@ -32,20 +32,54 @@ const initial = {
 	},
 	styleEntries: {
 		0: {
+			id: 0,
 			schema: 'display',
-			values: ['flex'],
+			values: [
+				{ value: 'flex' }
+			],
 		},
 		1: {
+			id: 1,
 			schema: 'padding',
-			values: ['1', 'rem'],
+			values: [
+				{ value: '1' },
+				{ value: 'rem' },
+			],
 		},
 		2: {
+			id: 2,
 			schema: 'display',
-			values: ['grid'],
+			values: [
+				{ value: 'grid' }
+			],
 		},
 		3: {
+			id: 3,
 			schema: 'padding',
-			values: ['1', 'rem'],
+			values: [
+				{ value: '1' },
+				{ value: 'rem' }
+			],
+		},
+		4: {
+			id: 4,
+			schema: 'gridTemplateColumns',
+			values: [
+				{ value: '1', type: 'number' },
+				{ value: 'fr', type: 'option', space: true },
+				{ value: '25', type: 'number' },
+				{ value: '%', type: 'option', space: true },
+				{ value: '2', type: 'number' },
+				{ value: 'fr', type: 'option', space: true },
+			],
+		},
+		5: {
+			id: 5,
+			schema: 'gridTemplateRows',
+			values: [
+				{ value: '1', type: 'number' },
+				{ value: 'fr', type: 'option', space: true },
+			],
 		},
 	},
 };

@@ -7,11 +7,6 @@ import { getEntry } from '../../data/utilities';
 
 const InputRadio = ({ section, schema, disabled }) => {
 
-	const dispatch = useDispatch();
-	const handleChange = ({ target: { value } }) => {
-		dispatch(setStyle({ section, schema, values: [value] }));
-	};
-
 	const [
 		fieldset,
 		expander,
@@ -23,25 +18,33 @@ const InputRadio = ({ section, schema, disabled }) => {
 	});
 
 	const page = useSelector(({ page }) => page);
+	const { name, values, [page]: pageValues = [] } = propertySchema[schema];
+	const allValues = [...values, ...pageValues];
 
-	const {
-		name,
-		values: generalValues,
-	} = propertySchema[schema];
-
-	const pageSpecificValues = propertySchema[schema][`${ page }Values`] || [];
-
-	const values = [
-		...generalValues,
-		...pageSpecificValues
-	];
-
-	const { entry } = useSelector(state => {
-		return getEntry(state, { section, schema });
+	const entry = useSelector(state => {
+		return getEntry(state, section, schema)
 	}, shallowEqual);
 
-	const selected = values.indexOf(entry?.values[0]);
-	const index = selected === -1 ? 0 : selected;
+	let index = allValues.indexOf(entry?.values[0].value);
+	if (index === -1) {
+		index = 0;
+	}
+
+	const dispatch = useDispatch();
+
+	const handleChange = ({ target: { value } }) => {
+		const newEntry = {
+			values: [{ value }],
+			id: entry?.id,
+			schema,
+		};
+
+		dispatch(setStyle({
+			newEntry,
+			section,
+			schema,
+		}));
+	};
 
 	return (
 		<fieldset className={ fieldset } >
@@ -54,8 +57,9 @@ const InputRadio = ({ section, schema, disabled }) => {
 					{ name }
 				</button>
 			</legend>
+
 			{
-				values.map((value, i) => (
+				allValues.map((value, i) => (
 					<label className='label' key={ value } >
 						<input
 							checked={ i === index }
@@ -63,7 +67,7 @@ const InputRadio = ({ section, schema, disabled }) => {
 							value={ value }
 							onChange={ handleChange }
 							type='radio'
-							name={ `${section}-${name}` }
+							name={ `${ section }-${ name }` }
 						/>
 						{ value }
 					</label>

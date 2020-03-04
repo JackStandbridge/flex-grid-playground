@@ -15,8 +15,8 @@ const Child = ({ id }) => {
 
 	const styles = useSelector(state => {
 		return {
-			...getConstructedStyle(state, 'childrenStyles'),
-			...getConstructedStyle(state, 'childStyles', id),
+			...getConstructedStyle(state, 'children'),
+			...getConstructedStyle(state, 'child', id),
 		};
 	});
 

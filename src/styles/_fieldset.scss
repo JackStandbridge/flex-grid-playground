@@ -12,7 +12,7 @@
 }
 
 .col {
-	@media (max-width: 1024px) and (min-width: 650px) {
+	@media (max-width: 1024px) and (min-width: 850px) {
 		flex: 1;
 		margin-right: 1rem;
 	}
@@ -20,6 +20,10 @@
 	&:last-child {
 		margin: 0;
 	}
+}
+
+.caps {
+	text-transform: capitalize;
 }
 
 .label {
@@ -78,7 +82,7 @@
 		margin: 0 0.5rem;
 		width: 0.5rem;
 		height: 0.5rem;
-		transition: 0.5s;
+		transition: 0.4s;
 		top: 50%;
 		transform: translate(-50%, -50%) rotate(-45deg);
 	}
@@ -119,7 +123,7 @@
 	}
 
 	.collapsed {
-		transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+		transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
 		padding-top: 0;
 		padding-bottom: 0;
 	}

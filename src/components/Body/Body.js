@@ -7,11 +7,11 @@ import { getConstructedStyle } from '../../data/utilities';
 const Body = () => {
 
 	const childIds = useSelector(({ page, pages}) => {
-		return pages[page].childStyles;
+		return pages[page].child;
 	}, shallowEqual);
 
 	const styles = useSelector(state => {
-		return getConstructedStyle(state, 'parentStyles');
+		return getConstructedStyle(state, 'parent');
 	});
 
 	return (

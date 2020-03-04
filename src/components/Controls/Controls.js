@@ -6,26 +6,40 @@ import stylesheet from './Controls.module.scss';
 
 const Controls = () => {
 
-	const position = useSelector(({ pages, page }) => {
+	const currentChild = useSelector(({ pages, page }) => {
 		const { currentChild } = pages[page];
-		return pages[page].childStyles.indexOf(currentChild);
+		return pages[page].child.indexOf(currentChild);
 	});
+
+	const showChildControls = currentChild !== -1;
 
 	return (
 		<section className={ stylesheet.container }>
-			<Fieldset section='parent' collapsed={ false } />
+			<h1 className={ stylesheet.title }>Controls</h1>
+			<div className={ stylesheet.controls }>
+				<Fieldset
+					section='parent'
+					collapsed={ false }
+				/>
 
-			<Fieldset section='children' collapsed={ false } >
-				{ disabled => (
-					<ChildrenSlider disabled={ disabled } />
-				) }
-			</Fieldset>
+				<Fieldset
+					section='children'
+					collapsed={ false }
+				>
+					{ disabled => (
+						<ChildrenSlider disabled={ disabled } />
+					) }
+				</Fieldset>
 
-			{
-				position !== -1 &&
-				<Fieldset section='child' position={ position } collapsed={ false } />
-			}
-
+				{
+					showChildControls &&
+					<Fieldset
+						section='child'
+						id={ currentChild }
+						collapsed={ false }
+					/>
+				}
+			</div>
 		</section>
 	);
 };

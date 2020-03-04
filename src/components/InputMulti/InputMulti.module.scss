@@ -1,0 +1,75 @@
+.add {
+	display: inline-block;
+	height: 1.5rem;
+	width: 1.5rem;
+	padding: 0;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	position: relative;
+	background: white;
+	-webkit-touch-callout: none;
+	user-select: none;
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		height: 2px;
+		width: 0.8rem;
+		background: #555;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transition: 0.2s;
+	}
+
+	&::before {
+		transform: translate(-50%, -50%) rotate(90deg);
+	}
+
+	&::after {
+		transform: translate(-50%, -50%);
+	}
+
+	&:hover {
+		& + .tooltip {
+			transition: visibility 0s 0.5s, opacity 0.5s 3s;
+			opacity: 0;
+			visibility: visible;
+		}
+	}
+
+	&:focus {
+		& + .tooltip {
+			visibility: visible;
+			transition: opacity 0.5s 4s;
+			opacity: 0;
+		}
+	}
+}
+
+.tooltip {
+	composes: tooltip from '../../styles/_tooltip.scss';
+	visibility: hidden;
+	bottom: calc(100% + 1.5rem);
+	line-height: 1.8;
+	padding: 0.2rem 0.8rem;
+}
+
+.input {
+	width: 3.5ch;
+	text-align: right;
+}
+
+.inputContainer {
+	display: flex;
+	flex-wrap: wrap;
+	padding-right: 2rem;
+	position: relative;
+}
+
+.buttonContainer {
+	position: absolute;
+	right: 0;
+	top: 0;
+}

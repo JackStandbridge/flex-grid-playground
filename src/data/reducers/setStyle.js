@@ -1,21 +1,21 @@
-import { generateId, getEntry } from '../utilities';
+import { generateId, getEntry, getObjectId } from '../utilities';
 
 const setStyle = (state, { payload }) => {
 
 	const { styleObjects, styleEntries } = state;
-	const { schema, values } = payload;
-	const { entry, objectId } = getEntry(state, payload);
+	const { newEntry, section, schema } = payload;
+	const entry = getEntry(state, section, schema);
+	const objectId = getObjectId({ ...state, section });
 
-	if (entry) {
-		entry.values = values;
-
-	} else {
-		const newEntry = { schema, values };
+	if (!entry) {
 		const id = generateId(styleEntries);
 
+		newEntry.id = id;
 		styleEntries[id] = newEntry;
-
 		styleObjects[objectId].push(id);
+
+	} else {
+		styleEntries[entry.id] = newEntry;
 	}
 
 }

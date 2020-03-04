@@ -9,8 +9,8 @@ const InputNumber = ({ section, schema, disabled }) => {
 
 	const dispatch = useDispatch();
 
-	const { entry } = useSelector(state => {
-		return getEntry(state, { section, schema });
+	const entry = useSelector(state => {
+		return getEntry(state, section, schema)
 	}, shallowEqual);
 
 	const {
@@ -18,27 +18,36 @@ const InputNumber = ({ section, schema, disabled }) => {
 		units,
 	} = propertySchema[schema];
 
+	const unitless = units === undefined;
+
 	const [
-		digit = '',
-		unit = units?.[0]
+		digit = { value: '' },
+		unit = { value: units?.[0] }
 	] = entry ? entry.values : [];
 
-	const unitless = unit === undefined;
 
-	const handleNumber = ({ target: { value } }) => {
+	const handleChange = values => {
+		const newEntry = {
+			id: entry?.id,
+			values,
+			schema,
+		};
+
 		dispatch(setStyle({
+			newEntry,
 			section,
 			schema,
-			values: unitless ? [value] : [value, unit],
 		}));
+	}
+
+	const handleNumber = ({ target: { value } }) => {
+		const values = unitless ? [{ value }] : [{ value }, { value: unit.value }];
+		handleChange(values);
 	};
 
 	const handleUnit = ({ target: { value } }) => {
-		dispatch(setStyle({
-			section,
-			schema,
-			values: [digit, value],
-		}));
+		const values = [{ value: digit.value }, { value }]
+		handleChange(values);
 	};
 
 	return (
@@ -51,7 +60,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 			<input
 				type='number'
 				className={ stylesheet.number }
-				value={ digit }
+				value={ digit.value }
 				onChange={ handleNumber }
 				disabled={ disabled }
 			/>
@@ -59,7 +68,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 			{ unitless ? <hr className={ stylesheet.endHr } /> :
 				<select
 					className={ stylesheet.select }
-					value={ unit }
+					value={ unit.value }
 					onChange={ handleUnit }
 					disabled={ disabled }
 				>

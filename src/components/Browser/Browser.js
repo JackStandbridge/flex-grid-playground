@@ -13,7 +13,6 @@ const Browser = () => {
 	});
 
 	const handleClick = () => {
-		console.count('click');
 		if (selectedChild !== null) {
 			dispatch(selectChild(null));
 		}

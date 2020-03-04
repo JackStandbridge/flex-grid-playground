@@ -1,15 +1,6 @@
-import propertySchema from './propertySchema.json';
+const spacer = ({ value, space }) => `${ value }${ space ? ' ' : '' }`;
 
-export const capitalise = () => { };
-
-const join = (schema, values) => {
-	let result = values;
-	if (propertySchema[schema].type === 'multi') {
-		// put spaces between multiple values, e.g. 1fr 2fr 1fr
-		result = values.map((val, i) => i % 2 ? val + ' ' : val);
-	}
-	return result.join('');
-};
+const join = values => values.map(spacer).join('');
 
 const filterInvalidStyles = (prop, val) => {
 	// transforms invalid styles into null
@@ -23,7 +14,7 @@ const filterInvalidStyles = (prop, val) => {
 }
 
 const constructStyles = (styles, { schema, values }) => {
-	const style = filterInvalidStyles(schema, join(schema, values));
+	const style = filterInvalidStyles(schema, join(values));
 
 	return {
 		...styles,
@@ -64,32 +55,36 @@ export const getEntry = (
 		page,
 		pages,
 		styleObjects,
-		styleEntries,
+		styleEntries
 	},
-	{
-		section,
-		schema,
-	}
+	section,
+	schema
 ) => {
+
+	const objectId = getObjectId({ page, pages, section });
+
+	const entryIds = styleObjects[objectId];
+	const targetEntries = entryIds.map(id => styleEntries[id]);
+	const entry = targetEntries.find(entry => entry.schema === schema);
+
+	return entry;
+}
+
+export const getObjectId = ({ page, pages, section }) => {
+
+	const currentPage = pages[page];
 
 	const objectId =
 		section === 'child'
-			? pages[page].currentChild
-			: pages[page][`${ section }Styles`];
+			? currentPage.currentChild
+			: currentPage[section];
 
-	const entryIds = styleObjects[objectId];
-	const targetEntries = entryIds.map(entryId => styleEntries[entryId]);
-	const entry = targetEntries.find(entry => entry.schema === schema);
-
-	return {
-		entry,
-		objectId,
-	};
-};
+	return objectId;
+}
 
 export const setBrowser = () => {
 	const userAgent = navigator.userAgent.toLowerCase();
-	if(userAgent.indexOf('safari') !== -1) {
+	if (userAgent.indexOf('safari') !== -1) {
 		if (userAgent.indexOf('chrome') === -1) {
 			document.body.classList.add('safari');
 		} else {
