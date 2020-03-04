@@ -5,6 +5,7 @@
 	"padding": {
 		"name": "padding",
 		"type": "number",
+		"min": 0,
 		"units": [
 			"rem",
 			"px",
@@ -23,6 +24,7 @@
 	"height": {
 		"name": "height",
 		"type": "number",
+		"min": 0,
 		"units": [
 			"rem",
 			"px",
@@ -32,6 +34,7 @@
 	"width": {
 		"name": "width",
 		"type": "number",
+		"min": 0,
 		"units": [
 			"rem",
 			"px",
@@ -113,6 +116,7 @@
 	"gridGap": {
 		"name": "grid-gap",
 		"type": "number",
+		"min": 0,
 		"units": [
 			"rem",
 			"px",
@@ -122,6 +126,7 @@
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
 		"type": "multi",
+		"min": 0,
 		"units": [
 			"fr",
 			"%",
@@ -132,6 +137,7 @@
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
 		"type": "multi",
+		"min": 0,
 		"units": [
 			"fr",
 			"%",
@@ -167,6 +173,7 @@
 	},
 	"flex": {
 		"name": "flex",
-		"type": "number"
+		"type": "number",
+		"min": 0
 	}
 }

@@ -48,6 +48,31 @@ const InputMulti = ({ section, schema, disabled }) => {
 		}));
 	};
 
+	const handleClick = ({ shiftKey }) => {
+
+		let newValues = [...values];
+
+		if (shiftKey) {
+			newValues.pop();
+			newValues.pop();
+		} else {
+			newValues.push({ value: '1', type: 'number' });
+			newValues.push({ value: 'fr', type: 'option', space: true });
+		}
+
+		const newEntry = {
+			id: entry?.id,
+			values: newValues,
+			schema
+		}
+
+		dispatch(setStyle({
+			newEntry,
+			section,
+			schema,
+		}));
+	}
+
 	const renderInput = (value, index) => {
 		return (
 			<input
@@ -102,7 +127,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 				}) }
 
 				<div className={ stylesheet.buttonContainer }>
-					<button className={ stylesheet.add } />
+					<button className={ stylesheet.add } onClick={ handleClick } />
 					<div className={ stylesheet.tooltip }>Shift-click <br /> to remove</div>
 				</div>
 			</div>

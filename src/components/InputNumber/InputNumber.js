@@ -13,10 +13,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 		return getEntry(state, section, schema)
 	}, shallowEqual);
 
-	const {
-		name,
-		units,
-	} = propertySchema[schema];
+	const { name, units, min } = propertySchema[schema];
 
 	const unitless = units === undefined;
 
@@ -41,6 +38,9 @@ const InputNumber = ({ section, schema, disabled }) => {
 	}
 
 	const handleNumber = ({ target: { value } }) => {
+		if (min !== null && value < min) {
+			value = min;
+		}
 		const values = unitless ? [{ value }] : [{ value }, { value: unit.value }];
 		handleChange(values);
 	};
@@ -61,6 +61,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 				type='number'
 				className={ stylesheet.number }
 				value={ digit.value }
+				min={ min }
 				onChange={ handleNumber }
 				disabled={ disabled }
 			/>
