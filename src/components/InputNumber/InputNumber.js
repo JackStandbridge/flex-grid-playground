@@ -38,9 +38,17 @@ const InputNumber = ({ section, schema, disabled }) => {
 	}
 
 	const handleNumber = ({ target: { value } }) => {
-		if (min !== null && value < min) {
+
+		if (
+			value &&
+			(
+				(min !== null && value < min)
+				|| Number.isNaN(parseFloat(value))
+			)
+		) {
 			value = min;
 		}
+
 		const values = unitless ? [{ value }] : [{ value }, { value: unit.value }];
 		handleChange(values);
 	};

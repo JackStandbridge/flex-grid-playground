@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Fieldset from '../Fieldset';
 import ChildrenSlider from '../ChildrenSlider';
+import Accordion from '../Accordion';
 import stylesheet from './Controls.module.scss';
 
 const Controls = () => {
-
 	const currentChild = useSelector(({ pages, page }) => {
 		const { currentChild } = pages[page];
 		return pages[page].child.indexOf(currentChild);
@@ -17,6 +17,7 @@ const Controls = () => {
 		<section className={ stylesheet.container }>
 			<h1 className={ stylesheet.title }>Controls</h1>
 			<div className={ stylesheet.controls }>
+
 				<Fieldset
 					section='parent'
 					collapsed={ false }

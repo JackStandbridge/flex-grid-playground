@@ -9,6 +9,7 @@
 	background: white;
 	-webkit-touch-callout: none;
 	user-select: none;
+	transition: 0.3s;
 
 	&::before,
 	&::after {
@@ -51,25 +52,52 @@
 .tooltip {
 	composes: tooltip from '../../styles/_tooltip.scss';
 	visibility: hidden;
-	bottom: calc(100% + 1.5rem);
-	line-height: 1.8;
+	bottom: calc(100% + 0.8rem);
+	line-height: 1.5;
 	padding: 0.2rem 0.8rem;
 }
 
 .input {
 	width: 3.5ch;
 	text-align: right;
+	border-right: none;
 }
 
-.inputContainer {
+.select {
+	width: 3ch;
+	appearance: none;
+	-webkit-appearance: none;
+	text-align: center;
+	padding: 0.25rem;
+	border-left: none;
+
+	// fix text alignment in Chrome
+	@supports (text-align-last: center) {
+		text-align-last: center;
+		padding: 0;
+	}
+}
+
+.inputsContainer {
 	display: flex;
 	flex-wrap: wrap;
 	padding-right: 2rem;
 	position: relative;
+	min-height: 1.5rem
+}
+
+.inputContainer {
+	height: 1.5rem;
+	display: flex;
+	margin-right: 0.5rem;
 }
 
 .buttonContainer {
 	position: absolute;
 	right: 0;
 	top: 0;
+}
+
+.hover:hover {
+	transform: rotate(-45deg);
 }

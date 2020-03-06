@@ -24,7 +24,9 @@ const InputMulti = ({ section, schema, disabled }) => {
 		return getEntry(state, section, schema);
 	}, shallowEqual);
 
-	const { values = [] } = entry;
+	const shiftPressed = useSelector(({ shiftPressed }) => shiftPressed);
+
+	const values = entry?.values ?? [];
 
 	const dispatch = useDispatch();
 
@@ -89,6 +91,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 	const renderSelect = (value, index) => {
 		return (
 			<select
+				className={ stylesheet.select }
 				disabled={ collapsed }
 				key={ index }
 				value={ value }
@@ -106,7 +109,28 @@ const InputMulti = ({ section, schema, disabled }) => {
 	const renderByType = {
 		number: renderInput,
 		option: renderSelect,
-	}
+	};
+
+	const elementGroup = values
+		.map(({ value, type }, i) => {
+			return renderByType[type](value, i);
+		})
+		.reduce((elements, element, i, arr) => {
+			// group each input and select in a div
+			if (i % 2) {
+				elements.push(
+					<div
+						key={ i }
+						className={ stylesheet.inputContainer }
+					>
+						{ arr[i - 1] }
+						{ element }
+					</div>
+				);
+			}
+
+			return elements;
+		}, []);
 
 	return (
 		<fieldset className={ fieldset } >
@@ -120,15 +144,21 @@ const InputMulti = ({ section, schema, disabled }) => {
 				</button>
 			</legend>
 
+			<div className={ stylesheet.inputsContainer }>
 
-			<div className={ stylesheet.inputContainer }>
-				{ values.map(({ value, type }, i) => {
-					return renderByType[type](value, i);
-				}) }
+				{ elementGroup }
 
 				<div className={ stylesheet.buttonContainer }>
-					<button className={ stylesheet.add } onClick={ handleClick } />
-					<div className={ stylesheet.tooltip }>Shift-click <br /> to remove</div>
+					<button
+						className={ `${stylesheet.add} ${shiftPressed ? stylesheet.hover : ''}` }
+						onClick={ handleClick }
+						disabled={ collapsed }
+					/>
+
+					<div className={ stylesheet.tooltip }>
+						Shift-click <br />
+						to remove
+					</div>
 				</div>
 			</div>
 

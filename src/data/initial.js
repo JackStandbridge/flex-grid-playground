@@ -67,10 +67,6 @@ const initial = {
 			values: [
 				{ value: '1', type: 'number' },
 				{ value: 'fr', type: 'option', space: true },
-				{ value: '25', type: 'number' },
-				{ value: '%', type: 'option', space: true },
-				{ value: '2', type: 'number' },
-				{ value: 'fr', type: 'option', space: true },
 			],
 		},
 		5: {
@@ -82,6 +78,7 @@ const initial = {
 			],
 		},
 	},
+	shiftPressed: false,
 };
 
 export default initial;
