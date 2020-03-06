@@ -1,29 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { useAccordion } from '../../hooks';
 import stylesheet from './InputRange.module.scss';
 
 const InputRange = (
 	{
-		name,
 		disabled,
 		handleChange,
 		min,
 		max,
 		value,
-		startCollapsed,
 	}
 ) => {
-
-	const [
-		fieldset,
-		expander,
-		collapsed,
-		handleCollapse,
-	] = useAccordion({
-		fieldset: 'fieldset',
-		expander: 'expander',
-		collapsed: startCollapsed,
-	});
 
 	const [left, setTooltipPosition] = useState(null);
 	const [visible, setVisible] = useState(false);
@@ -50,21 +36,11 @@ const InputRange = (
 
 	const tooltipStyle = {
 		left,
-		display: visible && !collapsed ? '' : 'none'
+		display: visible && !disabled ? '' : 'none'
 	};
 
 	return (
-		<fieldset className={ fieldset } >
-			<legend>
-				<button
-					className={ expander }
-					onClick={ handleCollapse }
-					disabled={ disabled }
-				>
-					{ name }
-				</button>
-			</legend>
-
+		<>
 			<div className={ stylesheet.container }>
 				<input
 					ref={ inputRef }
@@ -73,7 +49,7 @@ const InputRange = (
 					max={ max }
 					value={ value }
 					className={ stylesheet.range }
-					disabled={ collapsed }
+					disabled={ disabled }
 					onChange={ onChange }
 				/>
 
@@ -84,7 +60,7 @@ const InputRange = (
 					{ value }
 				</div>
 			</div>
-		</fieldset>
+		</>
 	);
 };
 

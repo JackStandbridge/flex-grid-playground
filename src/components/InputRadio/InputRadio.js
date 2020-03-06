@@ -1,21 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import propertySchema from '../../data/propertySchema.json';
-import { useAccordion } from '../../hooks';
 import { setStyle } from '../../data/reducer';
 import { getEntry } from '../../data/utilities';
 
 const InputRadio = ({ section, schema, disabled }) => {
-
-	const [
-		fieldset,
-		expander,
-		collapsed,
-		handleCollapse,
-	] = useAccordion({
-		fieldset: 'fieldset',
-		expander: 'expander',
-	});
 
 	const page = useSelector(({ page }) => page);
 	const { name, values, [page]: pageValues = [] } = propertySchema[schema];
@@ -47,23 +36,13 @@ const InputRadio = ({ section, schema, disabled }) => {
 	};
 
 	return (
-		<fieldset className={ fieldset } >
-			<legend>
-				<button
-					disabled={ disabled }
-					className={ expander }
-					onClick={ handleCollapse }
-				>
-					{ name }
-				</button>
-			</legend>
-
+		<>
 			{
 				allValues.map((value, i) => (
 					<label className='label' key={ value } >
 						<input
 							checked={ i === index }
-							disabled={ collapsed }
+							disabled={ disabled }
 							value={ value }
 							onChange={ handleChange }
 							type='radio'
@@ -73,7 +52,7 @@ const InputRadio = ({ section, schema, disabled }) => {
 					</label>
 				))
 			}
-		</fieldset>
+		</>
 	);
 };
 

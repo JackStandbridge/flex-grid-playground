@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Fieldset from '../Fieldset';
+import ControlGroup from '../ControlGroup';
 import ChildrenSlider from '../ChildrenSlider';
 import Accordion from '../Accordion';
 import stylesheet from './Controls.module.scss';
@@ -18,27 +18,62 @@ const Controls = () => {
 			<h1 className={ stylesheet.title }>Controls</h1>
 			<div className={ stylesheet.controls }>
 
-				<Fieldset
-					section='parent'
-					collapsed={ false }
-				/>
-
-				<Fieldset
-					section='children'
+				<Accordion
+					legend='parent'
+					targetClass='fieldset col'
+					buttonClass='expander caps'
 					collapsed={ false }
 				>
 					{ disabled => (
-						<ChildrenSlider disabled={ disabled } />
+						<ControlGroup
+							section='parent'
+							disabled={ disabled }
+						/>
 					) }
-				</Fieldset>
+				</Accordion>
+
+				<Accordion
+					legend='children'
+					targetClass='fieldset col'
+					buttonClass='expander caps'
+					collapsed={ false }
+				>
+					{ disabled => (
+						<ControlGroup
+							section='children'
+							disabled={ disabled }
+						>
+							<Accordion
+								legend='Number of Children'
+								targetClass='fieldset'
+								buttonClass='expander'
+								collapsed={ false }
+								ancestorDisabled={ disabled }
+							>
+								{ disabled => (
+									<ChildrenSlider disabled={ disabled } />
+								) }
+							</Accordion>
+						</ControlGroup>
+					) }
+				</Accordion>
 
 				{
 					showChildControls &&
-					<Fieldset
-						section='child'
-						id={ currentChild }
+					<Accordion
+						legend='child'
+						targetClass='fieldset col'
+						buttonClass='expander caps'
 						collapsed={ false }
-					/>
+					>
+						{ disabled => (
+							<ControlGroup
+								section='child'
+								id={ currentChild }
+								disabled={ disabled }
+							/>
+						) }
+					</Accordion>
 				}
 			</div>
 		</section>

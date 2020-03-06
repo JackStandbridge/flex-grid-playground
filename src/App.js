@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Browser from './components/Browser';
+// import Browser from './components/Browser';
 import Controls from './components/Controls';
 import Output from './components/Output';
 import stylesheet from './App.module.scss';
@@ -15,11 +15,11 @@ const App = () => {
 	const page = useSelector(({ page }) => page);
 	const title = useSelector(({ page, pages }) => pages[page].title);
 
-	const shiftListener = ({ key, shiftKey }) => {
+	const shiftListener = useCallback(({ key, shiftKey }) => {
 		if (key === 'Shift') {
 			dispatch(shiftPressed(shiftKey));
 		}
-	}
+	}, [dispatch]);
 
 	useEffect(() => {
 		setBrowser();
@@ -32,7 +32,7 @@ const App = () => {
 			document.removeEventListener('keyup', shiftListener);
 		}
 
-	}, []);
+	}, [shiftListener]);
 
 	useEffect(() => {
 		window.location.hash = '#' + page;
@@ -44,7 +44,7 @@ const App = () => {
 
 	return (
 		<main className={ stylesheet.app }>
-			<Browser />
+			{/* <Browser /> */}
 			<Controls />
 			<Output />
 		</main>

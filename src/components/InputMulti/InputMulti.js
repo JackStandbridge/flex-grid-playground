@@ -1,24 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import propertySchema from '../../data/propertySchema.json';
-import { useAccordion } from '../../hooks';
 import { setStyle } from '../../data/reducer';
 import { getEntry } from '../../data/utilities';
 import stylesheet from './InputMulti.module.scss';
 
 const InputMulti = ({ section, schema, disabled }) => {
 
-	const [
-		fieldset,
-		expander,
-		collapsed,
-		handleCollapse,
-	] = useAccordion({
-		fieldset: 'fieldset',
-		expander: 'expander',
-	});
-
-	const { name, units } = propertySchema[schema];
+	const { units } = propertySchema[schema];
 
 	const entry = useSelector(state => {
 		return getEntry(state, section, schema);
@@ -78,7 +67,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 	const renderInput = (value, index) => {
 		return (
 			<input
-				disabled={ collapsed }
+				disabled={ disabled }
 				key={ index }
 				value={ value }
 				className={ stylesheet.input }
@@ -92,7 +81,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 		return (
 			<select
 				className={ stylesheet.select }
-				disabled={ collapsed }
+				disabled={ disabled }
 				key={ index }
 				value={ value }
 				onChange={ e => handleChange(e, index) }
@@ -133,26 +122,16 @@ const InputMulti = ({ section, schema, disabled }) => {
 		}, []);
 
 	return (
-		<fieldset className={ fieldset } >
-			<legend>
-				<button
-					disabled={ disabled }
-					className={ expander }
-					onClick={ handleCollapse }
-				>
-					{ name }
-				</button>
-			</legend>
-
+		<>
 			<div className={ stylesheet.inputsContainer }>
 
 				{ elementGroup }
 
 				<div className={ stylesheet.buttonContainer }>
 					<button
-						className={ `${stylesheet.add} ${shiftPressed ? stylesheet.hover : ''}` }
+						className={ `${ stylesheet.add } ${ shiftPressed ? stylesheet.hover : '' }` }
 						onClick={ handleClick }
-						disabled={ collapsed }
+						disabled={ disabled }
 					/>
 
 					<div className={ stylesheet.tooltip }>
@@ -161,8 +140,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 					</div>
 				</div>
 			</div>
-
-		</fieldset>
+		</>
 	);
 };
 

@@ -6,7 +6,7 @@ const timeout = {
 	firefox: 100,
 }[browser] ?? 200;
 
-const useAccordion = ({ fieldset, expander, collapsed = true }) => {
+const useAccordion = ({ fieldset, expander, collapsed }) => {
 
 	const [stateCollapsed, setCollapsed] = useState(collapsed);
 	const [disabled, setDisabled] = useState(collapsed);
