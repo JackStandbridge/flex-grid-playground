@@ -79,6 +79,7 @@ const initial = {
 		},
 	},
 	shiftPressed: false,
+	removingChild: false,
 };
 
 export default initial;

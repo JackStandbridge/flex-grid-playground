@@ -1,6 +1,8 @@
+import propertySchema from '../data/propertySchema.json';
+
 const spacer = ({ value, space }) => `${ value }${ space ? ' ' : '' }`;
 
-const join = values => values.map(spacer).join('');
+const join = values => values.map(spacer).join('').trim();
 
 const filterInvalidStyles = (prop, val) => {
 	// transforms invalid styles into null
@@ -50,6 +52,18 @@ export const generateId = obj => {
 	}
 };
 
+export const getObjectId = ({ page, pages, section }) => {
+
+	const currentPage = pages[page];
+
+	const objectId =
+		section === 'child'
+			? currentPage.currentChild
+			: currentPage[section];
+
+	return objectId;
+}
+
 export const getEntry = (
 	{
 		page,
@@ -70,16 +84,22 @@ export const getEntry = (
 	return entry;
 }
 
-export const getObjectId = ({ page, pages, section }) => {
+export const getEntries = ({ styleObjects, styleEntries }, objectId) => {
+	const entryIds = styleObjects[objectId];
+	const entries = entryIds.map(id => styleEntries[id]);
 
-	const currentPage = pages[page];
+	return entries.map(({ schema, values }) => {
+		const value = filterInvalidStyles(schema, join(values));
 
-	const objectId =
-		section === 'child'
-			? currentPage.currentChild
-			: currentPage[section];
+		if (!value) {
+			return null;
+		}
 
-	return objectId;
+		return {
+			property: propertySchema[schema].name || schema,
+			value,
+		}
+	}).filter(entry => entry);
 }
 
 export const setBrowser = () => {
@@ -93,4 +113,17 @@ export const setBrowser = () => {
 	} else {
 		document.body.classList.add('firefox');
 	}
+}
+
+export const copiableText = ({ name, entries }) => {
+	const entryText = entries.map(({ property, value }) => {
+		return `\t${ property }: ${ value };\r\n`
+	}).join('');
+
+	return `${ name } {\r\n${ entryText }}`;
+}
+
+export const allCopiableText = styles => {
+	const text = styles.map(copiableText);
+	return text.join('\r\n\r\n')
 }

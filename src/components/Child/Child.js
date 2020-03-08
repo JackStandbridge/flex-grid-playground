@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import stylesheet from './Child.module.scss';
 import { getConstructedStyle } from '../../data/utilities';
-import { selectChild } from '../../data/reducer';
+import { chooseChild } from '../../data/reducer';
 
 const Child = ({ id }) => {
 
@@ -10,8 +10,14 @@ const Child = ({ id }) => {
 
 	const handleClick = e => {
 		e.stopPropagation();
-		dispatch(selectChild(id));
-	}
+		dispatch(chooseChild(id));
+	};
+
+	const handleKeyDown = e => {
+		if (['Enter', ' '].includes(e.key)) {
+			handleClick(e);
+		}
+	};
 
 	const styles = useSelector(state => {
 		return {
@@ -26,6 +32,8 @@ const Child = ({ id }) => {
 
 	return (
 		<div
+			tabIndex='0'
+			onKeyDown={ handleKeyDown }
 			onClick={ handleClick }
 			className={ className }
 			style={ styles }

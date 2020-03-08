@@ -58,7 +58,7 @@
 	}
 
 	&:active {
-		filter: saturate(3) drop-shadow(0 0 0 rgba(0, 0, 0, 0.3))
+		filter: saturate(3) drop-shadow(0 0 0 rgba(0, 0, 0, 0.3));
 	}
 
 	@for $i from 1 through 50 {

@@ -9,10 +9,12 @@ const Accordion = (
 		collapsed,
 		targetClass,
 		buttonClass,
+		animateIn,
+		animateOut,
 	}
 ) => {
 
-	const [
+	let [
 		fieldset,
 		expander,
 		disabled,
@@ -21,17 +23,21 @@ const Accordion = (
 		fieldset: targetClass,
 		expander: buttonClass,
 		collapsed,
+		animateIn,
+		animateOut,
 	});
 
 	return (
 		<fieldset className={ fieldset }>
-			<legend>
+			<legend className='legend' title={ legend }>
 				<button
 					disabled={ ancestorDisabled }
 					className={ expander }
 					onClick={ handleCollapse }
 				>
-					{ legend }
+					<div className='buttonText'>
+						{ legend }
+					</div>
 				</button>
 			</legend>
 			{ children(disabled || ancestorDisabled) }

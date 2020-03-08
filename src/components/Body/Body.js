@@ -17,7 +17,6 @@ const Body = () => {
 	return (
 		<div className={ stylesheet.body }>
 			<div
-				id='container'
 				className={ stylesheet.container }
 				style={ styles }
 			>

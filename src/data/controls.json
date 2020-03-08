@@ -4,11 +4,15 @@
 			"flexDirection",
 			"justifyContent",
 			"alignItems",
-			"flexWrap"
+			"flexWrap",
+			"justifyItems",
+			"alignContent",
+			"height"
 		],
 		"children": [
 			"boxSizing",
 			"flex",
+			"order",
 			"margin",
 			"padding",
 			"height",
@@ -25,6 +29,7 @@
 		],
 		"children": [
 			"boxSizing",
+			"order",
 			"margin",
 			"padding",
 			"height",

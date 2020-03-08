@@ -7,20 +7,26 @@ import stylesheet from './Controls.module.scss';
 
 const Controls = () => {
 	const currentChild = useSelector(({ pages, page }) => {
-		const { currentChild } = pages[page];
+		return pages[page].currentChild;
+	});
+
+	const removingChild = useSelector(({ removingChild }) => removingChild);
+
+	const index = useSelector(({ pages, page }) => {
 		return pages[page].child.indexOf(currentChild);
 	});
 
-	const showChildControls = currentChild !== -1;
+	const showChildControls = index !== -1;
 
 	return (
-		<section className={ stylesheet.container }>
+		<section className={ stylesheet.controls }>
 			<h1 className={ stylesheet.title }>Controls</h1>
-			<div className={ stylesheet.controls }>
+
+			<div className={ stylesheet.scrollContainer }>
 
 				<Accordion
 					legend='parent'
-					targetClass='fieldset col'
+					targetClass='fieldset section'
 					buttonClass='expander caps'
 					collapsed={ false }
 				>
@@ -34,9 +40,11 @@ const Controls = () => {
 
 				<Accordion
 					legend='children'
-					targetClass='fieldset col'
+					targetClass='fieldset section'
 					buttonClass='expander caps'
 					collapsed={ false }
+					animateIn={ currentChild === null }
+					animateOut={ currentChild !== null }
 				>
 					{ disabled => (
 						<ControlGroup
@@ -61,15 +69,17 @@ const Controls = () => {
 				{
 					showChildControls &&
 					<Accordion
-						legend='child'
-						targetClass='fieldset col'
+						legend={ `child ${ index + 1 }` }
+						targetClass='fieldset section'
 						buttonClass='expander caps'
 						collapsed={ false }
+						animateIn={ removingChild !== currentChild }
+						animateOut={ removingChild === currentChild }
 					>
 						{ disabled => (
 							<ControlGroup
 								section='child'
-								id={ currentChild }
+								id={ index }
 								disabled={ disabled }
 							/>
 						) }

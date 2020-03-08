@@ -1,0 +1,47 @@
+.button {
+	color: white;
+	background: inherit;
+	border: 1px solid white;
+	font-size: 1rem;
+	font-family: Menlo, monospace;
+	margin-left: auto;
+	display: block;
+	padding: 0.2rem 0.5rem;
+	border-radius: 4px;
+	user-select: none;
+	cursor: pointer;
+	margin-top: -1rem;
+	margin-bottom: 1rem;
+	transition: 0.2s;
+	min-width: 6rem;
+
+	&:hover,
+	&:active,
+	&:focus {
+		box-shadow: none;
+		background-color: white;
+		color: rgb(40, 40, 40);
+	}
+}
+
+.all {
+	margin-top: 0;
+	transform: none;
+}
+
+.success {
+	animation: success 0.15s 2;
+}
+
+.error {
+	animation: error 0.1s 2;
+}
+
+@keyframes success {
+	50% { filter: invert(100%) }
+}
+
+@keyframes error {
+	33% { transform: translateX(-0.1rem) }
+	66% { transform: translateX(0.1rem) }
+}

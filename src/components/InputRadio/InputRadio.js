@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import propertySchema from '../../data/propertySchema.json';
+import stylesheet from './InputRadio.module.scss';
 import { setStyle } from '../../data/reducer';
 import { getEntry } from '../../data/utilities';
 
@@ -39,7 +40,7 @@ const InputRadio = ({ section, schema, disabled }) => {
 		<>
 			{
 				allValues.map((value, i) => (
-					<label className='label' key={ value } >
+					<label className={ stylesheet.label } key={ value } >
 						<input
 							checked={ i === index }
 							disabled={ disabled }

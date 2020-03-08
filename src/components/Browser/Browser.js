@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import stylesheet from './Browser.module.scss';
 import Chrome from '../Chrome';
 import Page from '../Body';
-import { selectChild } from '../../data/reducer';
+import { chooseChild } from '../../data/reducer';
 
 const Browser = () => {
 
 	const dispatch = useDispatch();
-	const selectedChild = useSelector(({ page, pages }) => {
+	const currentChild = useSelector(({ page, pages }) => {
 		return pages[page].currentChild;
 	});
 
 	const handleClick = () => {
-		if (selectedChild !== null) {
-			dispatch(selectChild(null));
+		if (currentChild !== null) {
+			dispatch(chooseChild(null));
 		}
 	};
 

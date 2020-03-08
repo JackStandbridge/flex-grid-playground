@@ -53,14 +53,16 @@
 	composes: tooltip from '../../styles/_tooltip.scss';
 	visibility: hidden;
 	bottom: calc(100% + 0.8rem);
-	line-height: 1.5;
-	padding: 0.2rem 0.8rem;
+	line-height: 1.2;
+	padding: 0.5rem 0.8rem;
+	font-size: 0.8rem;
 }
 
 .input {
 	width: 3.5ch;
 	text-align: right;
 	border-right: none;
+	margin: 0;
 }
 
 .select {
@@ -70,6 +72,7 @@
 	text-align: center;
 	padding: 0.25rem;
 	border-left: none;
+	margin: 0;
 
 	// fix text alignment in Chrome
 	@supports (text-align-last: center) {
@@ -81,13 +84,14 @@
 .inputsContainer {
 	display: flex;
 	flex-wrap: wrap;
-	padding-right: 2rem;
+	padding-right: 1.5rem;
 	position: relative;
-	min-height: 1.5rem
+	min-height: 1.7rem;
+	align-items: stretch;
 }
 
 .inputContainer {
-	height: 1.5rem;
+	height: 1.7rem;
 	display: flex;
 	margin-right: 0.5rem;
 }
@@ -98,6 +102,8 @@
 	top: 0;
 }
 
-.hover:hover {
-	transform: rotate(-45deg);
+.shift{
+	&:hover, &:focus, &:active {
+		transform: rotate(-45deg);
+	}
 }

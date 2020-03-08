@@ -129,7 +129,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 
 				<div className={ stylesheet.buttonContainer }>
 					<button
-						className={ `${ stylesheet.add } ${ shiftPressed ? stylesheet.hover : '' }` }
+						className={ `${ stylesheet.add } ${ shiftPressed ? stylesheet.shift : '' }` }
 						onClick={ handleClick }
 						disabled={ disabled }
 					/>

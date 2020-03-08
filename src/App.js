@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import Browser from './components/Browser';
+import Browser from './components/Browser';
 import Controls from './components/Controls';
 import Output from './components/Output';
 import stylesheet from './App.module.scss';
@@ -41,10 +41,9 @@ const App = () => {
 		const iconPath = icon.getAttribute('href');
 		icon.href = iconPath.replace(/\w+(?=.ico)/, page);
 	}, [page, title]);
-
 	return (
 		<main className={ stylesheet.app }>
-			{/* <Browser /> */}
+			<Browser />
 			<Controls />
 			<Output />
 		</main>

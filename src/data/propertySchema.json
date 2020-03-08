@@ -175,5 +175,22 @@
 		"name": "flex",
 		"type": "number",
 		"min": 0
+	},
+	"order": {
+		"name": "order",
+		"type": "number"
+	},
+	"alignContent": {
+		"name": "align-content",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"flex-start",
+			"flex-end",
+			"center",
+			"space-between",
+			"space-around",
+			"space-evenly"
+		]
 	}
 }

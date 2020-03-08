@@ -1,4 +1,5 @@
 .fieldset {
+	min-inline-size: auto;
 	white-space: nowrap;
 	border: 2px solid #888;
 	transition: max-height 0.2s cubic-bezier(0.5, 0, 1, 0), border-color 0.2s linear;
@@ -8,10 +9,11 @@
 	box-sizing: border-box;
 	padding: 0.5rem 1rem 1rem 1rem;
 	margin: 0;
-	max-height: 1000px;
+	max-height: 2000px;
+	flex-shrink: 0;
 }
 
-.col {
+.section {
 	@media (max-width: 1024px) and (min-width: 850px) {
 		flex: 1;
 		margin-right: 1rem;
@@ -24,14 +26,6 @@
 
 .caps {
 	text-transform: capitalize;
-}
-
-.label {
-	display: block;
-	margin-bottom: 1rem;
-	&:last-child {
-		margin-bottom: 0;
-	}
 }
 
 .collapsed {
@@ -55,17 +49,24 @@
 	}
 }
 
+.legend {
+	max-width: 100%;
+	overflow: hidden;
+}
+
 .expander {
+	display: flex;
+	align-items: center;
 	box-shadow: none;
 	background: none;
 	border: 2px solid transparent;
 	font-size: inherit;
 	padding: 8px;
-	padding-right: 1.5rem;
 	margin: 0;
 	position: relative;
 	cursor: pointer;
 	outline: none;
+	max-width: 100%;
 
 	&:focus,
 	&:active,
@@ -75,24 +76,29 @@
 
 	&::after {
 		content: '';
-		position: absolute;
 		border-right: 2px solid #555;
 		border-bottom: 2px solid #555;
-		display: inline-block;
-		margin: 0 0.5rem;
-		width: 0.5rem;
-		height: 0.5rem;
+		display: block;
+		min-width: 0.5rem;
+		min-height: 0.5rem;
 		transition: 0.4s;
-		top: 50%;
-		transform: translate(-50%, -50%) rotate(-45deg);
+		transform: rotate(-45deg);
 	}
 }
 
 .expanded {
 	&::after {
-		transform: translate(-10%, -50%) rotate(45deg);
+		transform: translateX(2px) rotate(45deg);
 	}
 }
+
+.buttonText {
+	max-width: 100%;
+	overflow: hidden;
+	display: inline-block;
+	margin-right: 4px;
+}
+
 
 .safari {
 	legend {

@@ -54,7 +54,7 @@ const InputRange = (
 				/>
 
 				<div
-					className='tooltip'
+					className={`${ stylesheet.tooltip } tooltip`}
 					style={ tooltipStyle }
 				>
 					{ value }
