@@ -47,7 +47,10 @@ const Output = () => {
 									{ '{\r\n' }
 
 									{ entries.map(({ property, value }) => (
-										<span key={ property }>
+										<span
+											key={ property }
+											className={ stylesheet.line }
+										>
 											{ '\t' }
 											<span className={ stylesheet.property }>
 												{ property }

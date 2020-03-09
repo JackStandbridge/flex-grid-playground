@@ -46,6 +46,7 @@
 	font-size: 1rem;
 	word-wrap: break-word;
 	font-family: Menlo, monospace;
+	line-height: 1.4;
 }
 
 .pre {
@@ -65,4 +66,11 @@
 
 .value {
 	color: rgb(238, 229, 111);
+}
+
+.line {
+	display: block;
+	&:last-of-type {
+		margin-bottom: 0.2rem;
+	}
 }

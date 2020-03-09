@@ -8,6 +8,7 @@ const InputRange = (
 		min,
 		max,
 		value,
+		arialabel,
 	}
 ) => {
 
@@ -51,6 +52,7 @@ const InputRange = (
 					className={ stylesheet.range }
 					disabled={ disabled }
 					onChange={ onChange }
+					arialabel={ arialabel }
 				/>
 
 				<div

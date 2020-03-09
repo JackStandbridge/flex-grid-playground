@@ -67,7 +67,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 
 			<input
 				type='number'
-				className={ stylesheet.number }
+				className={ `${ stylesheet.number } ${ unitless ? stylesheet.unitless : '' }` }
 				value={ digit.value }
 				min={ min }
 				onChange={ handleNumber }

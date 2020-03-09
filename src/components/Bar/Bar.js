@@ -35,7 +35,12 @@ const Bar = () => {
 				<i className={ stylesheet.refresh }></i>
 				<i className={ stylesheet.home }></i>
 			</div>
-			<input className={ stylesheet.url } readOnly value='flex-grid-playground' />
+			<div
+				className={ stylesheet.url }
+				tabIndex='0'
+			>
+				flex-grid-playground
+			</div>
 			<button
 				ref={ buttonRef }
 				className={ stylesheet.options }

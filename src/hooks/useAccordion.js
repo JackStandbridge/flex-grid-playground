@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 const browser = document.body.classList[0];
+// account for browser weirdness in animations
+// by changing animation length
 const timeout = {
 	safari: 0,
 	firefox: 100,
@@ -39,15 +41,21 @@ const useAccordion = (
 		}
 	}, [animateOut, legend])
 
-
+	const [timeoutId, setTimeoutId] = useState(null);
 	const handleCollapse = () => {
-		setCollapsed(!stateCollapsed);
-		if (disabled) {
-			setTimeout(() => {
-				setDisabled(!disabled);
+		// clear timeout to prevent out of sync
+		// state if collapsing accordion quickly
+		clearTimeout(timeoutId);
+
+		if (stateCollapsed) {
+			setCollapsed(false);
+			let id = setTimeout(() => {
+				setDisabled(false);
 			}, timeout);
+			setTimeoutId(id);
 		} else {
-			setDisabled(!disabled);
+			setCollapsed(true);
+			setDisabled(true);
 		}
 	}
 

@@ -1,36 +1,147 @@
+$offwhite: rgba(255, 255, 255, 0.9);
+$black: rgb(40, 40, 40);
+
+@mixin lines($foreground, $background) {
+	box-shadow:
+		inset 0 0 0 2px $background, // padding
+		inset 0 4px $foreground,     // top line
+		inset 0 6px $background,     // space
+		inset 0 8px $foreground,     // 2nd line
+		inset 0 10px $background,    // space
+		inset 0 12px $foreground;    // bottom line
+}
+
 .button {
 	color: white;
 	background: inherit;
-	border: 1px solid white;
 	font-size: 1rem;
 	font-family: Menlo, monospace;
-	margin-left: auto;
-	display: block;
-	padding: 0.2rem 0.5rem;
-	border-radius: 4px;
+	display: flex;
+	border: none;
+	position: relative;
+	padding: 0rem 0.6rem;
 	user-select: none;
 	cursor: pointer;
-	margin-top: -1rem;
-	margin-bottom: 1rem;
-	transition: 0.2s;
-	min-width: 6rem;
+	margin: -23px 0 1rem 1rem;
+	transition: 0.2s linear;
+	overflow: hidden;
+	box-sizing: border-box;
+	max-width: 1rem;
 
 	&:hover,
 	&:active,
 	&:focus {
 		box-shadow: none;
-		background-color: white;
-		color: rgb(40, 40, 40);
+		transition: 0.2s linear;
+		max-width: 120px;
+
+		.text {
+			border-color: white;
+		}
+		&::before,
+		&::after {
+			border-color: white;
+		}
+
+		&::after {
+			@include lines(white, $black);
+		}
+	}
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		height: 18px;
+		width: 14px;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		border: 2px solid $offwhite;
+		box-sizing: border-box;
+		background: $black;
+	}
+
+	&::before {
+		transform: translate(4px, calc(-50% + 2px)) scale(0.9);
+	}
+
+	&::after {
+		transform: translate(0, calc(-50% - 2px)) scale(0.9);
+		@include lines($offwhite, $black);
 	}
 }
 
+.text {
+	margin-left: 1rem;
+	width: 105px;
+	border: 1px solid transparent;
+	padding: 0.1rem 0.5rem;
+	border-radius: 4px;
+	transition: 0.2s;
+}
+
 .all {
-	margin-top: 0;
+	color: white;
+	border: 1px solid white;
+	border-radius: 4px;
+	margin: 0 0 0 auto;
+	white-space: nowrap;
 	transform: none;
+	min-width: 8rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+
+	.text {
+		border: none;
+	}
+
+	&:focus,
+	&:hover,
+	&:active {
+
+		background: white;
+
+		&::before,
+		&::after {
+			border-color: $black;
+			background: white;
+		}
+
+		&::after {
+			@include lines($black, white);
+		}
+
+		.text {
+			color: $black;
+		}
+
+	}
+
+	&::before,
+	&::after {
+		left: 0.3rem;
+		border-color: white;
+	}
+
+	&::before {
+		transform: translate(6px, calc(-50% + 2px));
+	}
+
+	&::after {
+		transform: translate(2px, calc(-50% - 2px));
+		@include lines(white, $black);
+	}
+}
+
+.success,
+.error {
+	background: white;
+	color: $black;
 }
 
 .success {
-	animation: success 0.15s 2;
+	animation: success 0.2s 2;
 }
 
 .error {
@@ -38,10 +149,16 @@
 }
 
 @keyframes success {
-	50% { filter: invert(100%) }
+	50% {
+		filter: invert(0.2);
+	}
 }
 
 @keyframes error {
-	33% { transform: translateX(-0.1rem) }
-	66% { transform: translateX(0.1rem) }
+	33% {
+		transform: translateX(-0.1rem);
+	}
+	66% {
+		transform: translateX(0.1rem);
+	}
 }

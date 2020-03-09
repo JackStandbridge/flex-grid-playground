@@ -16,13 +16,13 @@ const ChildrenSlider = ({ disabled }) => {
 
 	return (
 		<InputRange
-			name='Number of Children'
 			handleChange={ handleChange }
 			disabled={ disabled }
 			min={ 1 }
 			max={ 30 }
 			value={ value }
 			startCollapsed={ false }
+			arialabel='Number of Children'
 		/>
 	);
 };

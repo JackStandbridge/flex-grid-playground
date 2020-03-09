@@ -10,9 +10,15 @@ const CopyButton = ({ copyAllStyles, name, entries }) => {
 	};
 
 	const [options, setOptions] = useState(initial);
+	const [copying, setCopying] = useState(false);
 	const buttonRef = useRef(null);
 
 	const handleClick = async () => {
+		if (copying) {
+			return;
+		}
+
+		setCopying(true);
 
 		const result =
 			copyAllStyles
@@ -63,16 +69,22 @@ const CopyButton = ({ copyAllStyles, name, entries }) => {
 			setTimeout(() => {
 				buttonRef.current.blur();
 				setOptions(initial);
+				setCopying(false);
 			}, 3000);
 
 		}
 
 	}
 
+	const textClassNames = [
+		stylesheet.text,
+		copyAllStyles ? '' : stylesheet[options.className],
+	].join(' ');
+
 	const classNames = [
 		stylesheet.button,
 		copyAllStyles ? stylesheet.all : '',
-		stylesheet[options.className],
+		copyAllStyles ? stylesheet[options.className] : ''
 	].join(' ');
 
 	return (
@@ -81,7 +93,7 @@ const CopyButton = ({ copyAllStyles, name, entries }) => {
 			onClick={ handleClick }
 			ref={ buttonRef }
 		>
-			{ options.text }
+			<span className={ textClassNames }>{ options.text }</span>
 		</button>
 	);
 };
