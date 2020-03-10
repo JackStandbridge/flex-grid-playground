@@ -1,0 +1,38 @@
+{
+	"flex": {
+		"parent": [
+			"flexDirection",
+			"justifyContent",
+			"alignItems",
+			"flexWrap",
+			"alignContent",
+			"height"
+		],
+		"children": [
+			"boxSizing",
+			"flex",
+			"order",
+			"margin",
+			"padding",
+			"height",
+			"width"
+		]
+	},
+	"grid": {
+		"parent": [
+			"gridTemplateColumns",
+			"gridTemplateRows",
+			"justifyItems",
+			"alignItems",
+			"gridGap"
+		],
+		"children": [
+			"boxSizing",
+			"order",
+			"margin",
+			"padding",
+			"height",
+			"width"
+		]
+	}
+}

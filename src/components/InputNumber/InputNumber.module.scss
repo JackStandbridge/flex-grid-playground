@@ -1,0 +1,65 @@
+.label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+	&:first-of-type {
+		margin-top: 1rem;
+	}
+}
+
+.number,
+.select {
+	align-self: stretch;
+	font-size: 1rem;
+	text-align: right;
+	background: white;
+	border-radius: 0;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+}
+
+.number {
+	width: 5ch;
+	border-right: none;
+}
+
+.unitless {
+	border-right: 1px solid #ddd;
+}
+
+.select {
+	margin-left: 0;
+	width: calc(3ch + 0.5rem);
+	appearance: none;
+	-webkit-appearance: none;
+	text-align: center;
+	padding: 0.25rem;
+	border-left: none;
+
+	// fix text alignment in Chrome
+	@supports (text-align-last: center) {
+		text-align-last: center;
+		padding: 0;
+	}
+
+	&--multi {
+		width: 3ch;
+	}
+}
+
+
+.midHr {
+	flex: 1;
+	margin: 0.5rem;
+	height: 2px;
+	border: none;
+	background: #ddd;
+}
+
+.endHr {
+	width: calc(3ch);
+	margin: 0.5rem 0 0.5rem 0.5rem;
+	height: 2px;
+	border: none;
+	background: #ddd;
+}

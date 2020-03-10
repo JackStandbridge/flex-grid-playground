@@ -1,0 +1,156 @@
+.tab {
+	padding: 0.6rem 1rem 0.6rem 1rem;
+	width: 14rem;
+	min-width: 2rem;
+	font-size: 0.9rem;
+	color: #555;
+	position: relative;
+	white-space: nowrap;
+	user-select: none;
+	outline: none;
+	border-top-left-radius: 0.6rem;
+	border-top-right-radius: 0.6rem;
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		position: absolute;
+		bottom: -5px;
+		border: 5px solid transparent;
+		border-radius: 50%;
+		pointer-events: none;
+	}
+
+	&::before {
+		left: calc(-1rem - 5px);
+		border-bottom-color: white;
+		transform: rotate(-45deg);
+	}
+
+	&::after {
+		right: calc(-1rem - 5px);
+		transform: rotate(45deg);
+	}
+
+	&:focus,
+	&:active,
+	&:hover {
+		background: #fafafa;
+		border-bottom-color: #fafafa;
+	}
+
+	&:focus,
+	&:active,
+	&:hover {
+		&::before,
+		&::after {
+			border-bottom-color: #fafafa;
+		}
+
+		.title {
+			&::after {
+				background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fafafa);
+			}
+		}
+	}
+}
+
+.title {
+	width: calc(100% - 2.4rem);
+	overflow: hidden;
+	display: block;
+	padding-left: 1.2rem;
+	display: flex;
+	align-items: center;
+
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0.8rem;
+		width: 1rem;
+		height: 1rem;
+		background-size: cover;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		height: 1rem;
+		width: 2rem;
+		right: 2rem;
+	}
+}
+
+.flex::before {
+	background-image: url('../../assets/flex.ico');
+}
+
+.grid::before {
+	background-image: url('../../assets/grid.ico');
+}
+
+.active {
+	background: white;
+	box-shadow: 0 0 15px #ddd;
+	z-index: 1;
+
+	&::before,
+	&::after {
+		border-bottom-color: white;
+	}
+
+	.title::after {
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+	}
+}
+
+.inactive {
+	&::before,
+	&::after {
+		border-bottom-color: #eee;
+	}
+
+	.title::after {
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0), #eee);
+	}
+}
+
+.close {
+	cursor: pointer;
+	position: absolute;
+	display: block;
+	height: 1rem;
+	width: 1rem;
+	border-radius: 50%;
+	top: 50%;
+	right: 0.2rem;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+
+	&:hover {
+		background: #ddd;
+	}
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		top: 50%;
+		left: 50%;
+		width: 0.7rem;
+		height: 0.1rem;
+		background: #555;
+		position: absolute;
+	}
+
+	&::before {
+		transform: translate(-49.5%, -1px) rotate(45deg);
+	}
+	&::after {
+		transform: translate(-50.5%, -1px) rotate(-45deg);
+	}
+}

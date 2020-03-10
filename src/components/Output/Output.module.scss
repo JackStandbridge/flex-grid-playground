@@ -1,0 +1,132 @@
+.output {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	min-width: 300px;
+	flex-direction: column;
+	tab-size: 2;
+	-moz-tab-size: 2;
+	margin: 0 0 0 1rem;
+	max-height: calc(100vh - 4rem);
+	border-radius: 7px;
+	box-shadow: 0 0 25px #aaa;
+	overflow: hidden;
+	transition: 0.2s;
+
+	@media (max-width: 1024px) {
+		margin: 1rem 0 0 0;
+	}
+}
+
+.title {
+	margin: 0;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	display: flex;
+	min-width: 100%;
+}
+
+.scrollContainer {
+	background: white;
+	padding: 1rem;
+	overflow-y: scroll;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.rules {
+	padding: 1rem;
+	box-shadow: inset 0 0 25px black;
+	border-radius: 5px;
+	background: rgb(40, 40, 40);
+	overflow: hidden;
+}
+
+.code {
+	all: unset;
+	color: white;
+	font-size: 1rem;
+	word-wrap: break-word;
+	font-family: Menlo, monospace;
+	line-height: 1.4;
+}
+
+.pre {
+	white-space: pre-wrap;
+	margin: 0;
+	font-size: 1rem;
+	font-family: Menlo, monospace;
+}
+
+.selector {
+	color: rgb(171, 213, 126);
+}
+
+.property {
+	color: rgb(134, 193, 192);
+}
+
+.value {
+	color: rgb(238, 229, 111);
+}
+
+.line {
+	display: block;
+	&:last-of-type {
+		margin-bottom: 0.2rem;
+	}
+}
+
+.collapsed {
+	@media (min-width: 1024px) {
+		flex: 0;
+		min-width: 42px;
+	}
+}
+
+.hidden {
+	@media(min-width: 1024px) {
+		justify-content: center;
+
+		.collapse {
+			border-radius: 7px;
+			padding-top: 0;
+		}
+
+		.title {
+			min-width: calc(100vh - 4rem);
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			box-sizing: border-box;
+			transform: rotate(-90deg);
+			box-shadow: 0 0 60px 40px #fafafa;
+		}
+		& > *:not(.title) {
+			display: none;
+		}
+	}
+}
+
+.collapse {
+	@media (min-width: 1024px) {
+		cursor: pointer;
+	}
+	border: none;
+	background: none;
+	font-size: 1rem;
+	padding-top: 0.5rem;
+	letter-spacing: 1px;
+	width: 100%;
+	height: 100%;
+	display: block;
+	height: 42px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	&:focus,
+	&:active,
+	&:hover {
+		box-shadow: none;
+		background: #fafafa;
+	}
+}
