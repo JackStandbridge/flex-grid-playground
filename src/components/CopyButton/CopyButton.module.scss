@@ -52,6 +52,7 @@ $black: rgb(40, 40, 40);
 	&::after {
 		content: '';
 		display: block;
+		transition: 0.2s linear;
 		height: 18px;
 		width: 14px;
 		position: absolute;
@@ -74,7 +75,7 @@ $black: rgb(40, 40, 40);
 
 .text {
 	margin-left: 1rem;
-	width: 105px;
+	min-width: 75px;
 	border: 1px solid transparent;
 	padding: 0.1rem 0.5rem;
 	border-radius: 4px;

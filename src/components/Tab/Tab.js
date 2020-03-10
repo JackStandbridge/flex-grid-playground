@@ -9,8 +9,17 @@ const Tab = ({ id }) => {
 	const title = useSelector(({ pages }) => pages[id].title);
 	const selected = useSelector(({ page }) => page === id);
 	const active = selected ? 'active' : 'inactive';
-	const tabClass = `${ stylesheet.tab } ${ stylesheet[active] }`;
-	const titleClass = `${ stylesheet.title } ${ stylesheet[`title-${ active }`] }`;
+
+	const tabClass = [
+		stylesheet.tab,
+		stylesheet[active]
+	].join(' ');
+
+	const titleClass = [
+		stylesheet.title,
+		stylesheet[`title-${ active }`],
+		stylesheet[id]
+	].join(' ');
 
 	const handleClick = () => {
 		dispatch(changePage(id));
@@ -19,7 +28,6 @@ const Tab = ({ id }) => {
 	return (
 		<div
 			className={ tabClass }
-			data-playground='grid'
 			tabIndex='0'
 			onClick={ handleClick }
 		>

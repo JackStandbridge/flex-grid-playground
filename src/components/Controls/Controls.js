@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ControlGroup from '../ControlGroup';
 import ChildrenSlider from '../ChildrenSlider';
@@ -16,11 +16,41 @@ const Controls = () => {
 		return pages[page].child.indexOf(currentChild);
 	});
 
+	const [collapsed, setCollapsed] = useState(false);
+	const [hidden, setHidden] = useState(false);
+	const handleCollapse = () => {
+		if (collapsed) {
+			setCollapsed(false);
+
+			setTimeout(() => {
+				setHidden(false);
+			}, 200);
+		} else {
+			setHidden(true);
+			setCollapsed(true);
+		}
+	};
+
 	const showChildControls = index !== -1;
 
+	const screenWidth = window.innerWidth;
+
+	const collapseChildren = screenWidth > 1024 || screenWidth < 850;
+
+	const sectionClassNames = [
+		stylesheet.controls,
+		collapsed ? stylesheet.collapsed : '',
+		hidden ? stylesheet.hidden : '',
+	].join(' ');
+
 	return (
-		<section className={ stylesheet.controls }>
-			<h1 className={ stylesheet.title }>Controls</h1>
+		<section className={ sectionClassNames }>
+			<h1 className={ stylesheet.title }>
+				<button
+					className={ stylesheet.collapse }
+					onClick={ handleCollapse }
+				>Controls</button>
+			</h1>
 
 			<div className={ stylesheet.scrollContainer }>
 
@@ -43,8 +73,8 @@ const Controls = () => {
 					targetClass='fieldset section'
 					buttonClass='expander caps'
 					collapsed={ false }
-					animateIn={ currentChild === null }
-					animateOut={ currentChild !== null }
+					animateIn={ collapseChildren && currentChild === null }
+					animateOut={ collapseChildren && currentChild !== null }
 				>
 					{ disabled => (
 						<ControlGroup

@@ -1,13 +1,15 @@
 .controls {
 	flex: 1;
-	min-width: 300px;
 	display: flex;
+	min-width: 300px;
 	flex-direction: column;
 	height: calc(100vh - 4rem);
 	box-shadow: 0 0 25px #aaa;
 	border-radius: 0.5rem;
 	overflow: hidden;
 	margin-left: 1rem;
+	transition: 0.2s;
+	align-items: stretch;
 
 	@media (max-width: 1024px) {
 		height: unset;
@@ -17,14 +19,11 @@
 }
 
 .title {
-	font-weight: normal;
-	letter-spacing: 1px;
-	text-align: center;
-	padding: 1rem 0 0.5rem 0;
 	margin: 0;
-	font-size: 1rem;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 	z-index: 1;
+	display: flex;
+	min-width: 100%;
 }
 
 .scrollContainer {
@@ -38,5 +37,60 @@
 	@media (max-width: 1024px) and (min-width: 850px) {
 		display: flex;
 		flex-direction: row;
+	}
+}
+
+.collapsed {
+	@media (min-width: 1024px) {
+		flex: 0;
+		min-width: 42px;
+	}
+}
+
+.hidden {
+	@media(min-width: 1024px) {
+		align-items: center;
+		justify-content: center;
+
+		.collapse {
+			border-radius: 7px;
+			padding-top: 0;
+		}
+
+		.title {
+			min-width: calc(100vh - 4rem);
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			box-sizing: border-box;
+			transform: rotate(-90deg);
+			box-shadow: 0 0 60px 40px #fafafa;
+		}
+		& > *:not(.title) {
+			display: none;
+		}
+	}
+}
+
+.collapse {
+	@media (min-width: 1024px) {
+		cursor: pointer;
+	}
+	border: none;
+	background: none;
+	font-size: 1rem;
+	padding-top: 0.5rem;
+	letter-spacing: 1px;
+	width: 100%;
+	height: 100%;
+	display: block;
+	height: 42px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	&:focus,
+	&:active,
+	&:hover {
+		box-shadow: none;
+		background: #fafafa;
 	}
 }
