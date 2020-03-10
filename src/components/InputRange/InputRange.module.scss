@@ -1,4 +1,7 @@
 .range {
+	@media (max-width: 850px) {
+		margin: 1rem 0;
+	}
 	width: 100%;
 }
 
