@@ -41,14 +41,14 @@
 }
 
 .collapsed {
-	@media (min-width: 1024px) {
+	@media (min-width: 1025px) {
 		flex: 0;
 		min-width: 42px;
 	}
 }
 
 .hidden {
-	@media(min-width: 1024px) {
+	@media (min-width: 1025px) {
 		align-items: center;
 		justify-content: center;
 
@@ -73,7 +73,7 @@
 }
 
 .collapse {
-	@media (min-width: 1024px) {
+	@media (min-width: 1025px) {
 		cursor: pointer;
 	}
 	border: none;
