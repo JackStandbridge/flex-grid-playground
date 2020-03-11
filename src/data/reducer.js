@@ -7,6 +7,7 @@ import {
 	selectChildReducer,
 	removeChildReducer,
 	setChildrenReducer,
+	clearStylesReducer,
 	shiftPressedReducer,
 } from './reducers';
 
@@ -15,7 +16,10 @@ export const changePage = createAction('changePage');
 export const selectChild = createAction('selectChild');
 export const removeChild = createAction('removeChild');
 export const setChildren = createAction('setChildren');
+export const clearStyles = createAction('clearStyles');
 export const shiftPressed = createAction('shiftPressed');
+
+export { chooseChild } from './asyncActions';
 
 const reducer = createReducer(initial, {
 	[setStyle]: setStyleReducer,
@@ -23,25 +27,8 @@ const reducer = createReducer(initial, {
 	[selectChild]: selectChildReducer,
 	[removeChild]: removeChildReducer,
 	[setChildren]: setChildrenReducer,
+	[clearStyles]: clearStylesReducer,
 	[shiftPressed]: shiftPressedReducer,
 });
 
 export default reducer;
-
-export const chooseChild = id => (dispatch, getState) => {
-
-	const state = getState();
-	const { page, pages } = state;
-	const currentChild = pages[page].currentChild;
-
-	if (currentChild === id) {
-		return;
-	}
-
-	const timeout = currentChild === null ? 0 : 200;
-	dispatch(removeChild(currentChild));
-	setTimeout(() => {
-		dispatch(selectChild(id));
-	}, timeout);
-
-}

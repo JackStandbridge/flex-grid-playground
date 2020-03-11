@@ -11,6 +11,15 @@
 		"children": [
 			"boxSizing",
 			"flex",
+			"margin",
+			"padding",
+			"height",
+			"width"
+		],
+		"child": [
+			"boxSizing",
+			"alignSelf",
+			"flex",
 			"order",
 			"margin",
 			"padding",
@@ -28,6 +37,15 @@
 		],
 		"children": [
 			"boxSizing",
+			"margin",
+			"padding",
+			"height",
+			"width"
+		],
+		"child": [
+			"boxSizing",
+			"justifySelf",
+			"alignSelf",
 			"order",
 			"margin",
 			"padding",

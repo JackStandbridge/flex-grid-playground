@@ -1,0 +1,1 @@
+export { default as chooseChild } from './chooseChild';

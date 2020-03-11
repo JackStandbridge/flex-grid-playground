@@ -55,6 +55,17 @@ const Controls = () => {
 			<div className={ stylesheet.scrollContainer }>
 
 				<Accordion
+					legend='Number of Children'
+					targetClass='fieldset'
+					buttonClass='expander'
+					collapsed={ false }
+				>
+					{ disabled => (
+						<ChildrenSlider disabled={ disabled } />
+					) }
+				</Accordion>
+
+				<Accordion
 					legend='parent'
 					targetClass='fieldset section'
 					buttonClass='expander caps'
@@ -80,19 +91,7 @@ const Controls = () => {
 						<ControlGroup
 							section='children'
 							disabled={ disabled }
-						>
-							<Accordion
-								legend='Number of Children'
-								targetClass='fieldset'
-								buttonClass='expander'
-								collapsed={ false }
-								ancestorDisabled={ disabled }
-							>
-								{ disabled => (
-									<ChildrenSlider disabled={ disabled } />
-								) }
-							</Accordion>
-						</ControlGroup>
+						/>
 					) }
 				</Accordion>
 

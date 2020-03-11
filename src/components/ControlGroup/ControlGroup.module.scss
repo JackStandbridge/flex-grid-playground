@@ -1,0 +1,28 @@
+.clear {
+	border: none;
+	background: none;
+	margin-left: auto;
+	top: 0;
+	right: 1rem;
+	padding: 8px;
+	font-size: 1rem;
+	border: 2px solid #ddd;
+	background: white;
+	cursor: pointer;
+
+	&:active,
+	&:hover,
+	&:focus {
+		border-color: #999;
+	}
+
+	&:hover,
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	&:active {
+		border-color: #ddd;
+	}
+}

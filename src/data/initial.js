@@ -34,6 +34,7 @@ const initial = {
 		0: {
 			id: 0,
 			schema: 'display',
+			protected: true,
 			values: [
 				{ value: 'flex' }
 			],
@@ -49,6 +50,7 @@ const initial = {
 		2: {
 			id: 2,
 			schema: 'display',
+			protected: true,
 			values: [
 				{ value: 'grid' }
 			],

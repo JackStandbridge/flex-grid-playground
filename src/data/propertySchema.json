@@ -1,44 +1,15 @@
 {
-	"display": {
-		"type": "string"
-	},
-	"padding": {
-		"name": "padding",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
-		]
-	},
-	"margin": {
-		"name": "margin",
-		"type": "number",
-		"units": [
-			"rem",
-			"px",
-			"%"
-		]
-	},
-	"height": {
-		"name": "height",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
-		]
-	},
-	"width": {
-		"name": "width",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
+	"alignContent": {
+		"name": "align-content",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"flex-start",
+			"flex-end",
+			"center",
+			"space-between",
+			"space-around",
+			"space-evenly"
 		]
 	},
 	"alignItems": {
@@ -56,6 +27,98 @@
 		"grid": [
 			"start",
 			"end"
+		]
+	},
+	"alignSelf": {
+		"name": "align-self",
+		"type": "radio",
+		"values": [
+			"stretch",
+			"center"
+		],
+		"flex": [
+			"flex-start",
+			"flex-end"
+		],
+		"grid": [
+			"start",
+			"end"
+		]
+	},
+	"boxSizing": {
+		"name": "box-sizing",
+		"type": "radio",
+		"values": [
+			"content-box",
+			"border-box"
+		]
+	},
+	"display": {
+		"type": "string"
+	},
+	"flex": {
+		"name": "flex",
+		"type": "number",
+		"min": 0
+	},
+	"flexDirection": {
+		"name": "flex-direction",
+		"type": "radio",
+		"values": [
+			"row",
+			"column",
+			"row-reverse",
+			"column-reverse"
+		]
+	},
+	"flexWrap": {
+		"name": "flex-wrap",
+		"type": "radio",
+		"values": [
+			"nowrap",
+			"wrap"
+		]
+	},
+	"gridGap": {
+		"name": "grid-gap",
+		"type": "number",
+		"min": 0,
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"gridTemplateColumns": {
+		"name": "grid-template-columns",
+		"type": "multi",
+		"min": 0,
+		"units": [
+			"fr",
+			"%",
+			"rem",
+			"px"
+		]
+	},
+	"gridTemplateRows": {
+		"name": "grid-template-rows",
+		"type": "multi",
+		"min": 0,
+		"units": [
+			"fr",
+			"%",
+			"rem",
+			"px"
+		]
+	},
+	"height": {
+		"name": "height",
+		"type": "number",
+		"min": 0,
+		"units": [
+			"rem",
+			"px",
+			"%"
 		]
 	},
 	"justifyContent": {
@@ -81,40 +144,31 @@
 			"end"
 		]
 	},
-	"alignSelf": {
-		"name": "align-self",
-		"type": "radio",
-		"values": [
-			"stretch",
-			"center"
-		],
-		"flex": [
-			"flex-start",
-			"flex-end"
-		],
-		"grid": [
-			"start",
-			"end"
-		]
-	},
 	"justifySelf": {
 		"name": "justify-self",
 		"type": "radio",
 		"values": [
 			"stretch",
-			"center"
-		],
-		"flex": [
-			"flex-start",
-			"flex-end"
-		],
-		"grid": [
+			"center",
 			"start",
 			"end"
 		]
 	},
-	"gridGap": {
-		"name": "grid-gap",
+	"margin": {
+		"name": "margin",
+		"type": "number",
+		"units": [
+			"rem",
+			"px",
+			"%"
+		]
+	},
+	"order": {
+		"name": "order",
+		"type": "number"
+	},
+	"padding": {
+		"name": "padding",
 		"type": "number",
 		"min": 0,
 		"units": [
@@ -123,74 +177,14 @@
 			"%"
 		]
 	},
-	"gridTemplateRows": {
-		"name": "grid-template-rows",
-		"type": "multi",
-		"min": 0,
-		"units": [
-			"fr",
-			"%",
-			"rem",
-			"px"
-		]
-	},
-	"gridTemplateColumns": {
-		"name": "grid-template-columns",
-		"type": "multi",
-		"min": 0,
-		"units": [
-			"fr",
-			"%",
-			"rem",
-			"px"
-		]
-	},
-	"flexWrap": {
-		"name": "flex-wrap",
-		"type": "radio",
-		"values": [
-			"nowrap",
-			"wrap"
-		]
-	},
-	"flexDirection": {
-		"name": "flex-direction",
-		"type": "radio",
-		"values": [
-			"row",
-			"column",
-			"row-reverse",
-			"column-reverse"
-		]
-	},
-	"boxSizing": {
-		"name": "box-sizing",
-		"type": "radio",
-		"values": [
-			"content-box",
-			"border-box"
-		]
-	},
-	"flex": {
-		"name": "flex",
+	"width": {
+		"name": "width",
 		"type": "number",
-		"min": 0
-	},
-	"order": {
-		"name": "order",
-		"type": "number"
-	},
-	"alignContent": {
-		"name": "align-content",
-		"type": "radio",
-		"values": [
-			"stretch",
-			"flex-start",
-			"flex-end",
-			"center",
-			"space-between",
-			"space-around",
-			"space-evenly"
+		"min": 0,
+		"units": [
+			"rem",
+			"px",
+			"%"
 		]
 	}
 }
