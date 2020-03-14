@@ -184,14 +184,3 @@
 	93% { transform: translate(-6px, -15px) }
 	100% { transform: translate(0, 0) }
 }
-
-@keyframes success {
-	0% { background-color: white; }
-	50% { background-color: rgb(200, 200, 200); }
-	100% { background-color: white; }
-}
-
-@keyframes error {
-	33% { transform: translateX(-0.1rem) }
-	66% { transform: translateX(0.1rem) }
-}

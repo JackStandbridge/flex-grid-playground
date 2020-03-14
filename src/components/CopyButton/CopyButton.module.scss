@@ -156,10 +156,6 @@ $black: rgb(40, 40, 40);
 }
 
 @keyframes error {
-	33% {
-		transform: translateX(-0.1rem);
-	}
-	66% {
-		transform: translateX(0.1rem);
-	}
+	33% { transform: translateX(-0.1rem); }
+	66% { transform: translateX(0.1rem); }
 }
