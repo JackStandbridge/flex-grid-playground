@@ -10,6 +10,9 @@
 	@media (max-width: 1200px) {
 		top: calc(1rem + 5px);
 	}
+	@media (max-width: 400px) {
+		top: calc(0.5rem + 5px);
+	}
 }
 
 .light {
