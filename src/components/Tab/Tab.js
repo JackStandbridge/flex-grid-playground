@@ -26,14 +26,14 @@ const Tab = ({ id }) => {
 	};
 
 	return (
-		<div
+		<button
 			className={ tabClass }
 			tabIndex='0'
 			onClick={ handleClick }
 		>
 			<span className={ titleClass }>{ title }</span>
 			<span className={ stylesheet.close }></span>
-		</div>
+		</button>
 	);
 };
 

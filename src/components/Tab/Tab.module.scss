@@ -1,4 +1,7 @@
 .tab {
+	border: none;
+	background: none;
+	all: unset;
 	padding: 0.6rem 1rem 0.6rem 1rem;
 	width: 14rem;
 	min-width: 2rem;
@@ -38,6 +41,7 @@
 	&:focus,
 	&:active,
 	&:hover {
+		box-shadow: none;
 		background: #fafafa;
 		border-bottom-color: #fafafa;
 	}
