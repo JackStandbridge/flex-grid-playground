@@ -16,7 +16,7 @@
 
 .section {
 	padding-top: 0;
-	@media (max-width: 1024px) and (min-width: 850px) {
+	@media (max-width: 1200px) and (min-width: 850px) {
 		flex: 1;
 		margin-right: 1rem;
 	}
@@ -101,6 +101,9 @@
 	margin-right: 4px;
 }
 
+.full-width {
+	width: 100%;
+}
 
 .safari {
 	legend {

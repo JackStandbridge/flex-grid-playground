@@ -35,7 +35,7 @@ const Controls = () => {
 
 	const screenWidth = window.innerWidth;
 
-	const collapseChildren = screenWidth > 1024 || screenWidth < 850;
+	const collapseChildren = screenWidth > 1200 || screenWidth < 850;
 
 	const sectionClassNames = [
 		stylesheet.controls,
@@ -56,7 +56,7 @@ const Controls = () => {
 
 				<Accordion
 					legend='Number of Children'
-					targetClass='fieldset'
+					targetClass='fieldset full-width'
 					buttonClass='expander'
 					collapsed={ false }
 				>

@@ -59,14 +59,14 @@
 }
 
 .input {
-	width: 3.5ch;
+	width: 4.5ch;
 	text-align: right;
 	border-right: none;
 	margin: 0;
 }
 
 .select {
-	width: 3ch;
+	width: 3.5ch;
 	appearance: none;
 	-webkit-appearance: none;
 	text-align: center;
@@ -93,7 +93,8 @@
 .inputContainer {
 	height: 1.7rem;
 	display: flex;
-	margin-right: 0.5rem;
+	margin-right: 0.3rem;
+	margin-bottom: 0.3rem;
 }
 
 .buttonContainer {

@@ -11,7 +11,7 @@
 	transition: 0.2s;
 	align-items: stretch;
 
-	@media (max-width: 1024px) {
+	@media (max-width: 1200px) {
 		height: unset;
 		margin-left: 0;
 		margin-top: 1rem;
@@ -34,21 +34,21 @@
 	overflow-y: auto;
 	box-sizing: border-box;
 
-	@media (max-width: 1024px) and (min-width: 850px) {
-		display: flex;
+	@media (max-width: 1200px) and (min-width: 850px) {
+		flex-wrap: wrap;
 		flex-direction: row;
 	}
 }
 
 .collapsed {
-	@media (min-width: 1025px) {
+	@media (min-width: 1201px) {
 		flex: 0;
 		min-width: 42px;
 	}
 }
 
 .hidden {
-	@media (min-width: 1025px) {
+	@media (min-width: 1201px) {
 		align-items: center;
 		justify-content: center;
 
@@ -73,7 +73,7 @@
 }
 
 .collapse {
-	@media (min-width: 1025px) {
+	@media (min-width: 1201px) {
 		cursor: pointer;
 	}
 	border: none;
