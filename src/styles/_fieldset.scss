@@ -45,12 +45,6 @@
 	max-height: 38px;
 }
 
-.hidden {
-	& > *:not(legend) {
-		visibility: hidden;
-	}
-}
-
 .legend {
 	max-width: 100%;
 	overflow: hidden;

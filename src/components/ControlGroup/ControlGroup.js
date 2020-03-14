@@ -90,6 +90,7 @@ const ControlGroup = (
 			<button
 				className={ stylesheet.clear }
 				onClick={ handleClick }
+				disabled={ disabled }
 			>
 				Reset
 			</button>
