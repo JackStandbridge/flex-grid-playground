@@ -8,7 +8,7 @@
 	border-radius: 0.5rem;
 	overflow: hidden;
 	margin-left: 1rem;
-	transition: 0.2s;
+	transition: min-width 0.2s, flex-grow 0.2s;
 	align-items: stretch;
 
 	@media (max-width: 1200px) {
