@@ -90,21 +90,30 @@
 		"inputs": [
 			{
 				"type": "check",
-				"value": "span"
+				"value": "span",
+				"default": "",
+				"space": true
 			},
 			{
-				"type": "number"
+				"type": "number",
+				"max": 99,
+				"space": true
 			},
 			{
 				"type": "disabled",
-				"value": "/"
+				"value": "/",
+				"default": "/",
+				"space": true
 			},
 			{
 				"type": "check",
-				"value": "span"
+				"value": "span",
+				"default": "",
+				"space": true
 			},
 			{
-				"type": "number"
+				"type": "number",
+				"max": 99
 			}
 		]
 	},
@@ -118,6 +127,7 @@
 			},
 			{
 				"type": "select",
+				"default": "rem",
 				"values": [
 					"rem",
 					"px",
@@ -132,27 +142,36 @@
 		"inputs": [
 			{
 				"type": "check",
-				"value": "span"
+				"value": "span",
+				"default": "",
+				"space": true
 			},
 			{
-				"type": "number"
+				"type": "number",
+				"max": 99,
+				"space": true
 			},
 			{
 				"type": "disabled",
-				"value": "/"
+				"value": "/",
+				"default": "/",
+				"space": true
 			},
 			{
 				"type": "check",
-				"value": "span"
+				"value": "span",
+				"default": "",
+				"space": true
 			},
 			{
-				"type": "number"
+				"type": "number",
+				"max": 99
 			}
 		]
 	},
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
-		"type": "flexible",
+		"type": "flexi",
 		"min": 0,
 		"units": [
 			"fr",
@@ -163,7 +182,7 @@
 	},
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
-		"type": "flexible",
+		"type": "flexi",
 		"min": 0,
 		"units": [
 			"fr",
@@ -182,7 +201,8 @@
 			},
 			{
 				"type": "select",
-				"units": [
+				"default": "rem",
+				"values": [
 					"rem",
 					"px",
 					"%"
@@ -232,6 +252,7 @@
 			},
 			{
 				"type": "select",
+				"default": "rem",
 				"values": [
 					"rem",
 					"px",
@@ -259,6 +280,7 @@
 			},
 			{
 				"type": "select",
+				"default": "rem",
 				"values": [
 					"rem",
 					"px",
@@ -277,6 +299,7 @@
 			},
 			{
 				"type": "select",
+				"default": "rem",
 				"values": [
 					"rem",
 					"px",

@@ -4,6 +4,7 @@ import stylesheet from './InputMulti.module.scss';
 import { getEntry } from '../../data/utilities';
 import { setStyle } from '../../data/reducer';
 import propertySchema from '../../data/propertySchema.json';
+import Accordion from '../Accordion';
 
 const InputMulti = ({ section, schema, disabled }) => {
 
@@ -13,22 +14,63 @@ const InputMulti = ({ section, schema, disabled }) => {
 		return getEntry(state, section, schema)
 	}, shallowEqual);
 
-	const { name, units, min } = propertySchema[schema];
+	const { name, inputs } = propertySchema[schema];
 
-	const unitless = units === undefined;
+	const handleChange = (value, changedIndex) => {
 
-	const [
-		digit = { value: '' },
-		unit = { value: units?.[0] }
-	] = entry ? entry.values : [];
+		const values = inputs.map((input, inputIndex) => {
 
+			const newValue = {
+				value:
+					entry?.values[inputIndex].value
+					?? input.default
+					?? ''
+			};
 
-	const handleChange = values => {
-		const newEntry = {
-			id: entry?.id,
-			values,
-			schema,
-		};
+			if (input.default === '/') {
+				newValue.default = '/';
+				newValue.value = '/';
+			}
+
+			if (inputIndex === changedIndex) {
+
+				newValue.value = value;
+
+				const belowMin = input.min !== undefined && value < input.min;
+				const aboveMax = input.max !== undefined && value > input.max;
+
+				if (value && belowMin) {
+					newValue.value = input.min;
+				}
+
+				if (value && aboveMax) {
+					newValue.value = input.max
+				}
+
+			}
+
+			if (input.space) {
+				newValue.space = true;
+			}
+
+			return newValue;
+		});
+
+		const oneSidedGridProperty =
+			values[2]?.default === '/'
+			&& (
+				values.slice(0, 2).map(({ value }) => value).join('') === ''
+				|| values.slice(3,).map(({ value }) => value).join('') === ''
+			)
+
+		if (oneSidedGridProperty) {
+			values[2].value = '';
+			values[2].default = '/';
+		}
+
+		const id = entry?.id;
+
+		const newEntry = { id, schema, values };
 
 		dispatch(setStyle({
 			newEntry,
@@ -37,66 +79,141 @@ const InputMulti = ({ section, schema, disabled }) => {
 		}));
 	}
 
-	const handleNumber = ({ target: { value } }) => {
+	const renderNumber = ({ input, index, disabled, value = '' }) => {
 
-		const belowMin = min !== null && value < min;
-		const invalidNumber = Number.isNaN(parseFloat(value))
+		const classNames = [
+			stylesheet.number,
+			input.max < 100 ? stylesheet.narrow : ''
+		].join(' ');
 
-		if (
-			value && (belowMin || invalidNumber)
-		) {
-			value = min;
+		return (
+			<input
+				key={ index }
+				onChange={ e => handleChange(e.currentTarget.value, index) }
+				disabled={ disabled }
+				min={ input.min }
+				max={ input.max }
+				className={ classNames }
+				type='number'
+				value={ value }
+			/>
+		);
+	};
+
+	const renderSelect = ({ input, index, disabled, value }) => (
+		<select
+			key={ index }
+			onChange={ e => handleChange(e.currentTarget.value, index) }
+			disabled={ disabled }
+			className={ stylesheet.select }
+			value={ value }
+		>
+			{ input.values.map(value => (
+				<option key={ value }>{ value }</option>
+			)) }
+		</select>
+	);
+
+	const handleKeyDownCheck = e => {
+		if (['Enter', ' '].includes(e.key)) {
+			e.preventDefault();
+			e.currentTarget.click();
 		}
-
-		const values = unitless ? [{ value }] : [{ value }, { value: unit.value }];
-		handleChange(values);
-	};
-
-	const handleUnit = ({ target: { value } }) => {
-		const values = [{ value: digit.value }, { value }]
-		handleChange(values);
-	};
-
-	const handleSelectFocus = e => {
-		e.preventDefault();
 	}
 
-	return (
-		<label className={ stylesheet.label }>
+	const renderCheck = ({ input, index, disabled, value = '' }) => {
+		const labelClassNames = [
+			stylesheet.toggle,
+			value ? stylesheet.checked : ''
+		].join(' ');
 
-			{ name }
+		const handleChangeCheck = e => {
+			const value = e.currentTarget.checked ? input.value : '';
+			handleChange(value, index);
+		};
 
-			<hr className={ stylesheet.midHr } />
+		return (
+			<label
+				onKeyDown={ handleKeyDownCheck }
+				key={ index }
+				className={ labelClassNames }
+				tabIndex={ disabled ? -1 : 0 }
+			>
+				<input
+					checked={ !!value }
+					onChange={ handleChangeCheck }
+					type='checkbox'
+					className={ stylesheet.checkbox }
+				/>
+				{ input.value }
+			</label>
+		)
+	};
 
-			<input
-				type='number'
-				className={ `${ stylesheet.number } ${ unitless ? stylesheet.unitless : '' }` }
-				value={ digit.value }
-				min={ min }
-				onChange={ handleNumber }
-				disabled={ disabled }
-			/>
+	const renderDisabled = ({ input, index }) => (
+		<input
+			key={ index }
+			className={ stylesheet.disabled }
+			disabled
+			type='text'
+			value={ input.default }
+		/>
+	);
 
-			{ unitless ? <hr className={ stylesheet.endHr } /> :
-				<select
-					className={ stylesheet.select }
-					value={ unit.value }
-					onChange={ handleUnit }
-					onClick={ handleSelectFocus }
-					disabled={ disabled }
-				>
-					{
-						units.map(unit => (
-							<option
-								key={ unit }
-								value={ unit }
-							>{ unit }</option>
-						))
+	const renderContents = disabled => (
+		<>
+			<div className={ stylesheet.inputWrapper }>
+				{ inputs.map((input, index) => {
+
+					const value = entry?.values[index].value;
+
+					const options = {
+						input,
+						index,
+						value,
+						disabled,
+					};
+
+					switch (input.type) {
+						case 'number': return renderNumber(options);
+						case 'select': return renderSelect(options);
+						case 'check': return renderCheck(options);
+						case 'disabled': return renderDisabled(options);
+						default: return null;
 					}
-				</select>
+
+				}) }
+			</div>
+
+			{ inputs.length < 2 &&
+				<hr className={ stylesheet.endHr } />
 			}
+		</>
+	);
+
+	const renderWithAccordion = () => (
+		<Accordion
+			legend={ name }
+			ancestorDisabled={ disabled }
+			collapsed={ true }
+			targetClass={ 'fieldset' }
+			buttonClass={ 'expander' }
+			animateIn={ false }
+			animateOut={ false }
+		>
+			{ renderContents }
+		</Accordion>
+	);
+
+	const renderWithoutAccordion = () => (
+		<label className={ stylesheet.label }>
+			{ name }
+			<hr className={ stylesheet.midHr } />
+			{ renderContents() }
 		</label>
 	);
+
+	return inputs.length > 3 ? renderWithAccordion() : renderWithoutAccordion();
 };
 
 export default InputMulti;

@@ -2,7 +2,12 @@ import propertySchema from '../data/propertySchema.json';
 
 const spacer = ({ value, space }) => `${ value }${ space ? ' ' : '' }`;
 
-const join = values => values.map(spacer).join('').trim();
+const join = values =>
+	values
+	.map(spacer)
+	.join('')
+	.trim()
+	.replace(/\s+/g, ' ');
 
 const filterInvalidStyles = (prop, val) => {
 	// transforms invalid styles into null
@@ -10,6 +15,13 @@ const filterInvalidStyles = (prop, val) => {
 	// create element and apply style to it
 	const el = document.createElement('div');
 	el.style[prop] = val;
+
+	if (!el.style.cssText) {
+		// special case for trailing forward
+		// slash present in partially formed
+		// grid properties, e.g. "span 1 /".
+		el.style[prop] = val.replace(/\//, '');
+	}
 
 	// only allow style to pass if it can be applied
 	return el.style.cssText ? val : null;
