@@ -59,7 +59,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 	};
 
 	const handleSelectFocus = e => {
-		e.stopPropagation();
+		e.preventDefault();
 	}
 
 	return (
