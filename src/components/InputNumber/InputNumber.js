@@ -58,6 +58,10 @@ const InputNumber = ({ section, schema, disabled }) => {
 		handleChange(values);
 	};
 
+	const handleSelectFocus = e => {
+		e.stopPropagation();
+	}
+
 	return (
 		<label className={ stylesheet.label }>
 
@@ -79,6 +83,7 @@ const InputNumber = ({ section, schema, disabled }) => {
 					className={ stylesheet.select }
 					value={ unit.value }
 					onChange={ handleUnit }
+					onClick={ handleSelectFocus }
 					disabled={ disabled }
 				>
 					{
