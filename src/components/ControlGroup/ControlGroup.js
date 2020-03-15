@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import controls from '../../data/controls.json';
 import propertySchema from '../../data/propertySchema.json';
 import InputRadio from '../InputRadio/InputRadio';
-import InputNumber from '../InputNumber';
 import InputMulti from '../InputMulti';
+import InputFlexi from '../InputFlexi';
 import Accordion from '../Accordion';
 import { clearStyles } from '../../data/reducer';
 import stylesheet from './ControlGroup.module.scss';
@@ -60,11 +60,11 @@ const ControlGroup = (
 							</Accordion>
 						);
 
-						case 'number': return (
-							<InputNumber key={ schema.name } { ...props } />
+						case 'multi': return (
+							<InputMulti key={ schema.name } { ...props } />
 						);
 
-						case 'multi': return (
+						case 'flexi': return (
 							<Accordion
 								key={ schema.name }
 								legend={ schema.name }
@@ -74,7 +74,7 @@ const ControlGroup = (
 								collapsed={ true }
 							>
 								{ disabled => (
-									<InputMulti
+									<InputFlexi
 										{ ...props }
 										disabled={ disabled }
 									/>

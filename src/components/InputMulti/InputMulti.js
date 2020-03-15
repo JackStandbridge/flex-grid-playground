@@ -1,34 +1,32 @@
 import React from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import propertySchema from '../../data/propertySchema.json';
-import { setStyle } from '../../data/reducer';
-import { getEntry } from '../../data/utilities';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import stylesheet from './InputMulti.module.scss';
+import { getEntry } from '../../data/utilities';
+import { setStyle } from '../../data/reducer';
+import propertySchema from '../../data/propertySchema.json';
 
 const InputMulti = ({ section, schema, disabled }) => {
 
-	const { units } = propertySchema[schema];
-
-	const entry = useSelector(state => {
-		return getEntry(state, section, schema);
-	}, shallowEqual);
-
-	const shiftPressed = useSelector(({ shiftPressed }) => shiftPressed);
-
-	const values = entry?.values ?? [];
-
 	const dispatch = useDispatch();
 
-	const handleChange = ({ target: { value } }, index) => {
-		const newValues = values.map((valObject, i) => {
-			return {
-				...valObject,
-				value: i === index ? value : valObject.value
-			}
-		})
+	const entry = useSelector(state => {
+		return getEntry(state, section, schema)
+	}, shallowEqual);
+
+	const { name, units, min } = propertySchema[schema];
+
+	const unitless = units === undefined;
+
+	const [
+		digit = { value: '' },
+		unit = { value: units?.[0] }
+	] = entry ? entry.values : [];
+
+
+	const handleChange = values => {
 		const newEntry = {
-			values: newValues,
 			id: entry?.id,
+			values,
 			schema,
 		};
 
@@ -37,110 +35,67 @@ const InputMulti = ({ section, schema, disabled }) => {
 			section,
 			schema,
 		}));
-	};
+	}
 
-	const handleClick = ({ shiftKey }) => {
+	const handleNumber = ({ target: { value } }) => {
 
-		let newValues = [...values];
+		const belowMin = min !== null && value < min;
+		const invalidNumber = Number.isNaN(parseFloat(value))
 
-		if (shiftKey) {
-			newValues.pop();
-			newValues.pop();
-		} else {
-			newValues.push({ value: '1', type: 'number' });
-			newValues.push({ value: 'fr', type: 'option', space: true });
+		if (
+			value && (belowMin || invalidNumber)
+		) {
+			value = min;
 		}
 
-		const newEntry = {
-			id: entry?.id,
-			values: newValues,
-			schema
-		}
-
-		dispatch(setStyle({
-			newEntry,
-			section,
-			schema,
-		}));
-	}
-
-	const renderInput = (value, index) => {
-		return (
-			<input
-				disabled={ disabled }
-				key={ index }
-				value={ value }
-				className={ stylesheet.input }
-				type='number'
-				onChange={ e => handleChange(e, index) }
-			/>
-		)
-	}
-
-	const renderSelect = (value, index) => {
-		return (
-			<select
-				className={ stylesheet.select }
-				disabled={ disabled }
-				key={ index }
-				value={ value }
-				onChange={ e => handleChange(e, index) }
-			>
-				{
-					units.map(option => (
-						<option key={ option }>{ option }</option>
-					))
-				}
-			</select>
-		)
-	}
-
-	const renderByType = {
-		number: renderInput,
-		option: renderSelect,
+		const values = unitless ? [{ value }] : [{ value }, { value: unit.value }];
+		handleChange(values);
 	};
 
-	const elementGroup = values
-		.map(({ value, type }, i) => {
-			return renderByType[type](value, i);
-		})
-		.reduce((elements, element, i, arr) => {
-			// group each input and select in a div
-			if (i % 2) {
-				elements.push(
-					<div
-						key={ i }
-						className={ stylesheet.inputContainer }
-					>
-						{ arr[i - 1] }
-						{ element }
-					</div>
-				);
-			}
+	const handleUnit = ({ target: { value } }) => {
+		const values = [{ value: digit.value }, { value }]
+		handleChange(values);
+	};
 
-			return elements;
-		}, []);
+	const handleSelectFocus = e => {
+		e.preventDefault();
+	}
 
 	return (
-		<>
-			<div className={ stylesheet.inputsContainer }>
+		<label className={ stylesheet.label }>
 
-				{ elementGroup }
+			{ name }
 
-				<div className={ stylesheet.buttonContainer }>
-					<button
-						className={ `${ stylesheet.add } ${ shiftPressed ? stylesheet.shift : '' }` }
-						onClick={ handleClick }
-						disabled={ disabled }
-					/>
+			<hr className={ stylesheet.midHr } />
 
-					<div className={ stylesheet.tooltip }>
-						Shift-click <br />
-						to remove
-					</div>
-				</div>
-			</div>
-		</>
+			<input
+				type='number'
+				className={ `${ stylesheet.number } ${ unitless ? stylesheet.unitless : '' }` }
+				value={ digit.value }
+				min={ min }
+				onChange={ handleNumber }
+				disabled={ disabled }
+			/>
+
+			{ unitless ? <hr className={ stylesheet.endHr } /> :
+				<select
+					className={ stylesheet.select }
+					value={ unit.value }
+					onChange={ handleUnit }
+					onClick={ handleSelectFocus }
+					disabled={ disabled }
+				>
+					{
+						units.map(unit => (
+							<option
+								key={ unit }
+								value={ unit }
+							>{ unit }</option>
+						))
+					}
+				</select>
+			}
+		</label>
 	);
 };
 

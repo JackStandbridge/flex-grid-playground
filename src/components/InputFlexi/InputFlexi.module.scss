@@ -1,0 +1,110 @@
+.add {
+	display: inline-block;
+	height: 1.5rem;
+	width: 1.5rem;
+	padding: 0;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	position: relative;
+	background: white;
+	-webkit-touch-callout: none;
+	user-select: none;
+	transition: 0.3s;
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		height: 2px;
+		width: 0.8rem;
+		background: #555;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transition: 0.2s;
+	}
+
+	&::before {
+		transform: translate(-50%, -50%) rotate(90deg);
+	}
+
+	&::after {
+		transform: translate(-50%, -50%);
+	}
+
+	&:hover {
+		& + .tooltip {
+			transition: visibility 0s 0.5s, opacity 0.5s 3s;
+			opacity: 0;
+			visibility: visible;
+		}
+	}
+
+	&:focus {
+		& + .tooltip {
+			visibility: visible;
+			transition: opacity 0.5s 4s;
+			opacity: 0;
+		}
+	}
+}
+
+.tooltip {
+	composes: tooltip from '../../styles/_tooltip.scss';
+	visibility: hidden;
+	bottom: calc(100% + 0.8rem);
+	line-height: 1.2;
+	padding: 0.5rem 0.8rem;
+	font-size: 0.8rem;
+}
+
+.input {
+	width: 4.5ch;
+	text-align: right;
+	border-right: none;
+	margin: 0;
+}
+
+.select {
+	width: 3.5ch;
+	appearance: none;
+	-webkit-appearance: none;
+	text-align: center;
+	padding: 0.25rem;
+	border-left: none;
+	margin: 0;
+
+	// fix text alignment in Chrome
+	@supports (text-align-last: center) {
+		text-align-last: center;
+		padding: 0;
+	}
+}
+
+.inputsContainer {
+	display: flex;
+	flex-wrap: wrap;
+	padding-right: 1.5rem;
+	position: relative;
+	min-height: 1.7rem;
+	align-items: stretch;
+}
+
+.inputContainer {
+	height: 1.7rem;
+	display: flex;
+	margin-right: 0.3rem;
+	margin-bottom: 0.3rem;
+}
+
+.buttonContainer {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.shift{
+	&:hover, &:focus, &:active {
+		transform: rotate(-45deg);
+	}
+}

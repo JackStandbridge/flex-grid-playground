@@ -33,7 +33,8 @@
 			"gridTemplateRows",
 			"justifyItems",
 			"alignItems",
-			"gridGap"
+			"gridGap",
+			"height"
 		],
 		"children": [
 			"boxSizing",
@@ -46,6 +47,8 @@
 			"boxSizing",
 			"justifySelf",
 			"alignSelf",
+			"gridColumn",
+			"gridRow",
 			"order",
 			"margin",
 			"padding",

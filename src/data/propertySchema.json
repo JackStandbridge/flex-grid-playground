@@ -58,8 +58,13 @@
 	},
 	"flex": {
 		"name": "flex",
-		"type": "number",
-		"min": 0
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"min": 0
+			}
+		]
 	},
 	"flexDirection": {
 		"name": "flex-direction",
@@ -79,19 +84,75 @@
 			"wrap"
 		]
 	},
+	"gridColumn": {
+		"name": "grid-column",
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "check",
+				"value": "span"
+			},
+			{
+				"type": "number"
+			},
+			{
+				"type": "disabled",
+				"value": "/"
+			},
+			{
+				"type": "check",
+				"value": "span"
+			},
+			{
+				"type": "number"
+			}
+		]
+	},
 	"gridGap": {
 		"name": "grid-gap",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"min": 0
+			},
+			{
+				"type": "select",
+				"values": [
+					"rem",
+					"px",
+					"%"
+				]
+			}
+		]
+	},
+	"gridRow": {
+		"name": "grid-row",
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "check",
+				"value": "span"
+			},
+			{
+				"type": "number"
+			},
+			{
+				"type": "disabled",
+				"value": "/"
+			},
+			{
+				"type": "check",
+				"value": "span"
+			},
+			{
+				"type": "number"
+			}
 		]
 	},
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
-		"type": "multi",
+		"type": "flexible",
 		"min": 0,
 		"units": [
 			"fr",
@@ -102,7 +163,7 @@
 	},
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
-		"type": "multi",
+		"type": "flexible",
 		"min": 0,
 		"units": [
 			"fr",
@@ -113,12 +174,20 @@
 	},
 	"height": {
 		"name": "height",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"min": 0
+			},
+			{
+				"type": "select",
+				"units": [
+					"rem",
+					"px",
+					"%"
+				]
+			}
 		]
 	},
 	"justifyContent": {
@@ -156,35 +225,64 @@
 	},
 	"margin": {
 		"name": "margin",
-		"type": "number",
-		"units": [
-			"rem",
-			"px",
-			"%"
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number"
+			},
+			{
+				"type": "select",
+				"values": [
+					"rem",
+					"px",
+					"%"
+				]
+			}
 		]
 	},
 	"order": {
 		"name": "order",
-		"type": "number"
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number"
+			}
+		]
 	},
 	"padding": {
 		"name": "padding",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"min": 0
+			},
+			{
+				"type": "select",
+				"values": [
+					"rem",
+					"px",
+					"%"
+				]
+			}
 		]
 	},
 	"width": {
 		"name": "width",
-		"type": "number",
-		"min": 0,
-		"units": [
-			"rem",
-			"px",
-			"%"
+		"type": "multi",
+		"inputs": [
+			{
+				"type": "number",
+				"min": 0
+			},
+			{
+				"type": "select",
+				"values": [
+					"rem",
+					"px",
+					"%"
+				]
+			}
 		]
 	}
 }
