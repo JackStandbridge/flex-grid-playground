@@ -4,6 +4,7 @@ import propertySchema from '../../data/propertySchema.json';
 import { setStyle } from '../../data/reducer';
 import { getEntry } from '../../data/utilities';
 import stylesheet from './InputFlexi.module.scss';
+import Help from '../Help';
 
 const InputFlexi = ({ section, schema, disabled }) => {
 
@@ -123,6 +124,10 @@ const InputFlexi = ({ section, schema, disabled }) => {
 
 	return (
 		<>
+			<Help
+				fieldset={ true }
+				content={ propertySchema[schema]?.description }
+			/>
 			<div className={ stylesheet.inputsContainer }>
 
 				{ elementGroup }

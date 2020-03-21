@@ -10,7 +10,8 @@
 			"space-between",
 			"space-around",
 			"space-evenly"
-		]
+		],
+		"description": "Positions the 'tracks' that flex children run along the axis of the flex direction."
 	},
 	"alignItems": {
 		"name": "align-items",
@@ -27,7 +28,8 @@
 		"grid": [
 			"start",
 			"end"
-		]
+		],
+		"description": "Align items description"
 	},
 	"alignSelf": {
 		"name": "align-self",
@@ -43,7 +45,8 @@
 		"grid": [
 			"start",
 			"end"
-		]
+		],
+		"description": "Positions an individual item on the axis of the flex direction, or the horizontal axis in grid."
 	},
 	"boxSizing": {
 		"name": "box-sizing",
@@ -51,7 +54,8 @@
 		"values": [
 			"content-box",
 			"border-box"
-		]
+		],
+		"description": "Determines whether padding and border are included in height and width calculations."
 	},
 	"display": {
 		"type": "string"
@@ -62,9 +66,30 @@
 		"inputs": [
 			{
 				"type": "number",
+				"min": 0,
+				"space": true
+			},
+			{
+				"type": "number",
+				"min": 0,
+				"space": true
+			},
+			{
+				"type": "number",
 				"min": 0
+			},
+			{
+				"type": "select",
+				"default": "",
+				"values": [
+					"",
+					"rem",
+					"%",
+					"px"
+				]
 			}
-		]
+		],
+		"description": "Flex description"
 	},
 	"flexDirection": {
 		"name": "flex-direction",
@@ -74,15 +99,18 @@
 			"column",
 			"row-reverse",
 			"column-reverse"
-		]
+		],
+		"description": "Arranges elements in columns or rows, optionally reversing their order."
 	},
 	"flexWrap": {
 		"name": "flex-wrap",
 		"type": "radio",
 		"values": [
 			"nowrap",
-			"wrap"
-		]
+			"wrap",
+			"wrap-reverse"
+		],
+		"description": "Flex wrap description"
 	},
 	"gridColumn": {
 		"name": "grid-column",
@@ -115,7 +143,8 @@
 				"type": "number",
 				"max": 99
 			}
-		]
+		],
+		"description": "This is the description for gridColumn"
 	},
 	"gridGap": {
 		"name": "grid-gap",
@@ -134,7 +163,8 @@
 					"%"
 				]
 			}
-		]
+		],
+		"description": "This is the description for gridGap"
 	},
 	"gridRow": {
 		"name": "grid-row",
@@ -167,7 +197,8 @@
 				"type": "number",
 				"max": 99
 			}
-		]
+		],
+		"description": "This is the description for gridRow"
 	},
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
@@ -178,7 +209,8 @@
 			"%",
 			"rem",
 			"px"
-		]
+		],
+		"description": "This is the description for gridTemplateColumns"
 	},
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
@@ -189,7 +221,8 @@
 			"%",
 			"rem",
 			"px"
-		]
+		],
+		"description": "This is the description for gridTemplateRows"
 	},
 	"height": {
 		"name": "height",
@@ -208,7 +241,8 @@
 					"%"
 				]
 			}
-		]
+		],
+		"description": "This is the description for height"
 	},
 	"justifyContent": {
 		"name": "justify-content",
@@ -221,7 +255,8 @@
 			"space-between",
 			"space-around",
 			"space-evenly"
-		]
+		],
+		"description": "This is the description for justifyContent"
 	},
 	"justifyItems": {
 		"name": "justify-items",
@@ -231,7 +266,8 @@
 			"center",
 			"start",
 			"end"
-		]
+		],
+		"description": "This is the description for justifyItems"
 	},
 	"justifySelf": {
 		"name": "justify-self",
@@ -241,7 +277,8 @@
 			"center",
 			"start",
 			"end"
-		]
+		],
+		"description": "This is the description for justifySelf"
 	},
 	"margin": {
 		"name": "margin",
@@ -259,7 +296,8 @@
 					"%"
 				]
 			}
-		]
+		],
+		"description": "This is the description for margin"
 	},
 	"order": {
 		"name": "order",
@@ -268,7 +306,8 @@
 			{
 				"type": "number"
 			}
-		]
+		],
+		"description": "This is the description for order"
 	},
 	"padding": {
 		"name": "padding",
@@ -287,7 +326,8 @@
 					"%"
 				]
 			}
-		]
+		],
+		"description": "This is the description for padding"
 	},
 	"width": {
 		"name": "width",
@@ -306,6 +346,7 @@
 					"%"
 				]
 			}
-		]
+		],
+		"description": "This is the description for width"
 	}
 }

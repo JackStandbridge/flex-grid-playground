@@ -31,10 +31,9 @@
 }
 
 .collapsed {
-	border-top-color: #ddd;
-	border-left-color: transparent;
-	border-right-color: transparent;
-	border-bottom-color: transparent;
+	border-color: #ddd;
+	border-image: linear-gradient(to right, #ddd 95%, transparent 95%) 2;
+	border-image-width: 2px 0 0 0;
 	transition:
 		max-height 0.2s cubic-bezier(0, 1, 0, 1),
 		padding-top 0s linear 0.2s,

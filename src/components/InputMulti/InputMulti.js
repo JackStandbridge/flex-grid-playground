@@ -5,6 +5,7 @@ import { getEntry } from '../../data/utilities';
 import { setStyle } from '../../data/reducer';
 import propertySchema from '../../data/propertySchema.json';
 import Accordion from '../Accordion';
+import Help from '../Help';
 
 const InputMulti = ({ section, schema, disabled }) => {
 
@@ -79,7 +80,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 		}));
 	}
 
-	const renderNumber = ({ input, index, disabled, value = '' }) => {
+	const renderNumber = ({ input, index, disabled, value = '', id }) => {
 
 		const classNames = [
 			stylesheet.number,
@@ -88,6 +89,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 
 		return (
 			<input
+				id={ id }
 				key={ index }
 				onChange={ e => handleChange(e.currentTarget.value, index) }
 				disabled={ disabled }
@@ -166,12 +168,14 @@ const InputMulti = ({ section, schema, disabled }) => {
 				{ inputs.map((input, index) => {
 
 					const value = entry?.values[index].value;
+					const id = index === 0 ? `${ section }-${ schema }` : null;
 
 					const options = {
 						input,
 						index,
 						value,
 						disabled,
+						id,
 					};
 
 					switch (input.type) {
@@ -188,6 +192,11 @@ const InputMulti = ({ section, schema, disabled }) => {
 			{ inputs.length < 2 &&
 				<hr className={ stylesheet.endHr } />
 			}
+			<Help
+				disabled={ disabled }
+				fieldset={ inputs.length > 2 }
+				content={ propertySchema[schema]?.description }
+			/>
 		</>
 	);
 
@@ -206,11 +215,15 @@ const InputMulti = ({ section, schema, disabled }) => {
 	);
 
 	const renderWithoutAccordion = () => (
-		<label className={ stylesheet.label }>
-			{ name }
-			<hr className={ stylesheet.midHr } />
-			{ renderContents() }
-		</label>
+		<>
+			<span className={ stylesheet.label }>
+				<label htmlFor={ `${ section }-${ schema }` }>
+					{ name }
+				</label>
+				<hr className={ stylesheet.midHr } />
+				{ renderContents(disabled) }
+			</span>
+		</>
 	);
 
 	return inputs.length > 3 ? renderWithAccordion() : renderWithoutAccordion();

@@ -61,7 +61,10 @@ const ControlGroup = (
 						);
 
 						case 'multi': return (
-							<InputMulti key={ schema.name } { ...props } />
+							<InputMulti
+								key={ schema.name }
+								{ ...props }
+							/>
 						);
 
 						case 'flexi': return (
