@@ -80,7 +80,7 @@
 			},
 			{
 				"type": "select",
-				"default": "",
+				"defaultValue": "",
 				"values": [
 					"",
 					"rem",
@@ -119,7 +119,7 @@
 			{
 				"type": "check",
 				"value": "span",
-				"default": "",
+				"defaultValue": "",
 				"space": true
 			},
 			{
@@ -130,13 +130,13 @@
 			{
 				"type": "disabled",
 				"value": "/",
-				"default": "/",
+				"defaultValue": "/",
 				"space": true
 			},
 			{
 				"type": "check",
 				"value": "span",
-				"default": "",
+				"defaultValue": "",
 				"space": true
 			},
 			{
@@ -156,8 +156,24 @@
 			},
 			{
 				"type": "select",
-				"default": "rem",
+				"defaultValue": "rem",
 				"values": [
+					"",
+					"rem",
+					"px",
+					"%"
+				],
+				"space": true
+			},
+			{
+				"type": "number",
+				"min": 0
+			},
+			{
+				"type": "select",
+				"defaultValue": "",
+				"values": [
+					"",
 					"rem",
 					"px",
 					"%"
@@ -173,7 +189,7 @@
 			{
 				"type": "check",
 				"value": "span",
-				"default": "",
+				"defaultValue": "",
 				"space": true
 			},
 			{
@@ -184,13 +200,13 @@
 			{
 				"type": "disabled",
 				"value": "/",
-				"default": "/",
+				"defaultValue": "/",
 				"space": true
 			},
 			{
 				"type": "check",
 				"value": "span",
-				"default": "",
+				"defaultValue": "",
 				"space": true
 			},
 			{
@@ -234,7 +250,7 @@
 			},
 			{
 				"type": "select",
-				"default": "rem",
+				"defaultValue": "rem",
 				"values": [
 					"rem",
 					"px",
@@ -289,7 +305,7 @@
 			},
 			{
 				"type": "select",
-				"default": "rem",
+				"defaultValue": "rem",
 				"values": [
 					"rem",
 					"px",
@@ -319,7 +335,7 @@
 			},
 			{
 				"type": "select",
-				"default": "rem",
+				"defaultValue": "rem",
 				"values": [
 					"rem",
 					"px",
@@ -339,7 +355,7 @@
 			},
 			{
 				"type": "select",
-				"default": "rem",
+				"defaultValue": "rem",
 				"values": [
 					"rem",
 					"px",

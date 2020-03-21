@@ -24,12 +24,12 @@ const InputMulti = ({ section, schema, disabled }) => {
 			const newValue = {
 				value:
 					entry?.values[inputIndex].value
-					?? input.default
+					?? input.defaultValue
 					?? ''
 			};
 
-			if (input.default === '/') {
-				newValue.default = '/';
+			if (input.defaultValue === '/') {
+				newValue.defaultValue = '/';
 				newValue.value = '/';
 			}
 
@@ -58,7 +58,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 		});
 
 		const oneSidedGridProperty =
-			values[2]?.default === '/'
+			values[2]?.defaultValue === '/'
 			&& (
 				values.slice(0, 2).map(({ value }) => value).join('') === ''
 				|| values.slice(3,).map(({ value }) => value).join('') === ''
@@ -66,7 +66,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 
 		if (oneSidedGridProperty) {
 			values[2].value = '';
-			values[2].default = '/';
+			values[2].defaultValue = '/';
 		}
 
 		const id = entry?.id;
@@ -158,7 +158,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 			className={ stylesheet.disabled }
 			disabled
 			type='text'
-			value={ input.default }
+			value={ input.defaultValue }
 		/>
 	);
 
@@ -167,7 +167,9 @@ const InputMulti = ({ section, schema, disabled }) => {
 			<div className={ stylesheet.inputWrapper }>
 				{ inputs.map((input, index) => {
 
-					const value = entry?.values[index].value;
+					const value =
+						entry?.values[index].value
+						?? propertySchema[schema].inputs[index].defaultValue;
 					const id = index === 0 ? `${ section }-${ schema }` : null;
 
 					const options = {
