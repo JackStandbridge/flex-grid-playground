@@ -51,10 +51,11 @@ const ControlGroup = (
 								ancestorDisabled={ disabled }
 								collapsed={ true }
 							>
-								{ disabled => (
+								{ childDisabled => (
 									<InputRadio
 										{ ...props }
-										disabled={ disabled }
+										ancestorDisabled={ disabled }
+										disabled={ childDisabled }
 									/>
 								) }
 							</Accordion>

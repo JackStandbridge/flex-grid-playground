@@ -192,11 +192,6 @@ const InputMulti = ({ section, schema, disabled }) => {
 			{ inputs.length < 2 &&
 				<hr className={ stylesheet.endHr } />
 			}
-			<Help
-				disabled={ disabled }
-				fieldset={ inputs.length > 2 }
-				content={ propertySchema[schema]?.description }
-			/>
 		</>
 	);
 
@@ -210,7 +205,16 @@ const InputMulti = ({ section, schema, disabled }) => {
 			animateIn={ false }
 			animateOut={ false }
 		>
-			{ renderContents }
+			{ childDisabled => (
+				<>
+					{ renderContents(childDisabled) }
+					<Help
+						disabled={ disabled }
+						fieldset={ true }
+						content={ propertySchema[schema]?.description }
+					/>
+				</>
+			) }
 		</Accordion>
 	);
 
@@ -222,6 +226,11 @@ const InputMulti = ({ section, schema, disabled }) => {
 				</label>
 				<hr className={ stylesheet.midHr } />
 				{ renderContents(disabled) }
+				<Help
+					disabled={ disabled }
+					fieldset={ false }
+					content={ propertySchema[schema]?.description }
+				/>
 			</span>
 		</>
 	);

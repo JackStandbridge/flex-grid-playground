@@ -6,7 +6,7 @@ import stylesheet from './InputRadio.module.scss';
 import { setStyle } from '../../data/reducer';
 import { getEntry } from '../../data/utilities';
 
-const InputRadio = ({ section, schema, disabled }) => {
+const InputRadio = ({ section, schema, disabled, ancestorDisabled }) => {
 
 	const page = useSelector(({ page }) => page);
 	const { name, values, [page]: pageValues = [] } = propertySchema[schema];
@@ -40,7 +40,7 @@ const InputRadio = ({ section, schema, disabled }) => {
 	return (
 		<>
 			<Help
-				disabled={ disabled }
+				disabled={ ancestorDisabled }
 				fieldset={ true }
 				content={ propertySchema[schema]?.description }
 			/>
