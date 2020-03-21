@@ -48,8 +48,8 @@ const InputFlexi = ({ section, schema, disabled }) => {
 			newValues.pop();
 			newValues.pop();
 		} else {
-			newValues.push({ value: '1', type: 'number' });
-			newValues.push({ value: 'fr', type: 'option', space: true });
+			newValues.push({ value: '1', type: 'number', space: true });
+			newValues.push({ value: 'fr', type: 'option' });
 		}
 
 		const newEntry = {

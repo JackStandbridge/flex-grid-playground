@@ -1,6 +1,6 @@
 import propertySchema from '../data/propertySchema.json';
 
-const spacer = ({ value, space }) => `${ value }${ space ? ' ' : '' }`;
+const spacer = ({ value, space }) => `${ value !== '' && space ? ' ' : '' }${ value }`;
 
 const join = values =>
 	values

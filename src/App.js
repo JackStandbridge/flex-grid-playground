@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import DragResize from './components/DragResize';
 import Browser from './components/Browser';
 import Controls from './components/Controls';
 import Output from './components/Output';
@@ -21,8 +22,9 @@ const App = () => {
 		}
 	}, [dispatch]);
 
+	useEffect(setBrowser, []);
+
 	useEffect(() => {
-		setBrowser();
 
 		document.addEventListener('keydown', shiftListener);
 		document.addEventListener('keyup', shiftListener);
@@ -41,11 +43,14 @@ const App = () => {
 		const iconPath = icon.getAttribute('href');
 		icon.href = iconPath.replace(/\w+(?=.ico)/, page);
 	}, [page, title]);
+
 	return (
 		<main className={ stylesheet.app }>
-			<Browser />
-			<Controls />
-			<Output />
+			<DragResize initial={ [2, 1, 1] }>
+				<Browser />
+				<Controls />
+				<Output />
+			</DragResize>
 		</main>
 	);
 };

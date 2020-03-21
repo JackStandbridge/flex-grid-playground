@@ -66,17 +66,17 @@
 		"inputs": [
 			{
 				"type": "number",
-				"min": 0,
-				"space": true
-			},
-			{
-				"type": "number",
-				"min": 0,
-				"space": true
-			},
-			{
-				"type": "number",
 				"min": 0
+			},
+			{
+				"type": "number",
+				"min": 0,
+				"space": true
+			},
+			{
+				"type": "number",
+				"min": 0,
+				"space": true
 			},
 			{
 				"type": "select",
@@ -119,8 +119,7 @@
 			{
 				"type": "check",
 				"value": "span",
-				"defaultValue": "",
-				"space": true
+				"defaultValue": ""
 			},
 			{
 				"type": "number",
@@ -141,6 +140,7 @@
 			},
 			{
 				"type": "number",
+				"space": true,
 				"max": 99
 			}
 		],
@@ -156,22 +156,22 @@
 			},
 			{
 				"type": "select",
-				"defaultValue": "rem",
+				"defaultValue": "",
 				"values": [
 					"",
 					"rem",
 					"px",
 					"%"
-				],
-				"space": true
+				]
 			},
 			{
 				"type": "number",
+				"space": true,
 				"min": 0
 			},
 			{
 				"type": "select",
-				"defaultValue": "",
+				"defaultValue": "rem",
 				"values": [
 					"",
 					"rem",
@@ -189,8 +189,7 @@
 			{
 				"type": "check",
 				"value": "span",
-				"defaultValue": "",
-				"space": true
+				"defaultValue": ""
 			},
 			{
 				"type": "number",
@@ -211,7 +210,8 @@
 			},
 			{
 				"type": "number",
-				"max": 99
+				"max": 99,
+				"space": true
 			}
 		],
 		"description": "This is the description for gridRow"

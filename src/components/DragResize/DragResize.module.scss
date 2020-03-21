@@ -1,0 +1,13 @@
+.divider {
+	min-width: 1rem;
+	min-height: 1rem;
+	cursor: col-resize;
+	@media (max-width: 1200px) {
+		cursor: row-resize;
+	}
+}
+
+.section {
+	display: flex;
+	min-width: 300px;
+}

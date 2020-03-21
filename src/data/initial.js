@@ -67,16 +67,16 @@ const initial = {
 			id: 4,
 			schema: 'gridTemplateColumns',
 			values: [
-				{ value: '1', type: 'number' },
-				{ value: 'fr', type: 'option', space: true },
+				{ value: '1', type: 'number', space: true },
+				{ value: 'fr', type: 'option' },
 			],
 		},
 		5: {
 			id: 5,
 			schema: 'gridTemplateRows',
 			values: [
-				{ value: '1', type: 'number' },
-				{ value: 'fr', type: 'option', space: true },
+				{ value: '1', type: 'number', space: true },
+				{ value: 'fr', type: 'option' },
 			],
 		},
 	},
