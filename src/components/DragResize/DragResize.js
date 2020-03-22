@@ -3,11 +3,13 @@ import stylesheet from './DragResize.module.scss';
 
 const appRoot = document.getElementById('app-root');
 
-const DragControl = ({ children, initial }) => {
+const DragControl = ({ children, ratio }) => {
 
-	const [widths, setWidths] = useState(initial.map(width => {
-		return width / initial.reduce((a, b) => a + b, 0) * 100;
-	}));
+	const initialWidths = ratio.map(width => {
+		return width / ratio.reduce((a, b) => a + b, 0) * 100;
+	});
+
+	const [widths, setWidths] = useState(initialWidths);
 
 	const [selectedDragPoint, setSelectedDragPoint] = useState(null);
 	const [currentValue, setCurrentValue] = useState(null);
@@ -69,12 +71,17 @@ const DragControl = ({ children, initial }) => {
 
 	};
 
+	const handleDoubleClick = () => {
+		setWidths(initialWidths);
+	}
+
 	return children.reduce((acc, child, i) => {
 		if (i) {
 			acc.push(
 				<div
 					key={ -i }
 					onMouseDown={ () => startTracking(i - 1) }
+					onDoubleClick={ handleDoubleClick }
 					className={ stylesheet.divider }
 				/>
 			)

@@ -1,16 +1,28 @@
 .divider {
 	min-width: 1rem;
 	min-height: 1rem;
-	cursor: col-resize;
-	@media (max-width: 1200px) {
-		cursor: row-resize;
+	position: relative;
+
+	@media (min-width: 1201px) {
+		cursor: col-resize;
+		&::after {
+			content: '||';
+			letter-spacing: -1px;
+			font-weight: 200;
+			color: #777;
+			font-size: 1.4rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 }
 
 .section {
 	display: flex;
-	min-width: 300px;
-	@media (max-width: 1200px) {
-		min-width: 100%;
+	min-width: 100%;
+	@media (min-width: 1201px) {
+		min-width: 300px;
 	}
 }

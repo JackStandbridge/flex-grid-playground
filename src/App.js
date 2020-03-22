@@ -46,7 +46,7 @@ const App = () => {
 
 	return (
 		<main className={ stylesheet.app }>
-			<DragResize initial={ [2, 1, 1] }>
+			<DragResize ratio={ [2, 1, 1] }>
 				<Browser />
 				<Controls />
 				<Output />
