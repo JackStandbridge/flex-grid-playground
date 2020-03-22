@@ -264,10 +264,9 @@
 		"name": "justify-content",
 		"type": "radio",
 		"values": [
-			"stretch",
-			"center",
 			"flex-start",
 			"flex-end",
+			"center",
 			"space-between",
 			"space-around",
 			"space-evenly"

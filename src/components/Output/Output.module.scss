@@ -1,16 +1,15 @@
 .output {
 	display: flex;
-	align-items: center;
 	min-width: 300px;
 	width: 100%;
 	flex-direction: column;
-	tab-size: 2;
-	-moz-tab-size: 2;
-	border-radius: 7px;
+	height: calc(100vh - 4rem);
 	box-shadow: 0 0 25px #aaa;
+	border-radius: 0.5rem;
 	overflow: hidden;
 	transition: min-width 0.2s, flex-grow 0.2s;
-	max-height: calc(100vh - 4rem);
+	tab-size: 2;
+	-moz-tab-size: 2;
 
 	@media (max-width: 1200px) {
 		max-height: unset;
@@ -21,8 +20,14 @@
 	margin: 0;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	display: flex;
-	min-width: 100%;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	font-size: 1rem;
+	letter-spacing: 1px;
+	height: 42px;
+	padding-top: 0.9rem;
+	font-weight: normal;
+	text-align: center;
 }
 
 .scrollContainer {
@@ -73,59 +78,5 @@
 	display: block;
 	&:last-of-type {
 		margin-bottom: 0.2rem;
-	}
-}
-
-.collapsed {
-	@media (min-width: 1201px) {
-		flex: 0;
-		min-width: 42px;
-	}
-}
-
-.hidden {
-	@media(min-width: 1201px) {
-		justify-content: center;
-
-		.collapse {
-			border-radius: 7px;
-			padding-top: 0;
-		}
-
-		.title {
-			min-width: calc(100vh - 4rem);
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			box-sizing: border-box;
-			transform: rotate(-90deg);
-			box-shadow: 0 0 60px 40px #fafafa;
-		}
-		& > *:not(.title) {
-			display: none;
-		}
-	}
-}
-
-.collapse {
-	@media (min-width: 1201px) {
-		cursor: pointer;
-	}
-	border: none;
-	background: none;
-	font-size: 1rem;
-	padding-top: 0.5rem;
-	letter-spacing: 1px;
-	width: 100%;
-	height: 100%;
-	display: block;
-	height: 42px;
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
-	&:focus,
-	&:active,
-	&:hover {
-		box-shadow: none;
-		background: #fafafa;
 	}
 }

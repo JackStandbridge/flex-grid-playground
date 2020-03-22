@@ -13,7 +13,7 @@ const DragControl = ({ children, initial }) => {
 	const [currentValue, setCurrentValue] = useState(null);
 
 	useEffect(() => {
-		if (selectedDragPoint !== null) {
+		if (selectedDragPoint !== null && window.innerWidth >= 1200) {
 
 			setWidths(widths => {
 
@@ -29,8 +29,8 @@ const DragControl = ({ children, initial }) => {
 				newWidths[selectedDragPoint] += percentageChange;
 				newWidths[selectedDragPoint + 1] -= percentageChange;
 
-				let exceededBounds = newWidths.reduce((bool, width) => {
-					return width / 100 * appRoot.clientWidth < 300 || bool
+				let exceededBounds = newWidths.reduce((bool, width, i) => {
+					return (width / 100 * appRoot.clientWidth < 300 && width < widths[i]) || bool
 				}, false);
 
 				return exceededBounds ? widths : newWidths;
@@ -50,6 +50,7 @@ const DragControl = ({ children, initial }) => {
 
 	const startTracking = index => {
 		appRoot.style.userSelect = 'none';
+		appRoot.style.cursor = 'col-resize';
 
 		setSelectedDragPoint(index);
 		appRoot.addEventListener('mousemove', trackCursor);
@@ -58,11 +59,14 @@ const DragControl = ({ children, initial }) => {
 
 	const endTracking = () => {
 		appRoot.style.userSelect = '';
+		appRoot.style.cursor = '';
+
 		setSelectedDragPoint(null);
 		setCurrentValue(null);
 
 		appRoot.removeEventListener('mousemove', trackCursor);
 		document.removeEventListener('mouseup', endTracking);
+
 	};
 
 	return children.reduce((acc, child, i) => {
@@ -76,11 +80,13 @@ const DragControl = ({ children, initial }) => {
 			)
 		}
 
+		const width = `calc(${ widths[i] }% - ${ (children.length - 1) * 16 / children.length }px)`;
+
 		acc.push(
 			<div
 				key={ i }
 				className={ stylesheet.section }
-				style={ { width: `${ widths[i] }%` } }
+				style={ { width } }
 			>
 				{ child }
 			</div>

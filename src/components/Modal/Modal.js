@@ -24,6 +24,7 @@ const Modal = ({ content, display, handleDismiss }) => {
 		if (activeElement) {
 			activeElement.focus();
 			activeElement.removeEventListener('keydown', handleKey);
+			setActiveElement(null);
 		}
 
 		html.current.style.overflow = '';

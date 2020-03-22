@@ -77,10 +77,11 @@ const ControlGroup = (
 								ancestorDisabled={ disabled }
 								collapsed={ true }
 							>
-								{ disabled => (
+								{ childDisabled => (
 									<InputFlexi
 										{ ...props }
-										disabled={ disabled }
+										disabled={ childDisabled }
+										ancestorDisabled={ disabled }
 									/>
 								) }
 							</Accordion>

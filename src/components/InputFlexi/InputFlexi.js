@@ -6,7 +6,7 @@ import { getEntry } from '../../data/utilities';
 import stylesheet from './InputFlexi.module.scss';
 import Help from '../Help';
 
-const InputFlexi = ({ section, schema, disabled }) => {
+const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 
 	const { units } = propertySchema[schema];
 
@@ -125,6 +125,7 @@ const InputFlexi = ({ section, schema, disabled }) => {
 	return (
 		<>
 			<Help
+				disabled={ ancestorDisabled }
 				fieldset={ true }
 				content={ propertySchema[schema]?.description }
 			/>

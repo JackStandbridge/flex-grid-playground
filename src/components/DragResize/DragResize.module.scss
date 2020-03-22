@@ -10,4 +10,7 @@
 .section {
 	display: flex;
 	min-width: 300px;
+	@media (max-width: 1200px) {
+		min-width: 100%;
+	}
 }
