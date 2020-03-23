@@ -27,8 +27,8 @@
 
 	@for $i from 1 through 30 {
 		&:nth-child(#{$i}) {
-			border: 3px solid hsl($i * 18, 40%, 60%);
-			background: hsl($i * 18, 60%, 90%);
+			border: 3px solid hsl($i * 24, 40%, 60%);
+			background: hsl($i * 24, 60%, 90%);
 			&::after {
 				content: '#{$i}';
 			}

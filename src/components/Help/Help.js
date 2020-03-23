@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import stylesheet from './Help.module.scss';
 
-const Help = ({ content, fieldset, disabled }) => {
+const Help = ({ schema, fieldset, disabled }) => {
 
 	const [display, setDisplay] = useState(false);
 	const handleToggle = () => {
@@ -14,7 +14,7 @@ const Help = ({ content, fieldset, disabled }) => {
 		fieldset ? stylesheet.fieldset : stylesheet.basic
 	].filter(name => name).join(' ');
 
-	return !content ? null : (
+	return !schema ? null : (
 		<div className={ containerClasses }>
 
 			<button
@@ -26,7 +26,8 @@ const Help = ({ content, fieldset, disabled }) => {
 			>?</button>
 
 			<Modal
-				content={ content }
+				title={ schema.name }
+				content={ schema.description }
 				handleDismiss={ handleToggle }
 				display={ display }
 			/>

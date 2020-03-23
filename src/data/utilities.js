@@ -4,10 +4,10 @@ const spacer = ({ value, space }) => `${ value !== '' && space ? ' ' : '' }${ va
 
 const join = values =>
 	values
-	.map(spacer)
-	.join('')
-	.trim()
-	.replace(/\s+/g, ' ');
+		.map(spacer)
+		.join('')
+		.trim()
+		.replace(/\s+/g, ' ');
 
 const filterInvalidStyles = (prop, val) => {
 	// transforms invalid styles into null
@@ -138,4 +138,27 @@ export const copiableText = ({ name, entries }) => {
 export const allCopiableText = styles => {
 	const text = styles.map(copiableText);
 	return text.join('\r\n\r\n')
+}
+
+let index = 0;
+
+export const formatMarkDown = (text, stylesheet) => {
+	const backTicks = (_, contents) => {
+		index++
+		const classNames = `${ stylesheet.code } ${ stylesheet[`code--${ index % 30 }`] }`;
+		return `<code class='${ classNames }'>${ contents }</code>`;
+	};
+
+	const strong = (_, contents) => {
+		return `<strong>${ contents }</strong>`
+	};
+
+	const em = (_, contents) => {
+		return `<em>${ contents }</em>`;
+	}
+
+	return text
+		.replace(/__(.*?)__/g, em)
+		.replace(/\*\*(.*?)\*\*/g, strong)
+		.replace(/`(.*?)`/g, backTicks)
 }

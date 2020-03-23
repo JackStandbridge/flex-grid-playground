@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { formatMarkDown } from '../../data/utilities';
 import stylesheet from './Modal.module.scss';
 
-const Modal = ({ content, display, handleDismiss }) => {
+const Modal = ({ title, content, display, handleDismiss }) => {
 
 	const modalRoot = useRef(document.getElementById('modal-root'));
 	const html = useRef(document.querySelector('html'));
@@ -58,14 +59,27 @@ const Modal = ({ content, display, handleDismiss }) => {
 		>
 			<section
 				className={ stylesheet.window }
-				>
+			>
 				<button
 					ref={ buttonRef }
 					tabIndex={ 0 }
 					className={ stylesheet.close }
 					onClick={ handleDismiss }
 				/>
-				{ content }
+
+				<h1 className={ stylesheet.title }>{ title.replace(/-/g, ' ') }</h1>
+
+				{
+					content.map((p, i) => (
+						<p
+							dangerouslySetInnerHTML={
+								{ __html: formatMarkDown(p, stylesheet) }
+							}
+							key={ i }
+						/>
+					))
+				}
+
 			</section>
 		</div>,
 		modalRoot.current

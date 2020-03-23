@@ -16,8 +16,15 @@
 	border-radius: 5px;
 	box-shadow: 0 0 55px rgba(0, 0, 0, 0.2);
 	position: relative;
-	max-width: 400px;
+	max-width: 600px;
 	line-height: 1.8;
+	margin: 1.5rem;
+	text-align: justify;
+
+	@media (max-width: 400px) {
+		margin: 1rem;
+		padding: 2rem 1rem;
+	}
 }
 
 .close {
@@ -63,4 +70,23 @@
 	&:focus {
 		background: #eee;
 	}
+}
+
+.title {
+	text-transform: capitalize;
+	font-weight: normal;
+	margin-top: 0;
+	font-family: Menlo, monospace;
+}
+
+.code {
+	@for $i from 0 through 29 {
+		&--#{$i} {
+			border: 1px solid hsl($i * 12, 40%, 60%);
+			background: hsl($i * 12, 60%, 90%);
+		}
+	}
+	border-radius: 3px;
+	padding: 0 5px;
+	white-space: break-spaces;
 }

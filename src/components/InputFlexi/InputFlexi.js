@@ -127,7 +127,7 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 			<Help
 				disabled={ ancestorDisabled }
 				fieldset={ true }
-				content={ propertySchema[schema]?.description }
+				schema={ propertySchema[schema] }
 			/>
 			<div className={ stylesheet.inputsContainer }>
 

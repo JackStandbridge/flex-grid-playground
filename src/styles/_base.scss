@@ -35,3 +35,9 @@ select {
 .no-overflow {
 	overflow: hidden;
 }
+
+pre,
+code {
+	font-family: Menlo, monospace;
+	font-size: 1em;
+}

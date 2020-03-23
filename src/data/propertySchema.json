@@ -11,7 +11,9 @@
 			"space-around",
 			"space-evenly"
 		],
-		"description": "Positions the 'tracks' that flex children run along the axis of the flex direction."
+		"description": [
+			"The `align-content` property is used to position the lines of flex items. Unlike `align-items`, which can be used with flexbox to position the items within their tracks, this property is for positioning the tracks themselves."
+		]
 	},
 	"alignItems": {
 		"name": "align-items",
@@ -29,7 +31,12 @@
 			"start",
 			"end"
 		],
-		"description": "Align items description"
+		"description": [
+			"In flexbox, the `align-items` property allows positioning of items along the secondary axis of a flex container. This means that when the container has `flex-direction: row`, or no `flex-direction` set, `align-items` positions items vertically. If the container has `flex-direction: column`, this property will position items horizontally.",
+			"The values `flex-start` and `flex-end` apply only to an element with `display: flex`.",
+			"In grid, the `align-items` property positions the direct children of a grid container vertically within the grid area.",
+			"The values `start` and `end` only apply to an element with `display: grid`."
+		]
 	},
 	"alignSelf": {
 		"name": "align-self",
@@ -46,7 +53,10 @@
 			"start",
 			"end"
 		],
-		"description": "Positions an individual item on the axis of the flex direction, or the horizontal axis in grid."
+		"description": [
+			"In flexbox, the `align-self` property can be applied to a flex item to position it on the secondary axis of the flex container. This means that when the container has `flex-direction: row`, or no `flex-direction` set, `align-self` positions the item vertically. If the container has `flex-direction: column`, this property will position the item horizontally.",
+			"In grid, the `align-self` property can be applied to a grid item to position it vertically within its grid areea, overriding any vertical positioning that comes from the parent's `align-items` property."
+		]
 	},
 	"boxSizing": {
 		"name": "box-sizing",
@@ -55,7 +65,11 @@
 			"content-box",
 			"border-box"
 		],
-		"description": "Determines whether padding and border are included in height and width calculations."
+		"description": [
+			"The `box-sizing` property determines how `height` and `width` are calculated.",
+			"If the value is `content-box` the `height` and `width` are applied to the content of the element only. The `padding` and `border` applied to the element will be in addition to the size of the content. This means an element with `width: 100%` that also contains `padding` or `border` will exceed 100% width.",
+			"If the value is `border-box`, the `padding` and `border` of the element will be included in the calculation, meaning that something with `width: 100%` will not exceed 100% width."
+		]
 	},
 	"display": {
 		"type": "string"
@@ -89,7 +103,13 @@
 				]
 			}
 		],
-		"description": "Flex description"
+		"description": [
+			"The `flex` property is a shorthand for `flex-grow`, `flex-shrink` and `flex-basis`. **For most purposes a single number unitless number should suffice.**",
+			"The shorthand consists of those three properties in order. For example, a `flex` value of `1 1 25%` is equal to `flex-grow: 1`, `flex-shrink: 1` and `flex-basis: 25%`. Properties can be omitted, so `flex: 1` is equal to `flex: 1 1 0%`, and `flex: 0 25%` is equivalent to `flex: 0 1 25%`.",
+			"The `flex-grow` property determines what proportion of the excess available space within the flex container should be assigned to this element. A higher value for this property means the element grows more readily.",
+			"The `flex-shrink` property determines what proportion of the currently used space this element should sacrifice as the container shrinks. A higher value for this property means the element shrinks more readily.",
+			"The `flex-basis` property determines the initial size of a flex item before any other calculations for `flex-grow` or `flex-shrink` are applied. Note that the content of an element can force it to exceed this size. A higher value for this property means the element starts larger."
+		]
 	},
 	"flexDirection": {
 		"name": "flex-direction",
@@ -100,7 +120,9 @@
 			"row-reverse",
 			"column-reverse"
 		],
-		"description": "Arranges elements in columns or rows, optionally reversing their order."
+		"description": [
+			"The `flex-direction` property determines whether the flex items are placed next to each other or on top of each other. A value of `row` or no value will place items next to each other from left to right. A value of `column` will stack items on top of each other. Both `row-reverse` and `column-reverse` are the same as their counterparts, but also reverse the order of the items."
+		]
 	},
 	"flexWrap": {
 		"name": "flex-wrap",
@@ -110,7 +132,9 @@
 			"wrap",
 			"wrap-reverse"
 		],
-		"description": "Flex wrap description"
+		"description": [
+			"The `flex-wrap` property determines whether flex items will wrap onto the next line when there are too many of them to fit within the flex container. The default value is `nowrap`, which does not let items wrap. A value of `wrap` will make subsequent items break onto a new line. A value of `wrap-reverse` will create a new line before the current line for the subsequent items to wrap onto."
+		]
 	},
 	"gridColumn": {
 		"name": "grid-column",
@@ -144,7 +168,10 @@
 				"max": 99
 			}
 		],
-		"description": "This is the description for gridColumn"
+		"description": [
+			"The `grid-column` property is used to place a grid item into a grid column that can be defined by `grid-template-columns`. If `grid-template-columns: 1fr 1fr 1fr` is set on the grid container, then 4 grid lines are created, as these lines divide the three columns. Using the numbers of these grid lines we can place an item in a grid column. The lines start at 1, so if we wanted a grid item to fall in the first column, we can set its value to `1 / 2`. This means that it will start at line 1 and end at line 2. If we want it to fall in column 2 and 3, it must start at line 2 and finish at line 4, so the value should be `2 / 4`. A single value specifies where the item should start, and it will default to taking up one column",
+			"Either the starting line number or the ending line number can be replaced with a `span X` value, where X is a number of columns to span. If a grid item needs to span two columns and start at grid line 2, the value should be `2 / span 2`. This is equivalent to `2 / 4`. This is useful for legibility and because we can use `span X` as a single value, meaning that `span 2` will leave the grid item where it is in the flow of the document, but it will take up two grid columns."
+		]
 	},
 	"gridGap": {
 		"name": "grid-gap",
@@ -180,7 +207,10 @@
 				]
 			}
 		],
-		"description": "This is the description for gridGap"
+		"description": [
+			"The `grid-gap` property is a shorthand for `grid-row-gap` and `grid-column-gap`. Setting a single value creates a space between grid items equal to that value. Setting two values will first affect the horizontal gap, then the vertical gap. The `grid-gap` property differs from setting the margin on the grid items because it is not applied at the edges of the container, so items will not be pushed away from the edges.",
+			"__NB: `grid-gap` is being replaced by `gap`, but the new property name is not yet supported in all browsers.__"
+		]
 	},
 	"gridRow": {
 		"name": "grid-row",
@@ -214,7 +244,10 @@
 				"space": true
 			}
 		],
-		"description": "This is the description for gridRow"
+		"description": [
+			"The `grid-row` property is used to place a grid item into a grid row that can be defined by `grid-template-rows`. If `grid-template-rows: 1fr 1fr 1fr` is set on the grid container, then 4 grid lines are created, as these lines divide the three rows. Using the numbers of these grid lines we can place an item in a grid row. The lines start at 1, so if we wanted a grid item to fall in the first row, we can set its value to `1 / 2`. This means that it will start at line 1 and end at line 2. If we want it to fall in row 2 and 3, it must start at line 2 and finish at line 4, so the value should be `2 / 4`. A single value specifies where the item should start, and it will default to taking up one row",
+			"Either the starting line number or the ending line number can be replaced with a `span X` value, where X is a number of rows to span. If a grid item needs to span two rows and start at grid line 2, the value should be `2 / span 2`. This is equivalent to `2 / 4`. This is useful for legibility and because we can use `span X` as a single value, meaning that `span 2` will leave the grid item where it is in the flow of the document, but it will take up two grid rows."
+		]
 	},
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
@@ -226,7 +259,11 @@
 			"rem",
 			"px"
 		],
-		"description": "This is the description for gridTemplateColumns"
+		"description": [
+			"The `grid-template-columns` property allows you to create a blueprint for the columns in a grid. The HTML elements that are a direct children of the container will slot into this grid. Depending on how many values you define, more or fewer columns can be created. Each value determines how much space that grid column takes up.",
+			"A unique unit can be used for grid templates: `fr`. This stands for 'fraction' and divides remaining space based on the ratio created by the fractions.",
+			"For example, defining the values `50px 2fr 1fr` will make the first grid column 50 pixels wide, and then divide the remaining space between the second and third column in a 2:1 ratio."
+		]
 	},
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
@@ -238,7 +275,12 @@
 			"rem",
 			"px"
 		],
-		"description": "This is the description for gridTemplateRows"
+		"description": [
+			"The `grid-template-rows` property allows you to create a blueprint for the rows in a grid. The HTML elements that are a direct children of the container will slot into this grid. Depending on how many values you define, more or fewer columns can be created. Each value determines how much space that grid row takes up.",
+			"If there are too many items to fit into the defined grid rows and grid columns, extra grid rows will be created that will size themselves based on the size of their content.",
+			"A unique unit can be used for grid templates: `fr`. This stands for 'fraction' and divides remaining space based on the ratio created by the fractions.",
+			"For example, defining the values `50px 2fr 1fr` will make the first grid row 50 pixels high, and then divide the remaining space between the second and third column in a 2:1 ratio. If the height of the parent is not set, the size of the fractions will be based on the height of the children."
+		]
 	},
 	"height": {
 		"name": "height",
@@ -258,7 +300,9 @@
 				]
 			}
 		],
-		"description": "This is the description for height"
+		"description": [
+			"The `height` property controls the height of an element."
+		]
 	},
 	"justifyContent": {
 		"name": "justify-content",
@@ -271,7 +315,13 @@
 			"space-around",
 			"space-evenly"
 		],
-		"description": "This is the description for justifyContent"
+		"description": [
+			"The `justify-content` property allows positioning of items along the main axis of a flex container. That means that if the container has `flex-direction: row`, or no `flex-direction` set, `justify-content` positions items horizontally. If the container has `flex-direction: column`, this property will position items vertically.",
+			"To space elements neatly, values such as `space-between`, `space-around` and `space-evenly` are often used.",
+			"- The `space-between` value distributes extra space between the items in the container.",
+			"- The `space-around` value puts an equal amount of space around each of the items.",
+			"- The `space-evenly` value is the same as the `space-around` value, but will ensure that the amount of space at the edges of the container are the same size as the spaces between each item."
+		]
 	},
 	"justifyItems": {
 		"name": "justify-items",
@@ -282,7 +332,9 @@
 			"start",
 			"end"
 		],
-		"description": "This is the description for justifyItems"
+		"description": [
+			"The `justify-items` property positions the direct children of a grid container horizontally within the grid area."
+		]
 	},
 	"justifySelf": {
 		"name": "justify-self",
@@ -293,7 +345,9 @@
 			"start",
 			"end"
 		],
-		"description": "This is the description for justifySelf"
+		"description": [
+			"The `justify-self` property can be applied to a grid item to position it horizontally within its grid area, overriding any horizontal positioning that comes from the parent's `justify-items` property."
+		]
 	},
 	"margin": {
 		"name": "margin",
@@ -312,7 +366,9 @@
 				]
 			}
 		],
-		"description": "This is the description for margin"
+		"description": [
+			"The `margin` property creates space around an element that pushes other elements away."
+		]
 	},
 	"order": {
 		"name": "order",
@@ -322,7 +378,10 @@
 				"type": "number"
 			}
 		],
-		"description": "This is the description for order"
+		"description": [
+			"The `order` property explicitly defines the order or a grid item or flex item relative to other items in the same container. All items default to having an order of `0`, so an order of 1 will put an item at the end of the container, and an order of `-1` will put it at the beginning.",
+			"This property can be set to any positive or negative number."
+		]
 	},
 	"padding": {
 		"name": "padding",
@@ -342,7 +401,10 @@
 				]
 			}
 		],
-		"description": "This is the description for padding"
+		"description": [
+			"The `padding` property creates internal space within an element, pushing its contents away from the edge. As such, negative values are not valid.",
+			"In this tool, padding is shown as a coloured area inside the border. The contents of the element is depicted with a white background containing a number signifying that element's index within the parent."
+		]
 	},
 	"width": {
 		"name": "width",
@@ -362,6 +424,8 @@
 				]
 			}
 		],
-		"description": "This is the description for width"
+		"description": [
+			"The `width` property controls the width of an element."
+		]
 	}
 }
