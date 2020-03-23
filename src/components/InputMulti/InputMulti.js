@@ -89,6 +89,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 
 		return (
 			<input
+				aria-label={ `${ schema } value ${ index + 1 }`}
 				id={ id }
 				key={ index }
 				onChange={ e => handleChange(e.currentTarget.value, index) }
@@ -104,6 +105,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 
 	const renderSelect = ({ input, index, disabled, value }) => (
 		<select
+			aria-label={ `${ schema } units ${ index + 1 }`}
 			key={ index }
 			onChange={ e => handleChange(e.currentTarget.value, index) }
 			disabled={ disabled }

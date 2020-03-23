@@ -1,5 +1,9 @@
 .container {
 	width: 1.3rem;
+	@media (max-width: 850px) {
+		width: 48px;
+		height: 48px;
+	}
 	background: white;
 	display: grid;
 	place-items: center;
@@ -14,6 +18,12 @@
 	border: 2px solid transparent;
 	padding: 0;
 	text-align: end;
+	@media (max-width: 850px) {
+		width: 48px;
+		height: 48px;
+		text-align: center;
+		font-size: 1rem;
+	}
 
 	&:hover,
 	&:active,
@@ -34,12 +44,17 @@
 	right: -2px;
 	padding-right: 2px;
 	height: 2.1rem;
+	@media (max-width: 850px) {
+		height: 48px;
+		right: 0;
+	}
 }
 
 .basic {
 	transform: translateX(-2px);
 
-	&, .button {
-		background: transparent
+	&,
+	.button {
+		background: transparent;
 	}
 }

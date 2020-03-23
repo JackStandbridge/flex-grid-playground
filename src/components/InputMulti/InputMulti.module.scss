@@ -85,6 +85,9 @@
 	align-items: stretch;
 	justify-content: space-between;
 	border: 1px solid #ddd;
+	@media (max-width: 850px) {
+		height: 48px;
+	}
 }
 
 .midHr {

@@ -84,14 +84,21 @@
 .inputsContainer {
 	display: flex;
 	flex-wrap: wrap;
+	box-sizing: border-box;
 	padding-right: 1.5rem;
 	position: relative;
 	min-height: 1.7rem;
+	@media (max-width: 850px) {
+		height: 48px;
+	}
 	align-items: stretch;
 }
 
 .inputContainer {
 	height: 1.7rem;
+	@media (max-width: 850px) {
+		height: 48px;
+	}
 	display: flex;
 	margin-right: 0.3rem;
 	margin-bottom: 0.3rem;

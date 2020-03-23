@@ -68,6 +68,7 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 	const renderInput = (value, index) => {
 		return (
 			<input
+				aria-label={ `${ schema } number ${ index + 1 }` }
 				disabled={ disabled }
 				key={ index }
 				value={ value }
@@ -81,6 +82,7 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 	const renderSelect = (value, index) => {
 		return (
 			<select
+				aria-label={ `${ schema } unit ${ index + 1 }`}
 				className={ stylesheet.select }
 				disabled={ disabled }
 				key={ index }
@@ -135,6 +137,7 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 
 				<div className={ stylesheet.buttonContainer }>
 					<button
+						aria-label={ shiftPressed ? 'remove' : 'add' }
 						className={ `${ stylesheet.add } ${ shiftPressed ? stylesheet.shift : '' }` }
 						onClick={ handleClick }
 						disabled={ disabled }
