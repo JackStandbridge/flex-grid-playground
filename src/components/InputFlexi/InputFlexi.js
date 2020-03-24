@@ -82,7 +82,7 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 	const renderSelect = (value, index) => {
 		return (
 			<select
-				aria-label={ `${ schema } unit ${ index + 1 }`}
+				aria-label={ `${ schema } unit ${ index + 1 }` }
 				className={ stylesheet.select }
 				disabled={ disabled }
 				key={ index }
@@ -129,7 +129,7 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 			<Help
 				disabled={ ancestorDisabled }
 				fieldset={ true }
-				schema={ propertySchema[schema] }
+				schema={ schema }
 			/>
 			<div className={ stylesheet.inputsContainer }>
 

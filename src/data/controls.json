@@ -33,7 +33,7 @@
 			"gridTemplateRows",
 			"justifyItems",
 			"alignItems",
-			"gridGap",
+			"gap",
 			"height"
 		],
 		"children": [

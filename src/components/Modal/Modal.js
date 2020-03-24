@@ -2,8 +2,12 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { formatMarkDown } from '../../data/utilities';
 import stylesheet from './Modal.module.scss';
+import propertySchema from '../../data/propertySchema.json';
+import Example from '../Example';
 
-const Modal = ({ title, content, display, handleDismiss }) => {
+const Modal = ({ schema, display, handleDismiss }) => {
+
+	const { name, description } = propertySchema[schema]
 
 	const modalRoot = useRef(document.getElementById('modal-root'));
 	const html = useRef(document.querySelector('html'));
@@ -67,10 +71,10 @@ const Modal = ({ title, content, display, handleDismiss }) => {
 					onClick={ handleDismiss }
 				/>
 
-				<h1 className={ stylesheet.title }>{ title.replace(/-/g, ' ') }</h1>
+				<h1 className={ stylesheet.title }>{ name.replace(/-/g, ' ') }</h1>
 
 				{
-					content.map((p, i) => (
+					description.map((p, i) => (
 						<p
 							dangerouslySetInnerHTML={
 								{ __html: formatMarkDown(p, stylesheet) }
@@ -80,6 +84,7 @@ const Modal = ({ title, content, display, handleDismiss }) => {
 					))
 				}
 
+				<Example schema={ schema } />
 			</section>
 		</div>,
 		modalRoot.current

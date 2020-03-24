@@ -8,6 +8,7 @@
 	z-index: 2;
 	display: grid;
 	place-items: center;
+	overflow: scroll;
 }
 
 .window {
@@ -82,8 +83,8 @@
 .code {
 	@for $i from 0 through 29 {
 		&--#{$i} {
-			border: 1px solid hsl($i * 12, 40%, 60%);
-			background: hsl($i * 12, 60%, 90%);
+			border: 1px solid hsla($i * 12, 40%, 60%, 0.6);
+			background: hsla($i * 12, 60%, 90%, 0.3);
 		}
 	}
 	border-radius: 3px;

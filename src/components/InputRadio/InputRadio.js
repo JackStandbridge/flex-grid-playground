@@ -42,7 +42,7 @@ const InputRadio = ({ section, schema, disabled, ancestorDisabled }) => {
 			<Help
 				disabled={ ancestorDisabled }
 				fieldset={ true }
-				schema={ propertySchema[schema] }
+				schema={ schema }
 			/>
 			{
 				allValues.map((value, i) => (

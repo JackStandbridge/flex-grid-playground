@@ -1,6 +1,7 @@
 {
 	"alignContent": {
 		"name": "align-content",
+		"jsName": "alignContent",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -17,6 +18,7 @@
 	},
 	"alignItems": {
 		"name": "align-items",
+		"jsName": "alignItems",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -40,6 +42,7 @@
 	},
 	"alignSelf": {
 		"name": "align-self",
+		"jsName": "alignSelf",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -60,6 +63,7 @@
 	},
 	"boxSizing": {
 		"name": "box-sizing",
+		"jsName": "boxSizing",
 		"type": "radio",
 		"values": [
 			"content-box",
@@ -72,10 +76,12 @@
 		]
 	},
 	"display": {
-		"type": "string"
+		"type": "string",
+		"jsName": "display"
 	},
 	"flex": {
 		"name": "flex",
+		"jsName": "flex",
 		"type": "multi",
 		"inputs": [
 			{
@@ -104,8 +110,8 @@
 			}
 		],
 		"description": [
-			"The `flex` property is a shorthand for `flex-grow`, `flex-shrink` and `flex-basis`. **For most purposes a single number unitless number should suffice.**",
-			"The shorthand consists of those three properties in order. For example, a `flex` value of `1 1 25%` is equal to `flex-grow: 1`, `flex-shrink: 1` and `flex-basis: 25%`. Properties can be omitted, so `flex: 1` is equal to `flex: 1 1 0%`, and `flex: 0 25%` is equivalent to `flex: 0 1 25%`.",
+			"The `flex` property is a shorthand for the `flex-grow`, `flex-shrink` and `flex-basis` properties. **For most purposes a single number unitless number should suffice.**",
+			"If you want to fine tune the flex behaviour, the shorthand consists of those three properties in order. For example, a `flex` value of `1 1 25%` is equal to `flex-grow: 1`, `flex-shrink: 1` and `flex-basis: 25%`. If `flex-shrink` or `flex-basis` are omitted they default to the values 1 and 0%, so `flex: 1` is equal to `flex: 1 1 0%`, and `flex: 0 25%` is equivalent to `flex: 0 1 25%`, and `flex: 1 0` is equivalent to `flex: 1 0 0%`.",
 			"The `flex-grow` property determines what proportion of the excess available space within the flex container should be assigned to this element. A higher value for this property means the element grows more readily.",
 			"The `flex-shrink` property determines what proportion of the currently used space this element should sacrifice as the container shrinks. A higher value for this property means the element shrinks more readily.",
 			"The `flex-basis` property determines the initial size of a flex item before any other calculations for `flex-grow` or `flex-shrink` are applied. Note that the content of an element can force it to exceed this size. A higher value for this property means the element starts larger."
@@ -113,6 +119,7 @@
 	},
 	"flexDirection": {
 		"name": "flex-direction",
+		"jsName": "flexDirection",
 		"type": "radio",
 		"values": [
 			"row",
@@ -122,10 +129,26 @@
 		],
 		"description": [
 			"The `flex-direction` property determines whether the flex items are placed next to each other or on top of each other. A value of `row` or no value will place items next to each other from left to right. A value of `column` will stack items on top of each other. Both `row-reverse` and `column-reverse` are the same as their counterparts, but also reverse the order of the items."
-		]
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "flex"
+				}
+			},
+			"values": [
+				"row",
+				"column",
+				"row-reverse",
+				"column-reverse"
+			],
+			"applyTo": "parent",
+			"children": 3
+		}
 	},
 	"flexWrap": {
 		"name": "flex-wrap",
+		"jsName": "flexWrap",
 		"type": "radio",
 		"values": [
 			"nowrap",
@@ -134,10 +157,25 @@
 		],
 		"description": [
 			"The `flex-wrap` property determines whether flex items will wrap onto the next line when there are too many of them to fit within the flex container. The default value is `nowrap`, which does not let items wrap. A value of `wrap` will make subsequent items break onto a new line. A value of `wrap-reverse` will create a new line before the current line for the subsequent items to wrap onto."
-		]
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "flex"
+				}
+			},
+			"values": [
+				"nowrap",
+				"wrap",
+				"wrap-reverse"
+			],
+			"applyTo": "parent",
+			"children": 12
+		}
 	},
 	"gridColumn": {
 		"name": "grid-column",
+		"jsName": "gridColumn",
 		"type": "multi",
 		"inputs": [
 			{
@@ -173,8 +211,9 @@
 			"Either the starting line number or the ending line number can be replaced with a `span X` value, where X is a number of columns to span. If a grid item needs to span two columns and start at grid line 2, the value should be `2 / span 2`. This is equivalent to `2 / 4`. This is useful for legibility and because we can use `span X` as a single value, meaning that `span 2` will leave the grid item where it is in the flow of the document, but it will take up two grid columns."
 		]
 	},
-	"gridGap": {
-		"name": "grid-gap",
+	"gap": {
+		"name": "gap",
+		"jsName": "gap",
 		"type": "multi",
 		"inputs": [
 			{
@@ -208,12 +247,29 @@
 			}
 		],
 		"description": [
-			"The `grid-gap` property is a shorthand for `grid-row-gap` and `grid-column-gap`. Setting a single value creates a space between grid items equal to that value. Setting two values will first affect the horizontal gap, then the vertical gap. The `grid-gap` property differs from setting the margin on the grid items because it is not applied at the edges of the container, so items will not be pushed away from the edges.",
-			"__NB: `grid-gap` is being replaced by `gap`, but the new property name is not yet supported in all browsers.__"
-		]
+			"The `gap` property is a shorthand for `row-gap` and `column-gap`. Setting a single value creates a space between grid items equal to that value. Setting two values will first affect the horizontal gap, then the vertical gap. The `gap` property differs from setting the margin on the grid items because it is not applied at the edges of the container, so items will not be pushed away from the edges.",
+			"__NB: `gap` replaced `grid-gap`, so for backwards compatibility you may need to use `grid-gap` for some browsers.__"
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "grid",
+					"grid-template": "auto / 1fr 1fr"
+				}
+			},
+			"values": [
+				"1rem",
+				"1rem 2rem",
+				"2rem 1rem",
+				"0rem"
+			],
+			"applyTo": "parent",
+			"children": 4
+		}
 	},
 	"gridRow": {
 		"name": "grid-row",
+		"jsName": "gridRow",
 		"type": "multi",
 		"inputs": [
 			{
@@ -251,6 +307,7 @@
 	},
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
+		"jsName": "gridTemplateColumns",
 		"type": "flexi",
 		"min": 0,
 		"units": [
@@ -267,6 +324,7 @@
 	},
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
+		"jsName": "gridTemplateRows",
 		"type": "flexi",
 		"min": 0,
 		"units": [
@@ -284,6 +342,7 @@
 	},
 	"height": {
 		"name": "height",
+		"jsName": "height",
 		"type": "multi",
 		"inputs": [
 			{
@@ -301,11 +360,29 @@
 			}
 		],
 		"description": [
-			"The `height` property controls the height of an element."
-		]
+			"The `height` property controls the height of an element. When `box-sizing: border-box` is set, the height controls the size including border and padding. When `box-sizing: content-box`, or no box-sizing is set, the height controls the size of the content excluding border and padding."
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "flex"
+				},
+				"child": {
+					"flex": 1,
+					"box-sizing": "border-box"
+				}
+			},
+			"values": [
+				"50%",
+				"100%"
+			],
+			"applyTo": "child",
+			"children": 3
+		}
 	},
 	"justifyContent": {
 		"name": "justify-content",
+		"jsName": "justifyContent",
 		"type": "radio",
 		"values": [
 			"flex-start",
@@ -321,10 +398,28 @@
 			"- The `space-between` value distributes extra space between the items in the container.",
 			"- The `space-around` value puts an equal amount of space around each of the items.",
 			"- The `space-evenly` value is the same as the `space-around` value, but will ensure that the amount of space at the edges of the container are the same size as the spaces between each item."
-		]
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "flex"
+				}
+			},
+			"values": [
+				"flex-start",
+				"flex-end",
+				"center",
+				"space-between",
+				"space-around",
+				"space-evenly"
+			],
+			"applyTo": "parent",
+			"children": 3
+		}
 	},
 	"justifyItems": {
 		"name": "justify-items",
+		"jsName": "justifyItems",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -338,6 +433,7 @@
 	},
 	"justifySelf": {
 		"name": "justify-self",
+		"jsName": "justifySelf",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -351,6 +447,7 @@
 	},
 	"margin": {
 		"name": "margin",
+		"jsName": "margin",
 		"type": "multi",
 		"inputs": [
 			{
@@ -372,6 +469,7 @@
 	},
 	"order": {
 		"name": "order",
+		"jsName": "order",
 		"type": "multi",
 		"inputs": [
 			{
@@ -385,6 +483,7 @@
 	},
 	"padding": {
 		"name": "padding",
+		"jsName": "padding",
 		"type": "multi",
 		"inputs": [
 			{
@@ -408,6 +507,7 @@
 	},
 	"width": {
 		"name": "width",
+		"jsName": "width",
 		"type": "multi",
 		"inputs": [
 			{

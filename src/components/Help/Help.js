@@ -26,8 +26,7 @@ const Help = ({ schema, fieldset, disabled }) => {
 			>?</button>
 
 			<Modal
-				title={ schema.name }
-				content={ schema.description }
+				schema={ schema }
 				handleDismiss={ handleToggle }
 				display={ display }
 			/>

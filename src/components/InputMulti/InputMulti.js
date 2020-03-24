@@ -215,7 +215,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 					<Help
 						disabled={ disabled }
 						fieldset={ true }
-						schema={ propertySchema[schema] }
+						schema={ schema }
 					/>
 				</>
 			) }
@@ -233,7 +233,7 @@ const InputMulti = ({ section, schema, disabled }) => {
 				<Help
 					disabled={ disabled }
 					fieldset={ false }
-					schema={ propertySchema[schema] }
+					schema={ schema }
 				/>
 			</span>
 		</>

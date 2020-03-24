@@ -1,0 +1,87 @@
+.example {
+	display: grid;
+	grid-template-columns: minmax(auto, 50%) minmax(auto, 50%);
+	grid-template-rows: minmax(200px, auto);
+	gap: 1rem;
+}
+
+.code {
+	background: #282828;
+	color: white;
+	transition: 1s;
+	opacity: 1;
+	border-radius: 0.5rem;
+	padding: 1rem 1rem;
+	text-align: left;
+	tab-size: 2;
+	-moz-tab-size: 2;
+}
+
+.pre {
+	white-space: pre-wrap;
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	font-family: Menlo, monospace;
+}
+
+.fade {
+	transition: 0.5s;
+	opacity: 0;
+}
+
+.selector {
+	color: rgb(171, 213, 126);
+}
+
+.property {
+	color: rgb(134, 193, 192);
+}
+
+.value {
+	color: rgb(238, 229, 111);
+}
+
+.deemphasised {
+	filter: saturate(0)
+}
+
+.parent {
+	border: 3px solid #bbb;
+	min-height: 10rem;
+	border-radius: 10px;
+	overflow: hidden;
+	transition: 0.3s;
+}
+
+.child {
+	border-radius: 7px;
+	position: relative;
+	transition: 0.2s;
+	padding: 1rem;
+
+	&::after {
+		height: 100%;
+		width: 100%;
+		background: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		font-size: 1rem;
+		color: #555;
+		line-height: 1;
+	}
+
+	@for $i from 1 through 30 {
+		&:nth-child(#{$i}) {
+			border: 3px solid hsl($i * 24, 40%, 60%);
+			background: hsl($i * 24, 60%, 90%);
+			&::after {
+				content: '#{$i}';
+			}
+		}
+	}
+}
