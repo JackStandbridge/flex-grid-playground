@@ -35,11 +35,13 @@ const Example = ({ schema }) => {
 			</span>
 			{ ';\r\n' }
 		</span>
-	)
+	);
 
 	const renderSelector = selector => (
 		<>
-			<span className={ stylesheet.selector }>.{ selector }&nbsp;{ '{\r\n' }</span>
+			<span className={ stylesheet.selector }>
+				.{ selector }&nbsp;{ '{\r\n' }
+			</span>
 
 			{ Object
 				.entries(example.otherProperties[selector])
@@ -52,7 +54,9 @@ const Example = ({ schema }) => {
 
 			{ '}' }
 		</>
-	)
+	);
+
+	const propertyObject = { [jsName]: example.values[index] };
 
 	return !example?.values.length ? null : (
 		<>
@@ -69,7 +73,7 @@ const Example = ({ schema }) => {
 					className={ stylesheet.parent }
 					style={
 						{
-							...(example.applyTo === 'parent' ? { [jsName]: example.values[index] } : {}),
+							...(example.applyTo === 'parent' ? propertyObject : {}),
 							...example.otherProperties.parent
 						}
 					}
@@ -80,7 +84,7 @@ const Example = ({ schema }) => {
 							className={ stylesheet.child }
 							style={
 								{
-									...(example.applyTo === 'child' ? { [jsName]: example.values[index] } : {}),
+									...(example.applyTo === 'child' ? propertyObject : {}),
 									...example.otherProperties.child
 								}
 							}

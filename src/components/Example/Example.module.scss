@@ -45,7 +45,8 @@
 }
 
 .deemphasised {
-	filter: saturate(0)
+	filter: saturate(0);
+	opacity: 0.8;
 }
 
 .parent {
