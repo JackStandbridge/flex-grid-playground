@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import stylesheet from './Example.module.scss';
 import propertySchema from '../../data/propertySchema.json';
+import { camelKeys } from '../../data/utilities';
 
 const Example = ({ schema }) => {
 
@@ -78,6 +79,8 @@ const Example = ({ schema }) => {
 	);
 
 	const propertyObject = { [jsName]: example.values[index] };
+	const parentProperties = camelKeys(example.otherProperties.parent);
+	const childProperties = camelKeys(example.otherProperties.child);
 
 	return !example.values.length ? null : (
 		<section className={ stylesheet.example }>
@@ -89,12 +92,13 @@ const Example = ({ schema }) => {
 
 				</pre>
 			</code>
+
 			<div
 				className={ stylesheet.parent }
 				style={
 					{
 						...(example.applyTo === 'parent' ? propertyObject : {}),
-						...example.otherProperties.parent
+						...parentProperties
 					}
 				}
 			>
@@ -105,12 +109,13 @@ const Example = ({ schema }) => {
 						style={
 							{
 								...(example.applyTo === 'child' ? propertyObject : {}),
-								...example.otherProperties.child
+								...childProperties
 							}
 						}
 					/>
 				)) }
 			</div>
+
 			<div className={ stylesheet.controls }>
 				<button
 					onClick={ handlePrev }

@@ -197,3 +197,19 @@ export const getEdgeElements = node => {
 		end: focusableChildren[focusableChildren.length - 1],
 	};
 }
+
+const camelCase = str => {
+	return str.replace(/-([a-z])/g, (_, group) => {
+		return group.toUpperCase();
+	})
+}
+
+export const camelKeys = ob => {
+	const result = {};
+
+	for (let key in ob) {
+		result[camelCase(key)] = ob[key];
+	}
+
+	return result;
+}
