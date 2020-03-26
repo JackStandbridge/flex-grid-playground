@@ -1,8 +1,13 @@
 .example {
 	display: grid;
-	grid-template-columns: minmax(auto, 50%) minmax(auto, 50%);
+	grid-template-columns: 1fr 1fr;
 	grid-template-rows: minmax(200px, auto);
 	gap: 1rem;
+	position: relative;
+
+	&:hover .controls {
+		opacity: 1;
+	}
 }
 
 .code {
@@ -15,6 +20,7 @@
 	text-align: left;
 	tab-size: 2;
 	-moz-tab-size: 2;
+	border: 3px solid #282828;
 }
 
 .pre {
@@ -85,4 +91,86 @@
 			}
 		}
 	}
+}
+
+.controls {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	&:focus-within {
+		opacity: 1;
+	}
+	transition: opacity 0.3s;
+}
+
+%control {
+	font-family: Menlo, monospace;
+	color: rgba(255, 255, 255, 0.9);
+	border: none;
+	padding: 1rem;
+	font-size: 2rem;
+	background: none;
+	font-weight: bold;
+	background: rgba(150, 150, 150, 0.7);
+	height: 5rem;
+	width: 7rem;
+	display: grid;
+	place-items: center;
+	border-radius: 33%;
+	position: relative;
+	margin: 0.5rem;
+
+	&::before,
+	&::after {
+		content: '';
+		height: 5px;
+		width: 2rem;
+		background: white;
+		border-radius: 3px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	}
+}
+
+.back {
+	@extend %control;
+	&::before {
+		transform: translate(-50%, -50%) rotate(-25deg);
+		transform-origin: 2.5px 50%;
+	}
+	&::after {
+		transform: translate(-50%, -50%) rotate(25deg);
+		transform-origin: 2.5px 50%;
+	}
+}
+
+.pause {
+	@extend %control;
+	&::before {
+		transform: rotate(90deg) translate(-50%, calc(0.5rem + 50%));
+		transform-origin: 2.5px 50%;
+	}
+	&::after {
+		transform: rotate(90deg) translate(-50%, calc(-0.5rem + 50%));
+		transform-origin: 2.5px 50%;
+	}
+}
+
+.forward,
+.play {
+	@extend .back;
+	transform: rotate(180deg);
+}
+
+.playIcon {
+	@extend %control::after;
+	width: 1.7rem;
+	transform: rotate(90deg) translate(-2.5px, 2.5px);
 }

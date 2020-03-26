@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { formatMarkDown } from '../../data/utilities';
 import stylesheet from './Modal.module.scss';
 import propertySchema from '../../data/propertySchema.json';
 import Example from '../Example';
+import FocusLock from '../FocusLock';
 
 const Modal = ({ schema, display, handleDismiss }) => {
 
@@ -11,34 +12,22 @@ const Modal = ({ schema, display, handleDismiss }) => {
 
 	const modalRoot = useRef(document.getElementById('modal-root'));
 	const html = useRef(document.querySelector('html'));
-	const [activeElement, setActiveElement] = useState(null);
 	const buttonRef = useRef(null);
 
 	const handleKey = useCallback(e => {
 		if (e.key === 'Escape') {
 			handleDismiss();
 		}
-
-		if (e.key === 'Tab' && buttonRef.current) {
-			e.preventDefault();
-			buttonRef.current.focus();
-		}
 	}, [handleDismiss]);
 
 	const onModalClose = useCallback(() => {
-		if (activeElement) {
-			activeElement.focus();
-			activeElement.removeEventListener('keydown', handleKey);
-			setActiveElement(null);
-		}
-
+		document.removeEventListener('keydown', handleKey);
 		html.current.style.overflow = '';
-	}, [handleKey, activeElement]);
+	}, [handleKey]);
 
 	useEffect(() => {
 
 		if (display) {
-			setActiveElement(document.activeElement);
 			document.addEventListener('keydown', handleKey);
 			html.current.style.overflow = 'hidden';
 
@@ -57,36 +46,38 @@ const Modal = ({ schema, display, handleDismiss }) => {
 	}
 
 	return display && createPortal(
-		<div
-			className={ stylesheet.backing }
-			onClick={ handleBackingClick }
-		>
-			<section
-				className={ stylesheet.window }
+		<FocusLock>
+			<div
+				className={ stylesheet.backing }
+				onClick={ handleBackingClick }
 			>
-				<button
-					ref={ buttonRef }
-					tabIndex={ 0 }
-					className={ stylesheet.close }
-					onClick={ handleDismiss }
-				/>
+				<section className={ stylesheet.window }>
+					<button
+						ref={ buttonRef }
+						tabIndex={ 0 }
+						className={ stylesheet.close }
+						onClick={ handleDismiss }
+					/>
 
-				<h1 className={ stylesheet.title }>{ name.replace(/-/g, ' ') }</h1>
+					<h1 className={ stylesheet.title }>
+						{ name.replace(/-/g, ' ') }
+					</h1>
 
-				{
-					description.map((p, i) => (
+					{ description.map((p, i) => (
 						<p
 							dangerouslySetInnerHTML={
 								{ __html: formatMarkDown(p, stylesheet) }
 							}
 							key={ i }
 						/>
-					))
-				}
+					)) }
 
-				<Example schema={ schema } />
-			</section>
-		</div>,
+					{ propertySchema[schema].example &&
+						<Example schema={ schema } />
+					}
+				</section>
+			</div>
+		</FocusLock>,
 		modalRoot.current
 	)
 };

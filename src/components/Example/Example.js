@@ -8,18 +8,39 @@ const Example = ({ schema }) => {
 
 	const [index, setIndex] = useState(0);
 	const [className, setClassName] = useState('');
+	const [paused, setPaused] = useState(false);
+
+	const handlePause = () => {
+		setPaused(!paused);
+	};
+
+	const handleNext = () => {
+		setIndex((index + 1) % example.values.length);
+	}
+
+	const handlePrev = () => {
+		setIndex((index === 0 ? example.values.length : index) - 1);
+	}
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setClassName('fade');
-			setTimeout(() => {
-				setIndex(current => (current + 1) % example.values.length);
-				setClassName('');
-			}, 500);
-		}, 6000)
+		const timeouts = []
+		if (!paused) {
 
-		return () => clearInterval(interval);
-	}, [setIndex, example?.values.length]);
+			timeouts.push(setTimeout(() => {
+
+				setClassName('fade');
+
+				timeouts.push(setTimeout(() => {
+					setIndex(current => (current + 1) % example.values.length);
+					setClassName('');
+				}, 500));
+
+			}, 6000));
+
+		}
+		return () => timeouts.forEach(clearTimeout);
+
+	}, [setIndex, example.values.length, paused, index]);
 
 	const renderRule = ([key, value], animate) => (
 		<span key={ key } className={ animate ? '' : stylesheet.deemphasised }>
@@ -58,41 +79,53 @@ const Example = ({ schema }) => {
 
 	const propertyObject = { [jsName]: example.values[index] };
 
-	return !example?.values.length ? null : (
-		<>
-			<section className={ stylesheet.example }>
-				<code className={ stylesheet.code }>
-					<pre className={ stylesheet.pre }>
+	return !example.values.length ? null : (
+		<section className={ stylesheet.example }>
+			<code className={ stylesheet.code }>
+				<pre className={ stylesheet.pre }>
 
-						{ example.otherProperties.parent && renderSelector('parent') }
-						{ example.otherProperties.child && renderSelector('child') }
+					{ example.otherProperties.parent && renderSelector('parent') }
+					{ example.otherProperties.child && renderSelector('child') }
 
-					</pre>
-				</code>
-				<div
-					className={ stylesheet.parent }
-					style={
-						{
-							...(example.applyTo === 'parent' ? propertyObject : {}),
-							...example.otherProperties.parent
-						}
+				</pre>
+			</code>
+			<div
+				className={ stylesheet.parent }
+				style={
+					{
+						...(example.applyTo === 'parent' ? propertyObject : {}),
+						...example.otherProperties.parent
 					}
-				>
-					{ Array(example.children).fill().map((_, i) => (
-						<div
-							key={ i }
-							className={ stylesheet.child }
-							style={
-								{
-									...(example.applyTo === 'child' ? propertyObject : {}),
-									...example.otherProperties.child
-								}
+				}
+			>
+				{ Array(example.children).fill().map((_, i) => (
+					<div
+						key={ i }
+						className={ stylesheet.child }
+						style={
+							{
+								...(example.applyTo === 'child' ? propertyObject : {}),
+								...example.otherProperties.child
 							}
-						/>
-					)) }
-				</div>
-			</section>
-		</>
+						}
+					/>
+				)) }
+			</div>
+			<div className={ stylesheet.controls }>
+				<button
+					onClick={ handlePrev }
+					className={ stylesheet.back }
+				/>
+				<button
+					onClick={ handlePause }
+					className={ paused ? stylesheet.play : stylesheet.pause }
+				>{ paused ? <span className={ stylesheet.playIcon } /> : null }</button>
+				<button
+					onClick={ handleNext }
+					className={ stylesheet.forward }
+				/>
+			</div>
+		</section>
 	);
 };
 

@@ -162,3 +162,38 @@ export const formatMarkDown = (text, stylesheet) => {
 		.replace(/\*\*(.*?)\*\*/g, strong)
 		.replace(/`(.*?)`/g, backTicks)
 }
+
+
+const getFocusableChildren = node => {
+	const getChildren = node => {
+		const children = [...node.children];
+
+		if (!children.length) {
+			return [];
+		}
+
+		return [...children, ...children.map(getChildren)].flat(Infinity);
+	}
+
+	const allChildren = getChildren(node);
+	const focusableChildren = allChildren.filter(child => child.matches('button'))
+	return focusableChildren;
+}
+
+export const constrain = (num, limit) => {
+	if (num < 0) {
+		return limit - 1;
+	} else if (num >= limit) {
+		return 0;
+	} else {
+		return num;
+	}
+}
+
+export const getEdgeElements = node => {
+	const focusableChildren = getFocusableChildren(node);
+	return {
+		start: focusableChildren[0],
+		end: focusableChildren[focusableChildren.length - 1],
+	};
+}
