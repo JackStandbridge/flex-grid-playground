@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import stylesheet from './Example.module.scss';
 import propertySchema from '../../data/propertySchema.json';
 import { camelKeys } from '../../data/utilities';
 
 const Example = ({ schema }) => {
 
-	const { name, example, jsName } = propertySchema[schema];
+	const { name, jsName } = propertySchema[schema];
+	let { example } = propertySchema[schema];
+
+	const page = useSelector(({ page }) => page);
+	example = example[page] ?? example;
 
 	const [index, setIndex] = useState(0);
 	const [className, setClassName] = useState('');
@@ -78,6 +83,25 @@ const Example = ({ schema }) => {
 		</>
 	);
 
+	const renderNthChildSelectors = () => {
+		if (+example.applyTo === example.applyTo) {
+			const cssIndex = example.applyTo + 1;
+			return (
+				<>
+					<span className={ stylesheet.selector }>
+						.child:nth-child({ cssIndex })&nbsp;{ '{\r\n' }
+					</span>
+
+					{
+						renderRule([name, example.values[index]], true)
+					}
+
+					{ '}' }
+				</>
+			)
+		}
+	}
+
 	const propertyObject = { [jsName]: example.values[index] };
 	const parentProperties = camelKeys(example.otherProperties.parent);
 	const childProperties = camelKeys(example.otherProperties.child);
@@ -89,29 +113,25 @@ const Example = ({ schema }) => {
 
 					{ example.otherProperties.parent && renderSelector('parent') }
 					{ example.otherProperties.child && renderSelector('child') }
-
+					{ renderNthChildSelectors() }
 				</pre>
 			</code>
 
 			<div
 				className={ stylesheet.parent }
-				style={
-					{
-						...(example.applyTo === 'parent' ? propertyObject : {}),
-						...parentProperties
-					}
-				}
+				style={ {
+					...(example.applyTo === 'parent' ? propertyObject : {}),
+					...parentProperties
+				} }
 			>
 				{ Array(example.children).fill().map((_, i) => (
 					<div
 						key={ i }
 						className={ stylesheet.child }
-						style={
-							{
-								...(example.applyTo === 'child' ? propertyObject : {}),
-								...childProperties
-							}
-						}
+						style={ {
+							...(['child', i].includes(example.applyTo) ? propertyObject : {}),
+							...childProperties
+						} }
 					/>
 				)) }
 			</div>

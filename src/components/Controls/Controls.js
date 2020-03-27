@@ -54,7 +54,7 @@ const Controls = () => {
 				</Accordion>
 
 				<Accordion
-					legend='children'
+					legend='child'
 					targetClass='fieldset section'
 					buttonClass='expander caps'
 					collapsed={ false }

@@ -204,7 +204,7 @@ const camelCase = str => {
 	})
 }
 
-export const camelKeys = ob => {
+export const camelKeys = (ob = {}) => {
 	const result = {};
 
 	for (let key in ob) {

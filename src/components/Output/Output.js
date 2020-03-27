@@ -15,11 +15,11 @@ const Output = () => {
 				entries: getEntries(state, page.parent)
 			},
 			{
-				name: '.children',
+				name: '.child',
 				entries: getEntries(state, page.children)
 			},
 			...page.child.map((id, i) => ({
-				name: `.child${ i + 1 }`,
+				name: `.child:nth-child(${ i + 1 })`,
 				entries: getEntries(state, id)
 			}))
 		].filter(({ entries }) => entries.length);

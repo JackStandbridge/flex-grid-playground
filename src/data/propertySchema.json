@@ -14,7 +14,26 @@
 		],
 		"description": [
 			"The `align-content` property is used to position the lines of flex items. Unlike `align-items`, which can be used with flexbox to position the items within their tracks, this property is for positioning the tracks themselves."
-		]
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "flex",
+					"flex-wrap": "wrap"
+				}
+			},
+			"values": [
+				"stretch",
+				"flex-start",
+				"flex-end",
+				"center",
+				"space-between",
+				"space-around",
+				"space-evenly"
+			],
+			"applyTo": "parent",
+			"children": 12
+		}
 	},
 	"alignItems": {
 		"name": "align-items",
@@ -34,11 +53,47 @@
 			"end"
 		],
 		"description": [
-			"In flexbox, the `align-items` property allows positioning of items along the secondary axis of a flex container. This means that when the container has `flex-direction: row`, or no `flex-direction` set, `align-items` positions items vertically. If the container has `flex-direction: column`, this property will position items horizontally.",
+			"In **FLEXBOX**, the `align-items` property allows positioning of items along the secondary axis of a flex container. This means that when the container has `flex-direction: row`, or no `flex-direction` set, `align-items` positions items vertically. If the container has `flex-direction: column`, this property will position items horizontally.",
 			"The values `flex-start` and `flex-end` apply only to an element with `display: flex`.",
-			"In grid, the `align-items` property positions the direct children of a grid container vertically within the grid area.",
+			"In **GRID**, the `align-items` property positions the direct children of a grid container vertically within the grid area.",
 			"The values `start` and `end` only apply to an element with `display: grid`."
-		]
+		],
+		"example": {
+			"grid": {
+				"otherProperties": {
+					"parent": {
+						"display": "grid",
+						"grid-template": "auto / 1fr 1fr"
+					}
+				},
+				"values": [
+					"stretch",
+					"center",
+					"baseline",
+					"start",
+					"end"
+				],
+				"applyTo": "parent",
+				"children": 4
+			},
+			"flex": {
+				"otherProperties": {
+					"parent": {
+						"display": "flex",
+						"flex-wrap": "wrap"
+					}
+				},
+				"values": [
+					"stretch",
+					"center",
+					"baseline",
+					"flex-start",
+					"flex-end"
+				],
+				"applyTo": "parent",
+				"children": 12
+			}
+		}
 	},
 	"alignSelf": {
 		"name": "align-self",
@@ -57,9 +112,46 @@
 			"end"
 		],
 		"description": [
-			"In flexbox, the `align-self` property can be applied to a flex item to position it on the secondary axis of the flex container. This means that when the container has `flex-direction: row`, or no `flex-direction` set, `align-self` positions the item vertically. If the container has `flex-direction: column`, this property will position the item horizontally.",
-			"In grid, the `align-self` property can be applied to a grid item to position it vertically within its grid areea, overriding any vertical positioning that comes from the parent's `align-items` property."
-		]
+			"In **FLEXBOX**, the `align-self` property can be applied to a flex item to position it on the secondary axis of the flex container. This means that when the container has `flex-direction: row`, or no `flex-direction` set, `align-self` positions the item vertically. If the container has `flex-direction: column`, this property will position the item horizontally.",
+			"In **GRID**, the `align-self` property can be applied to a grid item to position it vertically within its grid areea, overriding any vertical positioning that comes from the parent's `align-items` property."
+		],
+		"example": {
+			"grid": {
+				"otherProperties": {
+					"parent": {
+						"display": "grid",
+						"grid-template": "auto / 1fr 1fr"
+					}
+				},
+				"values": [
+					"stretch",
+					"center",
+					"start",
+					"end"
+				],
+				"applyTo": 1,
+				"children": 4
+			},
+			"flex": {
+				"otherProperties": {
+					"parent": {
+						"display": "flex",
+						"flex-wrap": "wrap"
+					},
+					"child": {
+						"flex": 1
+					}
+				},
+				"values": [
+					"stretch",
+					"center",
+					"flex-start",
+					"flex-end"
+				],
+				"applyTo": 1,
+				"children": 4
+			}
+		}
 	},
 	"boxSizing": {
 		"name": "box-sizing",

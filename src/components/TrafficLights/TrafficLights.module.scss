@@ -91,16 +91,16 @@
 	34% { transform: translate(0, calc(100vh - 6.15rem)) }
 	35% { transform: translate(0, calc(100vh - 6rem)) }
 
-	// roll away
-	65% { transform: translate(0, calc(100vh - 6rem)) }
-	75% { transform: translate(-6rem, calc(100vh - 6rem)) }
+	// disappear
+	50% { transform: translate(0, calc(100vh - 6rem)); opacity: 1; }
+	65% { transform: translate(0, calc(100vh - 6rem)); opacity: 0; }
 
 	// travel up
-	80% { transform: translate(-6rem, -6rem) }
+	80% { transform: translate(-6rem, -6rem); opacity: 0; }
 
 	// go home
 	// bounce
-	84% { transform: translate(0, 0) }
+	84% { transform: translate(0, 0); opacity: 1; }
 	87% { transform: translate(0, -0.8rem) }
 	89% { transform: translate(0, -1rem) }
 	91% { transform: translate(0, -0.8rem) }

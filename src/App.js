@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DragResize from './components/DragResize';
 import Browser from './components/Browser';
@@ -44,13 +44,33 @@ const App = () => {
 		icon.href = iconPath.replace(/\w+(?=.ico)/, page);
 	}, [page, title]);
 
+
+	const [resizable, setResizeable] = useState(window.innerWidth > 1200);
+
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setResizeable(window.innerWidth > 1200);
+		});
+	}, [setResizeable]);
+
 	return (
 		<main className={ stylesheet.app }>
-			<DragResize ratio={ [2, 1, 1] }>
-				<Browser />
-				<Controls />
-				<Output />
-			</DragResize>
+			{ resizable
+				?
+				<DragResize ratio={ [1, 2, 1] }>
+					<Controls />
+					<Browser />
+					<Output />
+				</DragResize>
+				:
+				<>
+					<Browser />
+					<div className={ stylesheet.spacer } />
+					<Controls />
+					<div className={ stylesheet.spacer } />
+					<Output />
+				</>
+			}
 		</main>
 	);
 };
