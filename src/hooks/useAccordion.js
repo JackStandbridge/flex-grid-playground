@@ -62,7 +62,7 @@ const useAccordion = (
 	const fieldsetClassName = [
 		fieldset,
 		stateCollapsed ? 'collapsed' : '',
-		disabled ? 'no-overflow' : '',
+		disabled ? '' : 'uncollapsed',
 	].join(' ');
 
 	const expanderClassName = [

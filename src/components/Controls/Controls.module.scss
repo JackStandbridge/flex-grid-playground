@@ -40,6 +40,7 @@
 	@media (max-width: 1200px) and (min-width: 850px) {
 		flex-wrap: wrap;
 		flex-direction: row;
+		overflow-y: visible;
 	}
 }
 

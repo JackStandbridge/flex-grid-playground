@@ -12,22 +12,10 @@
 	margin: 0;
 	max-height: 2000px;
 	flex-shrink: 0;
-}
-
-.section {
-	padding-top: 0;
-	@media (max-width: 1200px) and (min-width: 850px) {
-		flex: 1;
-		margin-right: 1rem;
+	& > *:not(legend):not(.visible) {
+		visibility: hidden;
+		opacity: 0;
 	}
-
-	&:last-child {
-		margin: 0;
-	}
-}
-
-.caps {
-	text-transform: capitalize;
 }
 
 .collapsed {
@@ -47,6 +35,33 @@
 	}
 }
 
+.uncollapsed {
+	& > *:not(legend):not(.visible) {
+		visibility: unset;
+		opacity: 1;
+	}
+}
+
+.section {
+	padding-top: 0;
+	@media (max-width: 1200px) and (min-width: 850px) {
+		flex: 1;
+		margin-right: 1rem;
+	}
+
+	&:last-of-type {
+		margin: 0;
+	}
+	&.collapsed {
+		border-image: none;
+		border-color: transparent;
+		border-top-color: #ddd;
+	}
+}
+
+.caps {
+	text-transform: capitalize;
+}
 
 .modalFieldset {
 	@extend .fieldset;
@@ -127,6 +142,11 @@
 
 .full-width {
 	width: 100%;
+	&.collapsed {
+		border-image: none;
+		border-color: transparent;
+		border-top-color: #ddd;
+	}
 }
 
 .safari {
@@ -178,7 +198,7 @@
 			padding-top 0s linear 0.2s,
 			padding-bottom 0s linear 0.2s,
 			border-color 0.1s linear;
-		& > *:not(legend) {
+		& > *:not(legend):not(.visible) {
 			visibility: hidden;
 			opacity: 0;
 		}

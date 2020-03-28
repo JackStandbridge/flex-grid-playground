@@ -11,7 +11,8 @@ const Help = ({ schema, fieldset, disabled }) => {
 
 	const containerClasses = [
 		stylesheet.container,
-		fieldset ? stylesheet.fieldset : stylesheet.basic
+		fieldset ? stylesheet.fieldset : stylesheet.basic,
+		'visible'
 	].filter(name => name).join(' ');
 
 	return !schema ? null : (

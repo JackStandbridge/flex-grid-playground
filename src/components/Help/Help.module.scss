@@ -50,6 +50,15 @@
 	}
 }
 
+:global .firefox :local .fieldset,
+:global .safari :local .fieldset {
+	top: -2.2rem;
+	@media (max-width: 850px) {
+		top: -3rem;
+		padding-right: 0;
+	}
+}
+
 .basic {
 	transform: translateX(-2px);
 
