@@ -1,7 +1,9 @@
 .example {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: minmax(200px, auto);
+	grid-template: minmax(200px, auto) / 1fr 1fr;
+	@media (max-width: 650px) {
+		grid-template: minmax(200px, auto) / 1fr;
+	}
 	gap: 1rem;
 	position: relative;
 
@@ -59,7 +61,6 @@
 	border: 3px solid #bbb;
 	min-height: 10rem;
 	border-radius: 10px;
-	overflow: hidden;
 	transition: 0.3s;
 }
 
@@ -86,20 +87,37 @@
 		&:nth-child(#{$i}) {
 			border: 3px solid hsl($i * 24, 40%, 60%);
 			background: hsl($i * 24, 60%, 90%);
+
 			&::after {
 				content: '#{$i}';
 			}
+
+			@media (max-width: 450px) {
+				@if $i > 9 {
+					display: none;
+				}
+			}
+
 		}
+
 	}
+
+}
+
+.emphasisedChild {
+	@extend .child;
+	filter: saturate(2.5) drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+	z-index: 2;
 }
 
 .controls {
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	top: 0.5rem;
+	right: calc(50% + 1rem);
 	display: flex;
+	@media (max-width: 650px) {
+		right: 1rem;
+	}
 	justify-content: center;
 	align-items: center;
 	opacity: 0;
@@ -107,6 +125,8 @@
 		opacity: 1;
 	}
 	transition: opacity 0.3s;
+	transform: scale(0.5);
+	transform-origin: top right;
 }
 
 %control {

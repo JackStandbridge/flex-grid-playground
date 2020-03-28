@@ -75,9 +75,9 @@ const DragControl = ({ children, ratio }) => {
 		setWidths(initialWidths);
 	}
 
-	return children.reduce((acc, child, i) => {
+	return children.reduce((elementsToRender, child, i) => {
 		if (i) {
-			acc.push(
+			elementsToRender.push(
 				<div
 					key={ -i }
 					onMouseDown={ () => startTracking(i - 1) }
@@ -89,7 +89,7 @@ const DragControl = ({ children, ratio }) => {
 
 		const width = `calc(${ widths[i] }% - ${ (children.length - 1) * 16 / children.length }px)`;
 
-		acc.push(
+		elementsToRender.push(
 			<div
 				key={ i }
 				className={ stylesheet.section }
@@ -99,7 +99,7 @@ const DragControl = ({ children, ratio }) => {
 			</div>
 		);
 
-		return acc;
+		return elementsToRender;
 	}, []);
 };
 

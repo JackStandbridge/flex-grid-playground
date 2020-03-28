@@ -1,9 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ControlGroup from '../ControlGroup';
 import ChildrenSlider from '../ChildrenSlider';
 import Accordion from '../Accordion';
 import stylesheet from './Controls.module.scss';
+import { clearAll } from '../../data/reducer';
 
 const Controls = () => {
 	const currentChild = useSelector(({ pages, page }) => {
@@ -21,6 +22,12 @@ const Controls = () => {
 	const screenWidth = window.innerWidth;
 
 	const collapseChildren = screenWidth > 1200 || screenWidth < 850;
+
+	const dispatch = useDispatch();
+
+	const handleClick = () => {
+		dispatch(clearAll());
+	}
 
 	return (
 		<section className={ stylesheet.controls }>
@@ -88,6 +95,12 @@ const Controls = () => {
 						) }
 					</Accordion>
 				}
+				<button
+					className={ stylesheet.clear }
+					onClick={ handleClick }
+				>
+					Reset All
+			</button>
 			</div>
 		</section>
 	);

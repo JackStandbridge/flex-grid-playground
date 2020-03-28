@@ -5,10 +5,11 @@ import stylesheet from './Modal.module.scss';
 import propertySchema from '../../data/propertySchema.json';
 import Example from '../Example';
 import FocusLock from '../FocusLock';
+import Accordion from '../Accordion';
 
 const Modal = ({ schema, display, handleDismiss }) => {
 
-	const { name, description } = propertySchema[schema]
+	const { name, description, details } = propertySchema[schema]
 
 	const modalRoot = useRef(document.getElementById('modal-root'));
 	const html = useRef(document.querySelector('html'));
@@ -43,7 +44,16 @@ const Modal = ({ schema, display, handleDismiss }) => {
 		if (e.currentTarget === e.target) {
 			handleDismiss()
 		}
-	}
+	};
+
+	const renderContent = (p, i) => (
+		<p
+			dangerouslySetInnerHTML={
+				{ __html: formatMarkDown(p, stylesheet) }
+			}
+			key={ i }
+		/>
+	);
 
 	return display && createPortal(
 		<FocusLock>
@@ -63,14 +73,18 @@ const Modal = ({ schema, display, handleDismiss }) => {
 						{ name.replace(/-/g, ' ') }
 					</h1>
 
-					{ description.map((p, i) => (
-						<p
-							dangerouslySetInnerHTML={
-								{ __html: formatMarkDown(p, stylesheet) }
-							}
-							key={ i }
-						/>
-					)) }
+					{ description.map(renderContent) }
+
+					{ details &&
+						<Accordion
+							legend='Further Information'
+							collapsed={ true }
+							targetClass='modalFieldset'
+							buttonClass='expander'
+						>
+							{ () => details.map(renderContent) }
+						</Accordion>
+					}
 
 					{ propertySchema[schema].example &&
 						<Example schema={ schema } />

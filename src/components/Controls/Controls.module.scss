@@ -88,3 +88,33 @@
 		background: #fafafa;
 	}
 }
+
+.clear {
+	margin-top: 1rem;
+	border: none;
+	background: none;
+	width: 100%;
+	top: 0;
+	right: 1rem;
+	padding: 8px;
+	font-size: 1rem;
+	border: 2px solid #ddd;
+	background: white;
+	cursor: pointer;
+
+	&:active,
+	&:hover,
+	&:focus {
+		border-color: #999;
+	}
+
+	&:hover,
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	&:active {
+		border-color: #ddd;
+	}
+}

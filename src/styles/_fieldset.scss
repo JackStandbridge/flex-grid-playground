@@ -47,6 +47,29 @@
 	}
 }
 
+
+.modalFieldset {
+	@extend .fieldset;
+	white-space: break-spaces;
+	margin-bottom: 1rem;
+	border-color: #ddd;
+
+	&.collapsed {
+		border-image: none;
+		border-color: transparent;
+		border-top-color: #ddd;
+	}
+
+	p {
+		&:first-of-type {
+			margin-top: 0;
+		}
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
 .legend {
 	max-width: 100%;
 	overflow: hidden;

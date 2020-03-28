@@ -20,6 +20,7 @@ const FocusLock = ({ children }) => {
 				if (!tabbed) {
 					// ensure starting tab position is first element
 					e.preventDefault();
+					// wait for renders before updating dom
 					requestAnimationFrame(() => focusable.start.focus());
 				}
 				return true;

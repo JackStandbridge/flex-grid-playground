@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import stylesheet from './Example.module.scss';
 import propertySchema from '../../data/propertySchema.json';
@@ -65,13 +65,13 @@ const Example = ({ schema }) => {
 	);
 
 	const renderSelector = selector => (
-		<>
+		<Fragment key={ selector }>
 			<span className={ stylesheet.selector }>
 				.{ selector }&nbsp;{ '{\r\n' }
 			</span>
 
 			{ Object
-				.entries(example.otherProperties[selector])
+				.entries(example.otherProperties[selector] ?? {})
 				.map(entry => renderRule(entry, false))
 			}
 
@@ -80,7 +80,7 @@ const Example = ({ schema }) => {
 			}
 
 			{ '}' }
-		</>
+		</Fragment>
 	);
 
 	const renderNthChildSelectors = () => {
@@ -110,9 +110,14 @@ const Example = ({ schema }) => {
 		<section className={ stylesheet.example }>
 			<code className={ stylesheet.code }>
 				<pre className={ stylesheet.pre }>
+					{
+						['parent', 'child'].map(selector => (
+							example.otherProperties[selector]
+								|| example.applyTo === selector
+								? renderSelector(selector) : null
+						))
+					}
 
-					{ example.otherProperties.parent && renderSelector('parent') }
-					{ example.otherProperties.child && renderSelector('child') }
 					{ renderNthChildSelectors() }
 				</pre>
 			</code>
@@ -120,17 +125,17 @@ const Example = ({ schema }) => {
 			<div
 				className={ stylesheet.parent }
 				style={ {
+					...parentProperties,
 					...(example.applyTo === 'parent' ? propertyObject : {}),
-					...parentProperties
 				} }
 			>
 				{ Array(example.children).fill().map((_, i) => (
 					<div
 						key={ i }
-						className={ stylesheet.child }
+						className={ stylesheet[example.applyTo === i ? 'emphasisedChild' : 'child'] }
 						style={ {
+							...childProperties,
 							...(['child', i].includes(example.applyTo) ? propertyObject : {}),
-							...childProperties
 						} }
 					/>
 				)) }

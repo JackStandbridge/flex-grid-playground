@@ -38,6 +38,8 @@
 		],
 		"children": [
 			"boxSizing",
+			"gridColumn",
+			"gridRow",
 			"margin",
 			"padding",
 			"height",
