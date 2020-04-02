@@ -6,7 +6,7 @@ import { camelKeys } from '../../data/utilities';
 
 const Example = ({ schema }) => {
 
-	const { name, jsName } = propertySchema[schema];
+	const { name } = propertySchema[schema];
 	let { example } = propertySchema[schema];
 
 	const page = useSelector(({ page }) => page);
@@ -22,14 +22,17 @@ const Example = ({ schema }) => {
 
 	const handleNext = () => {
 		setIndex((index + 1) % example.values.length);
+		setClassName('');
 	}
 
 	const handlePrev = () => {
 		setIndex((index === 0 ? example.values.length : index) - 1);
+		setClassName('');
 	}
 
 	useEffect(() => {
-		const timeouts = []
+		// multiple timeouts to track cycling values and fade animations
+		const timeouts = [];
 		if (!paused) {
 
 			timeouts.push(setTimeout(() => {
@@ -102,7 +105,7 @@ const Example = ({ schema }) => {
 		}
 	}
 
-	const propertyObject = { [jsName]: example.values[index] };
+	const propertyObject = { [schema]: example.values[index] };
 	const parentProperties = camelKeys(example.otherProperties.parent);
 	const childProperties = camelKeys(example.otherProperties.child);
 

@@ -1,7 +1,6 @@
 {
 	"alignContent": {
 		"name": "align-content",
-		"jsName": "alignContent",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -37,12 +36,10 @@
 	},
 	"alignItems": {
 		"name": "align-items",
-		"jsName": "alignItems",
 		"type": "radio",
 		"values": [
 			"stretch",
-			"center",
-			"baseline"
+			"center"
 		],
 		"flex": [
 			"flex-start",
@@ -69,7 +66,6 @@
 				"values": [
 					"stretch",
 					"center",
-					"baseline",
 					"start",
 					"end"
 				],
@@ -86,7 +82,6 @@
 				"values": [
 					"stretch",
 					"center",
-					"baseline",
 					"flex-start",
 					"flex-end"
 				],
@@ -97,7 +92,6 @@
 	},
 	"alignSelf": {
 		"name": "align-self",
-		"jsName": "alignSelf",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -155,7 +149,6 @@
 	},
 	"boxSizing": {
 		"name": "box-sizing",
-		"jsName": "boxSizing",
 		"type": "radio",
 		"values": [
 			"content-box",
@@ -186,12 +179,10 @@
 		}
 	},
 	"display": {
-		"type": "string",
-		"jsName": "display"
+		"type": "string"
 	},
 	"flex": {
 		"name": "flex",
-		"jsName": "flex",
 		"type": "multi",
 		"inputs": [
 			{
@@ -250,7 +241,6 @@
 	},
 	"flexDirection": {
 		"name": "flex-direction",
-		"jsName": "flexDirection",
 		"type": "radio",
 		"values": [
 			"row",
@@ -279,7 +269,6 @@
 	},
 	"flexWrap": {
 		"name": "flex-wrap",
-		"jsName": "flexWrap",
 		"type": "radio",
 		"values": [
 			"nowrap",
@@ -307,7 +296,6 @@
 	},
 	"gap": {
 		"name": "gap",
-		"jsName": "gap",
 		"type": "multi",
 		"inputs": [
 			{
@@ -361,9 +349,16 @@
 			"children": 4
 		}
 	},
+	"gridArea": {
+		"name": "grid-area",
+		"type": "userDefinedRadio",
+		"noValues": "Define some values in `grid-template-areas` to see options here.",
+		"description": [
+			"The `grid-areas` property allows a child of a grid container to be placed into a grid area."
+		]
+	},
 	"gridColumn": {
 		"name": "grid-column",
-		"jsName": "gridColumn",
 		"type": "multi",
 		"inputs": [
 			{
@@ -421,7 +416,6 @@
 	},
 	"gridRow": {
 		"name": "grid-row",
-		"jsName": "gridRow",
 		"type": "multi",
 		"inputs": [
 			{
@@ -475,9 +469,29 @@
 			"children": 6
 		}
 	},
+	"gridTemplateAreas": {
+		"name": "grid-template-areas",
+		"type": "freetype",
+		"description": [
+			"The `grid-template-areas` property allows for great flexibility while working with grid. It is possible to name grid areas so that they can be referenced when placing grid items. Defining `grid-template-areas` but not `grid-template-rows` or `grid-template-columns` will result in an implicitly sized grid being generated, meaning the areas will size themselves based on the content."
+		],
+		"placeholder": "'logo nav nav'\n'main main aside'\n'links . .'",
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "grid"
+				}
+			},
+			"values": [
+				"\n\t\t'header header header'\n\t\t'main   main   aside'\n\t\t'footer footer footer'",
+				"\n\t\t'top-left top-right'\n\t\t'mid-left mid-right'\n\t\t'btm-left btm-right'"
+			],
+			"applyTo": "parent",
+			"children": 8
+		}
+	},
 	"gridTemplateColumns": {
 		"name": "grid-template-columns",
-		"jsName": "gridTemplateColumns",
 		"type": "flexi",
 		"min": 0,
 		"units": [
@@ -508,7 +522,6 @@
 	},
 	"gridTemplateRows": {
 		"name": "grid-template-rows",
-		"jsName": "gridTemplateRows",
 		"type": "flexi",
 		"min": 0,
 		"units": [
@@ -540,7 +553,6 @@
 	},
 	"height": {
 		"name": "height",
-		"jsName": "height",
 		"type": "multi",
 		"inputs": [
 			{
@@ -580,7 +592,6 @@
 	},
 	"justifyContent": {
 		"name": "justify-content",
-		"jsName": "justifyContent",
 		"type": "radio",
 		"values": [
 			"flex-start",
@@ -617,7 +628,6 @@
 	},
 	"justifyItems": {
 		"name": "justify-items",
-		"jsName": "justifyItems",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -647,7 +657,6 @@
 	},
 	"justifySelf": {
 		"name": "justify-self",
-		"jsName": "justifySelf",
 		"type": "radio",
 		"values": [
 			"stretch",
@@ -677,7 +686,6 @@
 	},
 	"margin": {
 		"name": "margin",
-		"jsName": "margin",
 		"type": "multi",
 		"inputs": [
 			{
@@ -714,7 +722,6 @@
 	},
 	"order": {
 		"name": "order",
-		"jsName": "order",
 		"type": "multi",
 		"inputs": [
 			{
@@ -742,7 +749,6 @@
 	},
 	"padding": {
 		"name": "padding",
-		"jsName": "padding",
 		"type": "multi",
 		"inputs": [
 			{
@@ -781,7 +787,6 @@
 	},
 	"width": {
 		"name": "width",
-		"jsName": "width",
 		"type": "multi",
 		"inputs": [
 			{

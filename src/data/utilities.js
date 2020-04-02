@@ -1,13 +1,21 @@
 import propertySchema from '../data/propertySchema.json';
 
-const spacer = ({ value, space }) => `${ value !== '' && space ? ' ' : '' }${ value }`;
+const whiteSpace = ({ value, space, newLine }) => {
+	let result = value;
+	if (newLine) {
+		result = value.split('\n').map(line => `\n\t\t${ line }`).join('');
+	}
+
+	return `${ result !== '' && space ? ' ' : '' }${ result }`
+};
 
 const join = values =>
 	values
-		.map(spacer)
+		.map(whiteSpace)
 		.join('')
-		.trim()
-		.replace(/\s+/g, ' ');
+		.replace(/^ +/g, '')
+		.replace(/ +$/g, '')
+		.replace(/ +/g, ' ');
 
 const filterInvalidStyles = (prop, val) => {
 	// transforms invalid styles into null
@@ -28,6 +36,7 @@ const filterInvalidStyles = (prop, val) => {
 }
 
 const constructStyles = (styles, { schema, values }) => {
+
 	const style = filterInvalidStyles(schema, join(values));
 
 	return {

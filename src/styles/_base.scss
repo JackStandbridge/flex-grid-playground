@@ -20,7 +20,8 @@ body {
 
 input[type='number'],
 button,
-select {
+select,
+textarea {
 	@extend %focus;
 }
 
@@ -30,10 +31,6 @@ select {
 	*::after {
 		transition: none !important;
 	}
-}
-
-.no-overflow {
-
 }
 
 pre,

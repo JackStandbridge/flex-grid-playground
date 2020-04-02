@@ -29,17 +29,15 @@ const Bar = () => {
 
 	return (
 		<div className={ stylesheet.bar }>
-			<div className={ stylesheet.bar__buttons }>
+			<div className={ stylesheet.buttons }>
 				<i className={ stylesheet.back }></i>
 				<i className={ stylesheet.forward }></i>
-				<i className={ stylesheet.refresh }></i>
-				<i className={ stylesheet.home }></i>
 			</div>
 			<div
 				className={ stylesheet.url }
 				tabIndex='0'
 			>
-				flex-grid-playground
+				css-playground
 			</div>
 			<button
 				ref={ buttonRef }

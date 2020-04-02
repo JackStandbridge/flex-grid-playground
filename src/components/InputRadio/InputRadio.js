@@ -5,12 +5,26 @@ import propertySchema from '../../data/propertySchema.json';
 import stylesheet from './InputRadio.module.scss';
 import { setStyle } from '../../data/reducer';
 import { getEntry } from '../../data/utilities';
+import { formatMarkDown } from '../../data/utilities';
 
-const InputRadio = ({ section, schema, disabled, ancestorDisabled }) => {
+const InputRadio = (
+	{
+		section,
+		schema,
+		disabled,
+		ancestorDisabled,
+		customValues = [],
+		displayError,
+	}
+) => {
 
 	const page = useSelector(({ page }) => page);
-	const { name, values, [page]: pageValues = [] } = propertySchema[schema];
-	const allValues = [...values, ...pageValues];
+	const {
+		name,
+		values = customValues,
+		[page]: pageSpecificValues = []
+	} = propertySchema[schema];
+	const allValues = [...values, ...pageSpecificValues];
 
 	const entry = useSelector(state => {
 		return getEntry(state, section, schema)
@@ -44,7 +58,19 @@ const InputRadio = ({ section, schema, disabled, ancestorDisabled }) => {
 				fieldset={ true }
 				schema={ schema }
 			/>
-			{
+			{ displayError ?
+				<p
+					className={ stylesheet.error }
+					dangerouslySetInnerHTML={
+						{
+							__html: formatMarkDown(
+								propertySchema[schema].noValues,
+								stylesheet
+							)
+						}
+					}
+				/>
+				:
 				allValues.map((value, i) => (
 					<label className={ stylesheet.label } key={ value } >
 						<input
@@ -60,7 +86,7 @@ const InputRadio = ({ section, schema, disabled, ancestorDisabled }) => {
 				))
 			}
 		</>
-	);
+	)
 };
 
 export default InputRadio;

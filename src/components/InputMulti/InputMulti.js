@@ -211,12 +211,12 @@ const InputMulti = ({ section, schema, disabled }) => {
 		>
 			{ childDisabled => (
 				<>
-					{ renderContents(childDisabled) }
 					<Help
 						disabled={ disabled }
 						fieldset={ true }
 						schema={ schema }
 					/>
+					{ renderContents(childDisabled) }
 				</>
 			) }
 		</Accordion>

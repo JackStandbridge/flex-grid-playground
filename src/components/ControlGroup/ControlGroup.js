@@ -5,6 +5,8 @@ import propertySchema from '../../data/propertySchema.json';
 import InputRadio from '../InputRadio/InputRadio';
 import InputMulti from '../InputMulti';
 import InputFlexi from '../InputFlexi';
+import InputFreeType from '../InputFreeType';
+import InputUserDefinedRadio from '../InputUserDefinedRadio';
 import Accordion from '../Accordion';
 import { clearStyles } from '../../data/reducer';
 import stylesheet from './ControlGroup.module.scss';
@@ -25,7 +27,7 @@ const ControlGroup = (
 
 	const handleClick = () => {
 		dispatch(clearStyles({ section }));
-	}
+	};
 
 	return (
 		<>
@@ -37,29 +39,31 @@ const ControlGroup = (
 
 					const props = {
 						schema: property,
+						placeholder: schema.placeholder,
 						section,
 						disabled,
-					}
+					};
 
 					switch (schema.type) {
-						case 'radio': return (
-							<Accordion
-								key={ schema.name }
-								legend={ schema.name }
-								targetClass='fieldset'
-								buttonClass='expander'
-								ancestorDisabled={ disabled }
-								collapsed={ true }
-							>
-								{ childDisabled => (
-									<InputRadio
-										{ ...props }
-										ancestorDisabled={ disabled }
-										disabled={ childDisabled }
-									/>
-								) }
-							</Accordion>
-						);
+						case 'radio':
+							return (
+								<Accordion
+									key={ schema.name }
+									legend={ schema.name }
+									targetClass='fieldset'
+									buttonClass='expander'
+									ancestorDisabled={ disabled }
+									collapsed={ true }
+								>
+									{ childDisabled => (
+										<InputRadio
+											{ ...props }
+											ancestorDisabled={ disabled }
+											disabled={ childDisabled }
+										/>
+									) }
+								</Accordion>
+							);
 
 						case 'multi': return (
 							<InputMulti
@@ -82,6 +86,44 @@ const ControlGroup = (
 										{ ...props }
 										disabled={ childDisabled }
 										ancestorDisabled={ disabled }
+									/>
+								) }
+							</Accordion>
+						);
+
+						case 'freetype': return (
+							<Accordion
+								key={ schema.name }
+								legend={ schema.name }
+								targetClass='fieldset'
+								buttonClass='expander'
+								ancestorDisabled={ disabled }
+								collapsed={ true }
+							>
+								{ childDisabled => (
+									<InputFreeType
+										{ ...props }
+										disabled={ childDisabled }
+										ancestorDisabled={ disabled }
+									/>
+								) }
+							</Accordion>
+						);
+
+						case 'userDefinedRadio': return (
+							<Accordion
+								key={ schema.name }
+								legend={ schema.name }
+								targetClass='fieldset'
+								buttonClass='expander'
+								ancestorDisabled={ disabled }
+								collapsed={ true }
+							>
+								{ childDisabled => (
+									<InputUserDefinedRadio
+										{ ...props }
+										ancestorDisabled={ disabled }
+										disabled={ childDisabled }
 									/>
 								) }
 							</Accordion>

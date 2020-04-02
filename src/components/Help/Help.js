@@ -20,10 +20,10 @@ const Help = ({ schema, fieldset, disabled }) => {
 
 			<button
 				disabled={ disabled }
-				aria-label='help'
+				aria-label='More Information'
 				className={ stylesheet.button }
 				onClick={ handleToggle }
-				title='help'
+				title='More Information'
 			>?</button>
 
 			<Modal

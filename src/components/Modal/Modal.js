@@ -73,7 +73,7 @@ const Modal = ({ schema, display, handleDismiss }) => {
 						{ name.replace(/-/g, ' ') }
 					</h1>
 
-					{ description.map(renderContent) }
+					{ description?.map(renderContent) }
 
 					{ details &&
 						<Accordion

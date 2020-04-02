@@ -5,7 +5,6 @@
 			"justifyContent",
 			"alignItems",
 			"flexWrap",
-			"alignContent",
 			"height"
 		],
 		"children": [
@@ -31,6 +30,7 @@
 		"parent": [
 			"gridTemplateColumns",
 			"gridTemplateRows",
+			"gridTemplateAreas",
 			"justifyItems",
 			"alignItems",
 			"gap",
@@ -51,6 +51,7 @@
 			"alignSelf",
 			"gridColumn",
 			"gridRow",
+			"gridArea",
 			"order",
 			"margin",
 			"padding",

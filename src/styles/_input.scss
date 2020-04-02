@@ -9,9 +9,10 @@
 	}
 }
 
-input, select {
+input, select, textarea {
 	background: none;
 	border: 1px solid #ddd;
 	border-radius: 0;
 	font-size: 1rem;
+	resize: vertical;
 }
