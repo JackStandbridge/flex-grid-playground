@@ -12,6 +12,7 @@
 	margin: 0;
 	max-height: 2000px;
 	flex-shrink: 0;
+
 	& > *:not(legend):not(.visible) {
 		visibility: hidden;
 		opacity: 0;
@@ -19,9 +20,8 @@
 }
 
 .collapsed {
-	border-color: #ddd;
-	border-image: linear-gradient(to right, #ddd 95%, transparent 95%) 2;
-	border-image-width: 2px 0 0 0;
+	border-color: transparent;
+	border-top-color: #ddd;
 	transition:
 		max-height 0.2s cubic-bezier(0, 1, 0, 1),
 		padding-top 0s linear 0.2s,

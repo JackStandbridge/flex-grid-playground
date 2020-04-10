@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import propertySchema from '../../data/propertySchema.json';
 import { setStyle } from '../../data/reducer';
@@ -41,7 +41,6 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 	};
 
 	const handleClick = ({ shiftKey }) => {
-
 		let newValues = [...values];
 
 		if (shiftKey) {
@@ -63,6 +62,29 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 			section,
 			schema,
 		}));
+	};
+
+	const [isTouch, setIsTouch] = useState(false);
+
+	const [touchRemoval, setTouchRemoval] = useState(null);
+
+	const handleTouchStart = () => {
+		setIsTouch(true);
+		setTouchRemoval(setTimeout(() => {
+			handleClick({ shiftKey: true });
+		}, 1000));
+	};
+
+	const handleTouchEnd = useCallback(() => {
+		clearTimeout(touchRemoval);
+	}, [touchRemoval]);
+
+	useEffect(() => {
+		return handleTouchEnd;
+	}, [handleTouchEnd]);
+
+	const handleContextMenu = e => {
+		e.preventDefault();
 	}
 
 	const renderInput = (value, index) => {
@@ -140,11 +162,15 @@ const InputFlexi = ({ section, schema, disabled, ancestorDisabled }) => {
 						aria-label={ shiftPressed ? 'remove' : 'add' }
 						className={ `${ stylesheet.add } ${ shiftPressed ? stylesheet.shift : '' }` }
 						onClick={ handleClick }
+						onTouchStart={ handleTouchStart }
+						onTouchEnd={ handleTouchEnd }
+						onContextMenu={ handleContextMenu }
 						disabled={ disabled }
 					/>
 
 					<div className={ stylesheet.tooltip }>
-						Shift-click <br />
+						{ isTouch ? 'Long press' : 'Shift-click' }
+						<br />
 						to remove
 					</div>
 				</div>

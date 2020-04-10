@@ -7,8 +7,6 @@
 	border-radius: 50%;
 	position: relative;
 	background: white;
-	-webkit-touch-callout: none;
-	user-select: none;
 	transition: 0.3s;
 
 	&::before,
@@ -89,7 +87,7 @@
 	position: relative;
 	min-height: 1.7rem;
 	@media (max-width: 850px) {
-		height: 48px;
+		min-height: 48px;
 	}
 	align-items: stretch;
 }

@@ -354,8 +354,24 @@
 		"type": "userDefinedRadio",
 		"noValues": "Define some values in `grid-template-areas` to see options here.",
 		"description": [
-			"The `grid-areas` property allows a child of a grid container to be placed into a grid area."
-		]
+			"The `grid-areas` property allows a child of a grid container to be placed into a grid area. The names that can be used to place the grid item to be placed are treated as keywords, in that they are not placed in quotation marks, but their values are based on what is defined in `grid-template` or `grid-template-areas`."
+		],
+		"example": {
+			"otherProperties": {
+				"parent": {
+					"display": "grid",
+					"grid-template": "\n\t\t'header header' 1fr\n\t\t'main   aside ' 4fr\n\t\t'footer footer' 1fr\n\t\t/ 3fr   1fr"
+				}
+			},
+			"values": [
+				"main",
+				"header",
+				"footer",
+				"aside"
+			],
+			"applyTo": 1,
+			"children": 4
+		}
 	},
 	"gridColumn": {
 		"name": "grid-column",

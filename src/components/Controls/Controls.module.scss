@@ -8,6 +8,9 @@
 	border-radius: 0.5rem;
 	overflow: hidden;
 	transition: min-width 0.2s, flex-grow 0.2s;
+	-webkit-touch-callout: none;
+	user-select: none;
+	-webkit-user-select: none;
 
 	@media (max-width: 1200px) {
 		height: unset;
@@ -40,6 +43,9 @@
 	@media (max-width: 1200px) and (min-width: 850px) {
 		flex-wrap: wrap;
 		flex-direction: row;
+	}
+
+	@media (max-width: 1200px) {
 		overflow-y: visible;
 	}
 }

@@ -9,10 +9,19 @@
 	}
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
+	border: unset;
 	background: none;
 	border: 1px solid #ddd;
 	border-radius: 0;
 	font-size: 1rem;
 	resize: vertical;
+}
+
+.safari {
+	input:not(input[type='range']) {
+		-webkit-appearance: none;
+	}
 }

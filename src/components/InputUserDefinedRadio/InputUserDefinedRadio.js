@@ -13,13 +13,18 @@ const InputUserDefinedRadio = props => {
 					return entry.hook === props.schema
 				})
 
-				.map(({ values }) => console.log(values) || (
+				.map(({ values }) => (
 					values.map(({ value }) => (
 						value.split(/['\s]+/)
 					))
 				))
 
 				.flat(Infinity)
+
+				.filter(value => value !== '.')
+
+				.map(value => value === '' ? 'unset' : value)
+
 		})
 
 	)];
