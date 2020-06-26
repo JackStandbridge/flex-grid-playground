@@ -1,5 +1,7 @@
+const page = window.location.hash.slice(1,);
+
 const initial = {
-	page: window.location.hash.slice(1,) || 'flex',
+	page: ['flex', 'grid'].includes(page) ? page : 'flex',
 	pages: {
 		flex: {
 			title: 'Flexbox Playground',
