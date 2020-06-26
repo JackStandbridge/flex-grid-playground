@@ -139,7 +139,7 @@ const ControlGroup = (
 				onClick={ handleClick }
 				disabled={ disabled }
 			>
-				Reset
+				Clear
 			</button>
 		</>
 	);
