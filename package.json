@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "react-scripts build && cd build && git init && git remote add origin git@github.com:JackStandbridge/css-playground.git && git add . && git commit -m 'build project' && git push -uf origin master && echo 'https://jackstandbridge.github.io/css-playground/'",
+    "deploy": "react-scripts build && cd build && git init && git remote add origin git@github.com:JackStandbridge/css-playground.git && git add . && git commit -m 'build project' && git push -uf origin master && echo 'https://jackstandbridge.github.io/css-playground/' && cd ../ && git push",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
